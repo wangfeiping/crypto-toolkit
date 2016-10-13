@@ -10,7 +10,8 @@ then
 fi
 
 yum install -y epel-release || exit 1
-command -v docker || yum install -y docker-io || exit 1
+command -v docker || yum remove -y docker*
+yum install -y docker-io || exit 1
 
 systemctl status docker || systemctl start docker
 
