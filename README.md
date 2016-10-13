@@ -10,44 +10,44 @@
 安装服务
 
 * JDK
-  * rhel-7.x
+  * CentOS-7.x
     
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/rhel-7.x/install_jdk|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk|bash
     ```
 * Cassandra
-  * rhel-7.x
+  * CentOS-7.x
     
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/rhel-7.x/install_cassandra|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_cassandra|bash
     ```
 
 * Kong
-  * rhel-7.x
+  * CentOS-7.x
     
     ```
     yum install -y http://oerp142a4.bkt.clouddn.com/kong-0.9.3.el7.noarch.rpm
     ```
 
 * influxDB
-  * rhel-7.x
+  * CentOS-7.x
     
     ```
     yum install -y http://oerp142a4.bkt.clouddn.com/influxdb-1.0.0.x86_64.rpm
     ```
 
 * OpenResty
-  * rhel-7.x
+  * CentOS-7.x
     
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/rhel-7.x/install_openresty|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_openresty|bash
     ```
 
 * Harbor
-  * rhel-7.x
+  * CentOS-7.x
     
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/rhel-7.x/install_harbor|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_harbor|bash
     ```
 
 
