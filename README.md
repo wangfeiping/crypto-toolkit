@@ -10,4 +10,8 @@
 安装服务
 
 * JDK
-  * curl https://raw.githubusercontent.com/WALL-E/static/master/sh/install_jdk|bash
+  * redhat
+    * curl https://raw.githubusercontent.com/WALL-E/static/master/redhat/install_jdk|bash
+* Cassandra
+  * redhat
+    * curl https://raw.githubusercontent.com/WALL-E/static/master/redhat/install_cassandra|bash
