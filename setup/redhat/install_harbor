@@ -1,0 +1,22 @@
+#!/bin/bash
+
+yum install -y epel-release
+yum install -y docker-io 
+
+curl -L http://oerp142a4.bkt.clouddn.com/docker-compose-Linux-x86_64_1.8.0 > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+git clone https://github.com/vmware/harbor
+
+cd Deploy
+./prepare
+
+ipaddr=`ip route get 202.106.0.20|grep "202.106.0.20"|awk '{print $7}'`
+sed -i "s/^hostname.*$/hostname = ${ipaddr}/" harbor.cfg
+
+for i in {1..10}
+do
+   docker-compose up -d && break
+done
+
+rm -fr harbor
