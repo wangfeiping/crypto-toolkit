@@ -29,3 +29,10 @@
     yum install -y http://oerp142a4.bkt.clouddn.com/kong-0.9.3.el7.noarch.rpm
     ```
 
+* influxDB
+  * redhat
+    
+    ```
+    yum install -y http://oerp142a4.bkt.clouddn.com/influxdb-1.0.0.x86_64.rpm
+    ```
+
