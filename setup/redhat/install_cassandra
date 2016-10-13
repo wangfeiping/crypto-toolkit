@@ -21,7 +21,7 @@ rm -f  $TMPFILE
 
 cat <<EOF >> /etc/profile
 CASSANDRA_HOME=/opt/apache-cassandra-2.2.7
-PATH=$PATH:$CASSANDRA_HOME/bin
+PATH=\$PATH:\$CASSANDRA_HOME/bin
 export PATH
 EOF
 
