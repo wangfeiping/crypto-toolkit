@@ -11,7 +11,13 @@
 
 * JDK
   * redhat
-    * curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk|bash
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk|bash
+    ```
 * Cassandra
   * redhat
-    * curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_cassandra|bash
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_cassandra|bash
+    ```
