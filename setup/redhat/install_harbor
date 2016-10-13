@@ -1,5 +1,7 @@
 #!/bin/bash
 
+tmp_dir=/opt/harbor
+
 role=`id -u`
 if test $role -ne 0
 then
@@ -7,8 +9,10 @@ then
     exit 1
 fi
 
-yum install -y epel-release
-yum install -y docker-io 
+yum install -y epel-release || exit 1
+command -v docker || yum install -y docker-io || exit 1
+
+systemctl status docker || systemctl start docker
 
 command -v git || yum -y install git || exit 1
 command -v curl || yum -y install curl || exit 1
@@ -16,9 +20,9 @@ command -v curl || yum -y install curl || exit 1
 curl -L http://oerp142a4.bkt.clouddn.com/docker-compose-Linux-x86_64_1.8.0 > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-git clone https://github.com/vmware/harbor
+git clone https://github.com/vmware/harbor ${tmp_dir}
 
-cd Deploy
+cd ${tmp_dir}/Deploy
 ./prepare
 
 ipaddr=`ip route get 202.106.0.20|grep "202.106.0.20"|awk '{print $7}'`
@@ -28,5 +32,3 @@ for i in {1..10}
 do
    docker-compose up -d && break
 done
-
-rm -fr harbor
