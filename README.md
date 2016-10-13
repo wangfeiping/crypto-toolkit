@@ -21,3 +21,11 @@
     ```
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_cassandra|bash
     ```
+
+* Kong
+  * redhat
+    
+    ```
+    yum install -y http://oerp142a4.bkt.clouddn.com/kong-0.9.3.el7.noarch.rpm
+    ```
+
