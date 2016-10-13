@@ -36,3 +36,11 @@
     yum install -y http://oerp142a4.bkt.clouddn.com/influxdb-1.0.0.x86_64.rpm
     ```
 
+* OpenResty
+  * redhat
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_openresty|bash
+    ```
+
+
