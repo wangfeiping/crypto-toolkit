@@ -15,8 +15,8 @@ yum install -y docker-io
 
 (systemctl status docker || systemctl start docker)
 
-command -v git || yum -y install git
-command -v curl || yum -y install curl
+(command -v git || yum -y install git)
+(command -v curl || yum -y install curl)
 
 curl -L http://oerp142a4.bkt.clouddn.com/docker-compose-Linux-x86_64_1.8.0 > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
