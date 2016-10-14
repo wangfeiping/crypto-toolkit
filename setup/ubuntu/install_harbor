@@ -19,16 +19,11 @@ chmod +x /usr/local/bin/docker-compose
 git clone https://github.com/vmware/harbor ${tmp_dir}
 
 cd ${tmp_dir}/Deploy
-./prepare
 
 ipaddr=`ip route get 202.106.0.20|grep "202.106.0.20"|awk '{print $7}'`
-port="80"
-endpoint=${ipaddr}":"${port}
+sed -i "s/reg.mydomain.com/${ipaddr}/" harbor.cfg
 
-sed -i "s/reg.mydomain.com/${endpoint}/" harbor.cfg
-sed -i "s/reg.mydomain.com/${endpoint}/" config/jobservice/env
-sed -i "s/reg.mydomain.com/${endpoint}/" config/registry/config.yml
-sed -i "s/reg.mydomain.com/${endpoint}/" config/ui/env
+./prepare
 
 
 for i in {1..10}
