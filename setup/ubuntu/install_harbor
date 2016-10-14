@@ -22,7 +22,12 @@ cd ${tmp_dir}/Deploy
 ./prepare
 
 ipaddr=`ip route get 202.106.0.20|grep "202.106.0.20"|awk '{print $7}'`
-sed -i "s/^hostname.*$/hostname = ${ipaddr}/" harbor.cfg
+
+sed -i "s/reg.mydomain.com/${ipaddr}/" harbor.cfg
+sed -i "s/reg.mydomain.com/${ipaddr}/" config/jobservice/env
+sed -i "s/reg.mydomain.com/${ipaddr}/" config/registry/config.yml
+sed -i "s/reg.mydomain.com/${ipaddr}/" config/ui/env
+
 
 for i in {1..10}
 do
