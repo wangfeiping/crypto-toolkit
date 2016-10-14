@@ -50,5 +50,9 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_harbor|bash
     ```
 
-
+  * Ubuntu-14-04.5
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_harbor|bash
+    ```
 
