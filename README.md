@@ -56,3 +56,8 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_harbor|bash
     ```
 
+* docker-machine
+  ```
+  curl -L http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.8.2 >/usr/local/bin/docker-machine
+  chmod +x /usr/local/bin/docker-machine
+  ```
