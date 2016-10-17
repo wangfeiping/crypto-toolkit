@@ -64,7 +64,7 @@
   chmod +x /usr/local/bin/docker-machine
   ```
   
- * docker-compose
+* docker-compose
  
   ```
   wget http://oerp142a4.bkt.clouddn.com/docker-compose-Linux-x86_64_1.8.0
