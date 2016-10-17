@@ -58,6 +58,7 @@
 
 * docker-machine
   ```
-  curl -L http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.8.2 >/usr/local/bin/docker-machine
+  wget http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.8.2
+  mv docker-machine-Linux-x86_64_0.8.2 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
   ```
