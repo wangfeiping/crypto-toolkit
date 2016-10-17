@@ -57,8 +57,17 @@
     ```
 
 * docker-machine
+
   ```
   wget http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.8.2
   mv docker-machine-Linux-x86_64_0.8.2 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
+  ```
+  
+ * docker-compose
+ 
+  ```
+  wget http://oerp142a4.bkt.clouddn.com/docker-compose-Linux-x86_64_1.8.0
+  mv docker-compose-Linux-x86_64_1.8.0 /usr/local/bin/docker-compose
+  chmod +x /usr/local/bin/docker-compose
   ```
