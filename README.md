@@ -72,7 +72,7 @@
   chmod +x /usr/local/bin/docker-compose
   ```
   
- * consul
+* consul
  
    ```
    wget http://oerp142a4.bkt.clouddn.com/consul_0.7.0_linux_amd64.zip
