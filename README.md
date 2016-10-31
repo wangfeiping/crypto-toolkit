@@ -71,3 +71,10 @@
   mv docker-compose-Linux-x86_64_1.8.0 /usr/local/bin/docker-compose
   chmod +x /usr/local/bin/docker-compose
   ```
+  
+ * consul
+   ```
+   wget http://oerp142a4.bkt.clouddn.com/consul_0.7.0_linux_amd64.zip
+   unzip consul_0.7.0_linux_amd64.zip
+   sudo cp consul /usr/local/bin/
+   ```
