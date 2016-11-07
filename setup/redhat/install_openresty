@@ -16,6 +16,7 @@ echo "start install OpenResty ..."
 command -v wget || yum -y install wget || exit 1
 command -v git || yum -y install git || exit 1
 yum -y install epel-release || exit 1
+yum -y groupinstall development tools
 yum -y install libpqxx-devel || exit 1
 yum -y install libpqxx || exit 1
 yum -y install libxml2-devel libxslt-devel || exit 1
