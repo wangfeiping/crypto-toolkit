@@ -26,7 +26,7 @@
   * CentOS-7.x
     
     ```
-    yum install -y http://oerp142a4.bkt.clouddn.com/kong-0.9.3.el7.noarch.rpm
+    yum install -y http://oerp142a4.bkt.clouddn.com/kong-0.9.5.el7.noarch.rpm
     ```
 
 * influxDB
