@@ -15,6 +15,14 @@
     ```
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk|bash
     ```
+
+* Python27
+  * CentOS-6.x
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_python27|bash
+    ```
+
 * Cassandra
   * CentOS-7.x
     
