@@ -23,6 +23,13 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_python27|bash
     ```
 
+* Pip27
+  * CentOS-6.x, CentOS-7.x
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_pip27|bash
+    ```
+
 * Cassandra
   * CentOS-7.x
     

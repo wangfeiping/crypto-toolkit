@@ -37,5 +37,5 @@ python2.7 setup.py install
 cd -
 rm -fr pip-9.0.1
 
-ln -s /usr/bin/python2.7 /usr/local/bin/python2.7
-ln -s /usr/bin/pip2.7 /usr/local/bin/pip2.7
+ln -s /usr/local/bin/python2.7 /usr/bin/python2.7
+ln -s /usr/local/bin/pip2.7 /usr/bin/pip2.7
