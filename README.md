@@ -30,6 +30,15 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_pip27|bash
     ```
 
+* Supervisor
+  * CentOS-6.x
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_supervisor|bash
+    ```
+
+
+
 * Cassandra
   * CentOS-7.x
     
