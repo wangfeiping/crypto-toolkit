@@ -36,6 +36,7 @@ tar zxf $TMPFILE -C /tmp/
 rm -f  $TMPFILE
 
 cd /tmp/openresty-${VERSION}/
-./configure --prefix=/opt/openresty --with-http_realip_module && gmake && gmake install
+./configure --prefix=/opt/openresty --with-http_realip_module --with-stream
+gmake && gmake install
 
 rm -fr /tmp/openresty-${VERSION}/
