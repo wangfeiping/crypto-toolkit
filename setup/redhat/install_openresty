@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.11.2.1"
+VERSION="1.11.2.2"
 
 URL="http://oerp142a4.bkt.clouddn.com/openresty-${VERSION}.tar.gz"
 
