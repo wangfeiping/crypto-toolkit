@@ -83,8 +83,8 @@
 * docker-machine and docker
 
   ```
-  wget http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.8.2
-  mv docker-machine-Linux-x86_64_0.8.2 /usr/local/bin/docker-machine
+  wget http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.10.0
+  mv docker-machine-Linux-x86_64_0.10.0 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
 
   curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_sshkey|bash
