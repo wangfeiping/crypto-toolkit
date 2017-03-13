@@ -87,7 +87,7 @@
   mv docker-machine-Linux-x86_64_0.10.0 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
 
-  curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_sshkey|bash
+  curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_sshkey|bash
   docker-machine create -d generic --generic-ip-address=127.0.0.1 --generic-ssh-user=root dockerHost
   ```
   
