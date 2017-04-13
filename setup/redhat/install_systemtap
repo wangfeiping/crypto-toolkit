@@ -1,0 +1,12 @@
+#/bin/bash
+
+yum install -y redhat-lsb
+
+yum install -y kernel-devel
+yum install -y systemtap
+
+yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/glibc-debuginfo-common-2.17-157.el7_3.1.x86_64.rpm
+yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/glibc-debuginfo-2.17-157.el7_3.1.x86_64.rpm
+
+yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/kernel-debuginfo-common-`uname -m`-`uname -r`.rpm
+yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/kernel-debuginfo-`uname -r`.rpm
