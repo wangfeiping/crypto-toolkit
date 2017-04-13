@@ -8,11 +8,13 @@
 
 # isos
 * centos 7
-  http://ok9kfhw61.bkt.clouddn.com/CentOS-7-x86_64-Minimal-1511.iso
+  * http://ok9kfhw61.bkt.clouddn.com/CentOS-7-x86_64-Minimal-1511.iso
+  
 * centos 6.9
-  http://ok9kfhw61.bkt.clouddn.com/CentOS-6.9-x86_64-minimal.iso
+  * http://ok9kfhw61.bkt.clouddn.com/CentOS-6.9-x86_64-minimal.iso
+  
 * centos 6.8
-  http://ok9kfhw61.bkt.clouddn.com/CentOS-6.8-x86_64-minimal.iso
+  * http://ok9kfhw61.bkt.clouddn.com/CentOS-6.8-x86_64-minimal.iso
 
 # setup
 安装服务
