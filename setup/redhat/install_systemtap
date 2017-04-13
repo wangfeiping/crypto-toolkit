@@ -10,3 +10,12 @@ yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname 
 
 yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/kernel-debuginfo-common-`uname -m`-`uname -r`.rpm
 yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/kernel-debuginfo-`uname -r`.rpm
+
+# 测试stap
+stap -V
+
+# 测试kernel-debuginfo
+stap -L  'kernel.function("printk")'
+
+# 测试glibc-debuginfo
+stap -L  'process("/lib64/libc.so.6").function("malloc")'
