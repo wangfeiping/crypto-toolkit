@@ -2,7 +2,7 @@
 
 yum install -y redhat-lsb
 
-yum install -y kernel-devel
+yum install -y kernel-devel-`uname -r`
 yum install -y systemtap
 
 yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/glibc-debuginfo-common-2.17-157.el7_3.1.x86_64.rpm
@@ -12,10 +12,10 @@ yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname 
 yum install -y http://debuginfo.centos.org/`lsb_release -sr|cut -d. -f1`/`uname -m`/kernel-debuginfo-`uname -r`.rpm
 
 # 测试stap
-stap -V
+stap -V >/dev/null && echo "stap is ok"
 
 # 测试kernel-debuginfo
-stap -L  'kernel.function("printk")'
+stap -L 'kernel.function("printk")' > /dev/null && echo "kernel-debuginfo is ok"
 
 # 测试glibc-debuginfo
-stap -L  'process("/lib64/libc.so.6").function("malloc")'
+stap -L 'process("/lib64/libc.so.6").function("malloc")' > /dev/null && echo "glibc-debuginfo is ok"
