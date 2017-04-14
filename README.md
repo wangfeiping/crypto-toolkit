@@ -20,7 +20,8 @@
 安装服务
 
 * Systemtap
-  * CentOS 7
+  * CentOS 7
+  
     ```
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_systemtap|bash
     ```
