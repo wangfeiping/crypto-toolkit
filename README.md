@@ -7,7 +7,7 @@
   * https://raw.githubusercontent.com/WALL-E/static/master/images/wx-small.jpg
 
 # isos
-* centos 7
+* centos 7.2.1511
   * http://ok9kfhw61.bkt.clouddn.com/CentOS-7-x86_64-Minimal-1511.iso
   
 * centos 6.9
