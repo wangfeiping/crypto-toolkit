@@ -31,7 +31,7 @@
   * Centos-6.x
     ```
     wget http://oerp142a4.bkt.clouddn.com/wrk-centos6
-    mv wrk-centos7 wrk
+    mv wrk-centos6 wrk
     chmod +x wrk
     ```
 
