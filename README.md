@@ -21,6 +21,20 @@
 # setup
 安装服务
 
+* wrk
+  * Centos-7.x
+    ```
+    wget http://oerp142a4.bkt.clouddn.com/wrk-centos7
+    mv wrk-centos7 wrk
+    chmod +x wrk
+    ```
+  * Centos-6.x
+    ```
+    wget http://oerp142a4.bkt.clouddn.com/wrk-centos6
+    mv wrk-centos7 wrk
+    chmod +x wrk
+    ```
+
 * Systemtap
   * CentOS-7.x
     ```
