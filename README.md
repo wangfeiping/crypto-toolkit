@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* 文件中转站（redhat/centos x86-64）
+  ```
+  wget http://oerp142a4.bkt.clouddn.com/qshell
+  wget http://oerp142a4.bkt.clouddn.com/zshell
+  ```
+  
 * wrk
   * Centos-7.x
     ```
