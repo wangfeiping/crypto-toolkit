@@ -24,7 +24,6 @@
 * 文件中转站（redhat/centos x86-64）
   ```
   yum install libssh-devel.x86_64
-  wget http://oerp142a4.bkt.clouddn.com/qshell
   wget http://oerp142a4.bkt.clouddn.com/zshell
   ```
   
