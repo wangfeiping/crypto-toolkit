@@ -24,7 +24,9 @@
 * 文件中转站（redhat/centos x86-64）
   ```
   yum install libssh-devel.x86_64
-  wget http://oerp142a4.bkt.clouddn.com/zshell
+  wget http://oerp142a4.bkt.clouddn.com/zshell?q=$RANDOM -O zshell
+  
+  MD5SUM: ee87d11ea2f8dc17c66dc8e9d1a526b8
   ```
   
 * wrk
