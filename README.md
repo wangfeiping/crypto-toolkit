@@ -62,6 +62,13 @@
     ```
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_python27|bash
     ```
+    
+* Python36
+  * CentOS-7.x
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_python36|bash
+    ```
 
 * Pip27
   * CentOS-6.x, CentOS-7.x
