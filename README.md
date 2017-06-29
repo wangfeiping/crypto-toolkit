@@ -21,6 +21,13 @@
 # setup
 安装服务
 
+* PyTorch
+  * Centos-7.x
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_pytorch|bash
+    ```
+
 * 文件中转站（redhat/centos x86-64）
   ```
   yum install libssh-devel.x86_64
