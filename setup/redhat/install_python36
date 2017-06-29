@@ -16,8 +16,8 @@ yum install -y zlib-devel bzip2-devel openssl-devel xz-libs wget
 wget http://opduyrvvz.bkt.clouddn.com/Python-3.6.0.tgz
 tar zxvf Python-3.6.0.tgz
 cd Python-3.6.0
-./configure --prefix=/usr/local
-make && make install
+./configure --prefix=/usr/local --enable-shared
+make && make install && make libinstall
 cd -
 rm -fr Python-3.6.0
 
@@ -33,3 +33,6 @@ rm -fr setuptools-36.0.1
 easy_install-3.6 pip
 
 ln -s /usr/local/bin/python3.6 /usr/bin/python3.6
+
+echo "/usr/local/lib/" > /etc/ld.so.conf.d/python3.6
+ldconfig
