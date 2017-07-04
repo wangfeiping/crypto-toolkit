@@ -137,6 +137,8 @@
 * docker-machine and docker
 
   ```
+  Ref: https://github.com/docker/machine/releases
+  
   wget http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.10.0
   mv docker-machine-Linux-x86_64_0.10.0 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
@@ -144,7 +146,6 @@
   curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_sshkey|bash
   docker-machine create -d generic --generic-ip-address=127.0.0.1 --generic-ssh-user=root dockerHost```
   
-  Ref: https://github.com/docker/machine/releases
 
 * docker-compose
  
