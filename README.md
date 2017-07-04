@@ -142,8 +142,7 @@
   chmod +x /usr/local/bin/docker-machine
 
   curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_sshkey|bash
-  docker-machine create -d generic --generic-ip-address=127.0.0.1 --generic-ssh-user=root dockerHost
-  ```
+  docker-machine create -d generic --generic-ip-address=127.0.0.1 --generic-ssh-user=root dockerHost```
   
   Ref: https://github.com/docker/machine/releases
 
