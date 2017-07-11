@@ -119,6 +119,9 @@
     
     ```
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_openresty|bash
+    
+    官方版本
+    https://openresty.org/en/linux-packages.html
     ```
 
 * Harbor
