@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* iproute2
+  ```
+  git clone git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
+  make && make install
+  ```
+ 
 * PyTorch
   * Centos-7.x
     
