@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* sock
+  ```
+  wget http://opduyrvvz.bkt.clouddn.com/sock
+  chmod +x sock
+  ```
+  
 * iproute2
   ```
   git clone git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git
