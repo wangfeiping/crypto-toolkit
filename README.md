@@ -154,8 +154,8 @@
   ```
   Ref: https://github.com/docker/machine/releases
   
-  wget http://oerp142a4.bkt.clouddn.com/docker-machine-Linux-x86_64_0.10.0
-  mv docker-machine-Linux-x86_64_0.10.0 /usr/local/bin/docker-machine
+  wget http://opduyrvvz.bkt.clouddn.com/docker-machine-Linux-x86_64_0.12.2
+  mv docker-machine-Linux-x86_64_0.12.2 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
 
   curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_sshkey|bash
