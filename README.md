@@ -72,7 +72,9 @@
   * CentOS-7.x
     
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk7|bash
+
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jdk8|bash
     ```
 
 * Python27
