@@ -22,7 +22,7 @@
 安装服务
 
 * kong-dev-kit
-
+  docker images
 ```
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit.md5sum
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_dashboard.tar.gz
