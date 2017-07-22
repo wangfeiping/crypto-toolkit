@@ -21,6 +21,18 @@
 # setup
 安装服务
 
+* kong-dev-kit
+  ```
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit.md5sum
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_dashboard.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_kong.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_httpbin.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_postgres.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_postgres_tests.tar.gz
+
+  cat export.tar | docker import - kongdevkit:latest
+  ```
+
 * sock
   ```
   wget http://opduyrvvz.bkt.clouddn.com/sock
