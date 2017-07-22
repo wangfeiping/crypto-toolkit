@@ -22,7 +22,8 @@
 安装服务
 
 * kong-dev-kit
-  ```
+
+```
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit.md5sum
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_dashboard.tar.gz
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_kong.tar.gz
