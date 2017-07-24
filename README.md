@@ -169,6 +169,9 @@
   ```
   Ref: https://github.com/docker/machine/releases
   
+  阿里云安装脚本
+  curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
+  
   wget http://opduyrvvz.bkt.clouddn.com/docker-machine-Linux-x86_64_0.12.2
   mv docker-machine-Linux-x86_64_0.12.2 /usr/local/bin/docker-machine
   chmod +x /usr/local/bin/docker-machine
