@@ -1,0 +1,42 @@
+#!/bin/bash
+
+version=`cat /etc/redhat-release |grep -oP '([0-9]\.[0-9])'|cut -d"." -f1`
+
+
+URL='http://opduyrvvz.bkt.clouddn.com//home/vagrant/tmux.2.5.tar.gz'
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install JDK which requires root privileges"
+    exit 1
+fi
+
+yum -y install gcc gcc-c++ make automake
+yum -y install ncurses-devel ncurses
+yum -y install libutempter-devel libutempter
+
+case $version in
+    6)
+        yum -y install libevent2 libevent2-devel
+        echo "install on centos 6";;
+    7)
+        yum -y install libevent libevent-devel
+        echo "install on centos 6";;
+    *)
+        echo "Error: not found os version"
+        exit 1;;
+esac
+
+cd `dirname $0`
+TMPFILE=$(mktemp /tmp/tmp.XXXXXXXXXX) || exit 1
+wget -t 3 -O $TMPFILE $URL
+
+tar zxf $TMPFILE -C /tmp/
+rm -f  $TMPFILE
+
+cd /tmp/tmux/
+
+./autogen.sh
+./configure --enable-utempter
+make && make install
