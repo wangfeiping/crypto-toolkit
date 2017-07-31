@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* tmux-2.5
+  * CentOS
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_tmux|bash
+    ```
+
 * kong-dev-kit
   docker images
 ```
