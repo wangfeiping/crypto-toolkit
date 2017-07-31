@@ -21,6 +21,19 @@
 # setup
 安装服务
 
+* kong-dev-kit
+  docker images
+```
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit.md5sum
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_dashboard.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_kong.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_httpbin.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_postgres.tar.gz
+  wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_postgres_tests.tar.gz
+
+  cat export.tar | docker import - kongdevkit:latest
+  ```
+
 * sock
   ```
   wget http://opduyrvvz.bkt.clouddn.com/sock
@@ -155,6 +168,9 @@
 
   ```
   Ref: https://github.com/docker/machine/releases
+  
+  阿里云安装脚本
+  curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
   
   wget http://opduyrvvz.bkt.clouddn.com/docker-machine-Linux-x86_64_0.12.2
   mv docker-machine-Linux-x86_64_0.12.2 /usr/local/bin/docker-machine
