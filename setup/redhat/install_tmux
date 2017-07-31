@@ -15,6 +15,7 @@ fi
 yum -y install gcc gcc-c++ make automake
 yum -y install ncurses-devel ncurses
 yum -y install libutempter-devel libutempter
+yum -y install wget
 
 case $version in
     6)
