@@ -9,10 +9,11 @@ fi
 
 cd `dirname $0`
 
+yum install epel-release
 yum groupinstall -y 'development tools'
 yum install -y zlib-devel bzip2-devel openssl-devel xz-libs wget
 yum install -y readline-devel readline
-
+yum install -y mariadb-server mariadb-devel mariadb
 
 wget http://opduyrvvz.bkt.clouddn.com/Python-3.6.0.tgz
 tar zxvf Python-3.6.0.tgz
@@ -31,9 +32,13 @@ python3.6 setup.py install
 cd -
 rm -fr setuptools-36.0.1
 
+echo "/usr/local/lib" > /etc/ld.so.conf.d/python-3.6.conf
+ldconfig
+
 easy_install-3.6 pip
 
-ln -s /usr/local/bin/python3.6 /usr/bin/python3.6
-
-echo "/usr/local/lib/python3.6/config-3.6m-x86_64-linux-gnu" > /etc/ld.so.conf.d/python-3.6.conf
-ldconfig
+pip3.6 install mysqlclient
+pip3.6 install Django==1.11.4
+pip3.6 install djangorestframework
+pip3.6 install markdown       # Markdown support for the browsable API.
+pip3.6 install django-filter  # Filtering support
