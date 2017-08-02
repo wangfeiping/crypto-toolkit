@@ -42,4 +42,4 @@ cd /tmp/tmux/
 ./configure --enable-utempter
 make && make install
 
-wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux.conf
+wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
