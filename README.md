@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* jekyll
+  * CentOS-7
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jekyll|bash
+    ```
+
 * tmux-2.5
   * CentOS
     ```
@@ -29,7 +35,7 @@
 
 * kong-dev-kit
   docker images
-```
+  ```
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit.md5sum
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_dashboard.tar.gz
   wget http://opduyrvvz.bkt.clouddn.com/kongdevkit_kong.tar.gz
@@ -172,7 +178,7 @@
 
 * docker-machine and docker
 
-```
+  ```
   Ref: https://github.com/docker/machine/releases
   
   阿里云安装脚本
@@ -184,7 +190,7 @@
 
   curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_sshkey|bash
   docker-machine create -d generic --generic-ip-address=127.0.0.1 --generic-ssh-user=root dockerHost
-```
+  ```
   
 
 * docker-compose
