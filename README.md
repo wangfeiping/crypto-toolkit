@@ -176,11 +176,11 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_harbor|bash
     ```
 
-* docker-machine and docker
 
-  ```
-  Ref: https://github.com/docker/machine/releases
+* docker-machine and docker
+```
   
+  Ref: https://github.com/docker/machine/releases
   阿里云安装脚本
   curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
   
