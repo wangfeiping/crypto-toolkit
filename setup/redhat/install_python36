@@ -10,6 +10,7 @@ fi
 cd `dirname $0`
 
 yum install -y epel-release
+yum install -y python-virtualenv
 yum install -y gcc gcc-c++ automake
 # yum groupinstall -y 'development tools'
 yum install -y zlib-devel bzip2-devel openssl-devel xz-libs wget
