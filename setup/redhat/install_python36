@@ -10,7 +10,8 @@ fi
 cd `dirname $0`
 
 yum install epel-release
-yum groupinstall -y 'development tools'
+yum install -y gcc gcc-c++ automake
+# yum groupinstall -y 'development tools'
 yum install -y zlib-devel bzip2-devel openssl-devel xz-libs wget
 yum install -y readline-devel readline
 yum install -y mariadb-server mariadb-devel mariadb
@@ -23,7 +24,7 @@ make && make install && make libinstall
 cd -
 rm -fr Python-3.6.0
 
-ln -s /usr/local/bin/python3.6 /usr/bin/python3.6
+# ln -s /usr/local/bin/python3.6 /usr/bin/python3.6
 
 wget http://opduyrvvz.bkt.clouddn.com/setuptools-36.0.1.zip
 unzip setuptools-36.0.1.zip
