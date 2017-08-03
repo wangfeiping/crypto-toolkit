@@ -109,7 +109,7 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_python27|bash
     ```
     
-* Python36
+* Python36 & Django
   * CentOS-7.x
     
     ```
