@@ -45,3 +45,5 @@ pip3.6 install Django==1.11.4
 pip3.6 install djangorestframework
 pip3.6 install markdown       # Markdown support for the browsable API.
 pip3.6 install django-filter  # Filtering support
+pip3.6 install pygments
+pip3.6 install coreapi
