@@ -109,7 +109,7 @@
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_python27|bash
     ```
     
-* Python36
+* Python3.6 & easy_install-3.6 & pip3.6
   * CentOS-7.x
     
     ```
