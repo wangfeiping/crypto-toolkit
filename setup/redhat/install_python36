@@ -39,12 +39,3 @@ echo "/usr/local/lib" > /etc/ld.so.conf.d/python-3.6.conf
 ldconfig
 
 easy_install-3.6 pip
-
-pip3.6 install mysqlclient
-pip3.6 install Django==1.11.4
-pip3.6 install djangorestframework
-pip3.6 install markdown       # Markdown support for the browsable API.
-pip3.6 install django-filter  # Filtering support
-pip3.6 install pygments
-pip3.6 install coreapi
-pip install django-rest-swagger
