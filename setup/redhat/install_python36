@@ -15,7 +15,7 @@ yum install -y sqlite-devel sqlite
 yum install -y gcc gcc-c++ automake
 # yum groupinstall -y 'development tools'
 yum install -y zlib-devel bzip2-devel openssl-devel xz-libs wget
-yum install -y readline-devel readline patch
+yum install -y readline-devel readline patch unzip
 yum install -y mariadb-server mariadb-devel mariadb
 
 wget http://opduyrvvz.bkt.clouddn.com/Python-3.6.0.tgz
