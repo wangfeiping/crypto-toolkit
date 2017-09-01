@@ -38,7 +38,7 @@ cd /tmp
 sudo -u postgres createuser kong
 sudo -u postgres createdb -O kong kong
 sudo -u postgres createdb -O kong kong_tests
-
+cd -
 
 cd kong
 luarocks make
