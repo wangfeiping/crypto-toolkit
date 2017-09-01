@@ -15,7 +15,7 @@ luarocks install busted
 luarocks install lua-llthreads2
 
 
-yum install -y "https://bintray.com/kong/kong-community-edition-rpm/download_file?file_path=dists/kong-community-edition-0.11.0.el7.noarch.rpm"
+# yum install -y "https://bintray.com/kong/kong-community-edition-rpm/download_file?file_path=dists/kong-community-edition-0.11.0.el7.noarch.rpm"
 
 sed -i ~/.bash_profile -e "/export PATH/d"
 echo "PATH=$PATH:/usr/local/openresty/bin/:/usr/local/openresty/nginx/sbin" >> ~/.bash_profile
