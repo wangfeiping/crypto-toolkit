@@ -9,6 +9,8 @@ fi
 
 cd ~
 
+curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_tmux|bash
+
 yum install -y gcc gcc-c++ make
 yum install -y luarocks lua-devel openssl-devel
 luarocks install busted
