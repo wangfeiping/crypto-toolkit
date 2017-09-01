@@ -9,7 +9,7 @@ fi
 
 cd ~
 
-yum install -y gcc g++ make
+yum install -y gcc gcc-c++ make
 yum install -y luarocks lua-devel openssl-devel
 luarocks install busted
 luarocks install lua-llthreads2
