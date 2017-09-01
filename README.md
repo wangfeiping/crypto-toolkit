@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* Kong-dev
+  * CentOS-7
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/init_kong_dev|bash
+    ```
+
 * jekyll
   * CentOS-7
     ```
