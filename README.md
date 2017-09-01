@@ -24,6 +24,8 @@
 * Kong-dev
   * CentOS-7
     ```
+    yum install -y "https://bintray.com/kong/kong-community-edition-rpm/download_file?file_path=dists/kong-community-edition-0.11.0.el7.noarch.rpm"
+
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/init_kong_dev|bash
     ```
 
