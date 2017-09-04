@@ -30,7 +30,9 @@
 * jekyll
   * CentOS-7
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jekyll|bash
+    wget https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_jekyll
+    chmod +x install_jekyll
+    ./install_jekyll getkong.org
     ```
 
 * tmux-2.5
