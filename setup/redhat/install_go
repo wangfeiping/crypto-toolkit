@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -x
+set -e
+
+sudo apt-get install git 
+wget http://oo2fuseka.bkt.clouddn.com/go1.8.3.linux-amd64.tar.gz
+tar -C ${HOME} -xzf go1.8.3.linux-amd64.tar.gz
+
+echo "export GOROOT=${HOME}/go" >> ~/.bashrc
+echo "export GOPATH=${HOME}/work" >> ~/.bashrc
+echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> ~/.bashrc
+
+source ~/.bashrc
+
+go env
+go version
