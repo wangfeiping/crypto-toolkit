@@ -21,6 +21,13 @@
 # setup
 安装服务
 
+* golang
+  * Centos-7.x
+    
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_go|bash
+    ```
+
 * Kong-dev
   * CentOS-7
     ```
