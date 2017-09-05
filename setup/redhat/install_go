@@ -3,7 +3,19 @@
 set -x
 set -e
 
-sudo yum install -y git 
+role=`id -u`
+if test $role -ne 0
+then
+    echo "Root permissions are required"
+    exit 1
+fi
+
+command -v git
+if test $? -ne 0
+then
+    yum install -y git
+fi
+
 wget http://oo2fuseka.bkt.clouddn.com/go1.8.3.linux-amd64.tar.gz
 tar -C ${HOME} -xzf go1.8.3.linux-amd64.tar.gz
 
