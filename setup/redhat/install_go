@@ -3,7 +3,7 @@
 set -x
 set -e
 
-sudo apt-get install git 
+sudo yum install -y git 
 wget http://oo2fuseka.bkt.clouddn.com/go1.8.3.linux-amd64.tar.gz
 tar -C ${HOME} -xzf go1.8.3.linux-amd64.tar.gz
 
