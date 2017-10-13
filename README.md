@@ -21,6 +21,17 @@
 # setup
 安装服务
 
+* node/npm
+
+```
+  
+  curl -L https://git.io/n-install | bash
+
+  n lts
+  n stable
+  n latest
+```
+  
 * golang
   * Centos-7.x
     
