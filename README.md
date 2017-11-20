@@ -210,9 +210,9 @@
   阿里云安装脚本
   curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
   
-  wget http://opduyrvvz.bkt.clouddn.com/docker-machine-Linux-x86_64_0.12.2
-  mv docker-machine-Linux-x86_64_0.12.2 /usr/local/bin/docker-machine
-  chmod +x /usr/local/bin/docker-machine
+  curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+  chmod +x /tmp/docker-machine &&
+  sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
 
   curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_sshkey|bash
   docker-machine create -d generic --generic-ip-address=127.0.0.1 --generic-ssh-user=root dockerHost
