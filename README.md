@@ -26,6 +26,12 @@
     ```
     curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/init_centos|bash
     ```
+    
+* nicstat
+  * CentOS-7
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/init_nicstat|bash
+    ```
 
 * node/npm
 
