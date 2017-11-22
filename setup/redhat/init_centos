@@ -17,6 +17,7 @@ yum install -y lsof
 yum install -y wget
 yum install -y net-tools
 yum install -y tcpdump
+yum install -y sysstat
 
 ntpdate 133.100.11.8
 grep "ntpdate" /var/spool/cron/root
