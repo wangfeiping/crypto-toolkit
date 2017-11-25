@@ -24,18 +24,19 @@
 * CentOS
   * CentOS-7
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/init_centos|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_centos|bash
     ```
     
 * nicstat
   * CentOS-7
     ```
-    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/init_nicstat|bash
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_nicstat|bash
     ```
 
 * node/npm
 
 ```
+  curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_node|bash
   
   curl -L https://git.io/n-install | bash
 
