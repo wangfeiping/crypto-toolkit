@@ -21,6 +21,12 @@
 # setup
 安装服务
 
+* Ruby24
+  * CentOS-7
+    ```
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_ruby24|bash
+    ```
+
 * CentOS
   * CentOS-7
     ```
