@@ -1,0 +1,11 @@
+#!/bin/bash
+
+yum remove -y ruby*
+yum remove -y libselinux-ruby
+
+wget https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.2.tar.gz
+tar zxvf ruby-2.4.2.tar.gz
+cd ruby-2.4.2
+./configure
+make
+make install
