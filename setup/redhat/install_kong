@@ -1,0 +1,42 @@
+#!/bin/bash
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "Root permissions are required"
+    exit 1
+fi
+
+cd ~
+command -v kong
+if test $? -ne 0
+then
+    sudo yum update -y
+    sudo yum install -y wget
+    wget https://bintray.com/kong/kong-rpm/rpm -O bintray-kong-kong-rpm.repo
+    export major_version=`grep -oE '[0-9]+\.[0-9]+' /etc/redhat-release | cut -d "." -f1`
+    sed -i -e 's/baseurl.*/&\/centos\/'$major_version''/ bintray-kong-kong-rpm.repo
+    sudo mv bintray-kong-kong-rpm.repo /etc/yum.repos.d/
+    sudo yum update -y
+    sudo yum install -y kong
+fi
+
+command -v psql
+if test $? -ne 0
+then
+    yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+    yum install -y postgresql96
+    yum install -y postgresql96-server
+
+
+    /usr/pgsql-9.6/bin/postgresql96-setup initdb
+    systemctl enable postgresql-9.6
+    systemctl start postgresql-9.6
+fi
+
+sudo -u postgres createuser kong
+sudo -u postgres createdb -O kong kong
+cd -
+
+echo "postgre user: kong"
+echo "postgre db: kong"
