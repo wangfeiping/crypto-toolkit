@@ -39,5 +39,10 @@ sudo -u postgres createuser kong
 sudo -u postgres createdb -O kong kong
 cd -
 
+echo "change /var/lib/pgsql/9.6/data/pg_hba.conf, set 127.0.0.1/32 to trust"
+echo "systemctl restart postgresql-9.6"
 echo "postgre user: kong"
 echo "postgre db: kong"
+echo "change /etc/kong/kong.conf"
+echo "kong migrations bootstrap"
+echo "kong start"
