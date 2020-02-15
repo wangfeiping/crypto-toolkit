@@ -24,14 +24,14 @@ fi
 command -v psql
 if test $? -ne 0
 then
-    yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
-    yum install -y postgresql96
-    yum install -y postgresql96-server
+    yum install -y https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7.6-x86_64/pgdg-centos10-10-2.noarch.rpm
+    yum install -y postgresql10
+    yum install -y postgresql10-server
 
 
-    /usr/pgsql-9.6/bin/postgresql96-setup initdb
-    systemctl enable postgresql-9.6
-    systemctl start postgresql-9.6
+    /usr/pgsql-10/bin/postgresql-10-setup initdb
+    systemctl enable postgresql-10
+    systemctl start postgresql-10
 fi
 
 cd /tmp
@@ -40,7 +40,7 @@ sudo -u postgres createdb -O kong kong
 cd -
 
 echo "change /var/lib/pgsql/9.6/data/pg_hba.conf, set 127.0.0.1/32 to trust"
-echo "systemctl restart postgresql-9.6"
+echo "systemctl restart postgresql-10"
 echo "postgre user: kong"
 echo "postgre db: kong"
 echo "change /etc/kong/kong.conf"
