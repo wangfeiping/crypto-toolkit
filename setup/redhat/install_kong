@@ -37,9 +37,10 @@ fi
 cd /tmp
 sudo -u postgres createuser kong
 sudo -u postgres createdb -O kong kong
+sudo -u postgres createdb -O kong kong_tests
 cd -
 
-echo "change /var/lib/pgsql/9.6/data/pg_hba.conf, set 127.0.0.1/32 to trust"
+echo "change /var/lib/pgsql/10/data/pg_hba.conf, set 127.0.0.1/32 to trust"
 echo "systemctl restart postgresql-10"
 echo "postgre user: kong"
 echo "postgre db: kong"
