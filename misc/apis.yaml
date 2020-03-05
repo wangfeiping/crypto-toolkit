@@ -6,3 +6,6 @@ services:
    - name: httpbin-route
      paths:
      - /
+     
+plugins:
+  - name: speed-bumps
