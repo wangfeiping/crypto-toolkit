@@ -9,3 +9,8 @@ services:
      
 plugins:
   - name: speed-bumps
+  - name: error-log
+  - name: debug
+  - name: lambda-deploy
+  - name: admin
+  - name: fallback
