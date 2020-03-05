@@ -6,6 +6,8 @@ services:
    - name: httpbin-route
      paths:
      - /
+     hosts:
+     - httpbin.kong
      
 plugins:
   - name: speed-bumps
