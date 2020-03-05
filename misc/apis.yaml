@@ -7,7 +7,15 @@ services:
      paths:
      - /
      hosts:
-     - httpbin.kong
+     - httpbin.local
+ - name: kong-admin-service
+   url: http://127.0.0.1:8001/
+   routes:
+   - name: kong-admin-route
+     paths:
+     - /
+     hosts:
+     - kong.local
      
 plugins:
   - name: speed-bumps
