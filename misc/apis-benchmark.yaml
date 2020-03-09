@@ -13,7 +13,7 @@ routes:
   service: service-httpbin
 
 services:
- - name: httpbin-service
+ - name: service-httpbin
    host: upstream-httpbin
    routes:
    - name: httpbin-route
