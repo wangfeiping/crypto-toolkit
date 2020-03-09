@@ -1,8 +1,33 @@
 _format_version: "1.1"
+
+routes:
+- name: route-httpbin
+  protocols:
+  - http
+  - https
+  paths:
+  - /
+  strip_path: true
+  preserve_host: false
+  regex_priority: 0
+  service: service-httpbin
+
 services:
  - name: httpbin-service
-   url: http://172.21.103.144:8080/
+   host: upstream-httpbin
    routes:
    - name: httpbin-route
      paths:
      - /
+
+upstreams:
+- name: upstream-httpbin
+  algorithm: round-robin
+
+targets:
+- upstream: upstream-httpbin
+  target: 172.24.221.82:8080
+  weight: 100
+- upstream: upstream-httpbin
+  target: 172.24.221.83:8080
+  weight: 100
