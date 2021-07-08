@@ -25,7 +25,7 @@ fi
 VERSION=v1.4.0
 
 cd ~
-ret = `command /usr/local/bin/lighthouse --version`
+ret=`command /usr/local/bin/lighthouse --version`
 
 if test $role -ne 0
 then
