@@ -75,4 +75,6 @@ echo "sudo systemctl stop geth"
 # Check geth.service output
 echo "sudo journalctl -f -u geth.service"
 
+# Attach to console
+echo "geth attach --datadir /var/lib/goethereum"
 
