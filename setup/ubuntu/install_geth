@@ -5,7 +5,7 @@
 #
 # install geth to ubuntu 20.04
 #
-# ecs.c5.4xlarge: 16Core32g,200GiB
+# ecs.c5.4xlarge: 16Core32g/200GiB,port/30303
 #
 # 2021-07-08: goerli, 42min complete synchronization
 #
