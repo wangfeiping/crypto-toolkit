@@ -30,3 +30,41 @@ tar zxvf lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
 mv lighthouse /usr/local/bin/
 lighthouse --version
 
+# Create  lighthousebeacon user
+sudo useradd --no-create-home --shell /bin/false lighthousebeacon
+
+# Create /lighthouse/beacon directory
+sudo mkdir -p /var/lib/lighthouse/beacon
+
+# Change ownership of /lighthouse/beacon
+sudo chown -R lighthousebeacon:lighthousebeacon /var/lib/lighthouse/beacon
+
+# Create lighthousebeacon.service
+cat > /etc/systemd/system/lighthousebeacon.service <<EOF
+[Unit]
+Description=Lighthouse Beacon Node
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=lighthousebeacon
+Group=lighthousebeacon
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/lighthouse beacon_node --datadir /var/lib/lighthouse --network prater --staking --eth1-endpoints http://127.0.0.1:8545
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start lighthousebeacon.service
+sudo systemctl start lighthousebeacon
+
+# Stop lighthousebeacon.service
+echo "sudo systemctl stop lighthousebeacon"
+
+# Check lighthousebeacon.service output
+echo "sudo journalctl -f -u lighthousebeacon.service"
