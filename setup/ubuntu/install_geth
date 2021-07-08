@@ -1,0 +1,72 @@
+#/bin/bash
+
+#
+# install geth to ubuntu 20.04
+#
+# 16Core32g,200gSSD
+#
+
+set -x
+set -e
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+# Update the system
+sudo apt update && sudo apt upgrade
+
+# Update Distro and autoremove
+sudo apt dist-upgrade && sudo apt autoremove
+
+# Download Go Ethereum using Personal Package Archives (PPA)
+sudo add-apt-repository -y ppa:ethereum/ethereum
+
+# Update packages
+sudo apt update
+
+# Install Geth
+sudo apt install geth
+
+# Create goeth user
+sudo useradd --no-create-home --shell /bin/false goeth
+
+# Create /goethereum directory
+sudo mkdir -p /var/lib/goethereum
+
+# Assign goeth permission to modify /goethereum
+sudo chown -R goeth:goeth /var/lib/goethereum
+
+# Create geth.service
+cat > /etc/systemd/system/geth.service <<EOF
+[Unit]
+Description=Ethereum go client
+After=network.target
+Wants=network.target
+
+[Service]
+User=goeth
+Group=goeth
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=geth --goerli --http --datadir /var/lib/goethereum
+
+[Install]
+WantedBy=default.target
+EOF
+
+# Reload the daemon
+sudo systemctl daemon-reload
+
+# Start geth.service
+sudo systemctl start geth
+
+# Check geth.service output
+sudo journalctl -f -u geth.service
+
+# 
