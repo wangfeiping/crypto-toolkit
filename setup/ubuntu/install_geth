@@ -1,6 +1,8 @@
 #/bin/bash
 
 #
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_geth | sh
+#
 # install geth to ubuntu 20.04
 #
 # 16Core32g,200gSSD
@@ -21,7 +23,7 @@ fi
 sudo apt update && sudo apt upgrade -y
 
 # Update Distro and autoremove
-sudo apt dist-upgrade && sudo apt autoremove
+sudo apt dist-upgrade && sudo apt autoremove -y
 
 # Download Go Ethereum using Personal Package Archives (PPA)
 sudo apt install -y software-properties-common
