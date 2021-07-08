@@ -1,0 +1,32 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_lighthouse | sh
+#
+# install lighthouse to ubuntu 20.04
+#
+# ecs.c5.4xlarge: 16Core32g/200GiB,port/30303
+#
+# 2021-07-08: goerli, 42min complete synchronization
+#
+
+set -x
+set -e
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+
+VERSION=v1.4.0
+
+cd ~
+wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-v1.4.0-x86_64-unknown-linux-gnu-portable.tar.gz
+tar zxvf lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
+mv lighthouse /usr/local/bin/
+lighthouse --version
+
