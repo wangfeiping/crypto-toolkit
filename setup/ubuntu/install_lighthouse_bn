@@ -26,7 +26,8 @@ VERSION=v1.4.0
 
 cd ~
 
-if [ ! -f "/usr/local/bin/lighthouse" ]; then
+if [ ! -f "/usr/local/bin/lighthouse" ]
+then
     wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
     wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc
     
@@ -43,7 +44,11 @@ if [ ! -f "/usr/local/bin/lighthouse" ]; then
 fi
 
 # Create  lighthousebeacon user
-sudo useradd --no-create-home --shell /bin/false lighthousebeacon
+egrep "^lighthousebeacon" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  sudo useradd --no-create-home --shell /bin/false lighthousebeacon
+fi
 
 # Create /lighthouse/beacon directory
 sudo mkdir -p /var/lib/lighthouse/beacon
