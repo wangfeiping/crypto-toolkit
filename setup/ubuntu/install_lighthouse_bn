@@ -26,8 +26,7 @@ VERSION=v1.4.0
 
 cd ~
 
-command /usr/local/bin/lighthouse --version
-if test $? -ne 0
+if [ ! -f "/usr/local/bin/lighthouse" ]; then
 then
     wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-v1.4.0-x86_64-unknown-linux-gnu-portable.tar.gz
     tar zxvf lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
