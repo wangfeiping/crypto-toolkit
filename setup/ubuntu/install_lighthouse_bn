@@ -10,8 +10,6 @@
 # 2021-07-08: goerli, 42min complete synchronization
 #
 
-set -x
-
 
 role=`id -u`
 if test $role -ne 0
