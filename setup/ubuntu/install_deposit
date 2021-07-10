@@ -1,0 +1,19 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_deposit | bash
+#
+# install deposit to ubuntu 20.04
+#
+
+wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
+
+tar zxvf eth2deposit-cli-256ea21-linux-amd64.tar.gz
+
+./eth2deposit-cli-256ea21-linux-amd64/deposit new-mnemonic --num_validators 1 --chain prater
+
+#
+# your mnemonic
+#
+# angry digital crew park tide can sound begin sheriff patch brush hand inside upon sorry churn congress asthma legal lecture salon brand sentence act
+#
