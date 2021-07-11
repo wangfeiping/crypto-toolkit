@@ -51,7 +51,7 @@ sudo mkdir -p /var/lib/lighthouse/validators
 sudo chown root:root /var/lib/lighthouse
 
 # Change ownership of /lighthouse/beacon
-sudo chown -R lighthousebeacon:lighthousebeacon /var/lib/lighthouse/validators
+sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators
 
 # Create lighthousevalidator.service
 cat > /etc/systemd/system/lighthousevalidator.service <<EOF
