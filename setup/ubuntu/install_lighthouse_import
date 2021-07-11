@@ -39,3 +39,6 @@ fi
 
 
 lighthouse --network prater account validator import --directory $HOME --datadir /var/lib/lighthouse
+
+echo "Important:  append filed voting_keystore_password to validator_definitions.yml"
+
