@@ -66,7 +66,7 @@ Group=lighthousevalidator
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/lighthouse validator_client --datadir /var/lib/lighthouse --network prater
+ExecStart=/usr/local/bin/lighthouse validator_client --datadir /var/lib/lighthouse --metrics --network prater
 
 [Install]
 WantedBy=multi-user.target
