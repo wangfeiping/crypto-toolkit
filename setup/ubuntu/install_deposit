@@ -6,6 +6,7 @@
 # install deposit to ubuntu 20.04
 #
 
+cd
 wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
 
 tar zxvf eth2deposit-cli-256ea21-linux-amd64.tar.gz
