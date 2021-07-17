@@ -7,6 +7,7 @@
 # install ossutil64 to ubuntu 20.04
 #
 
+cd ~
 wget http://gosspublic.alicdn.com/ossutil/1.7.3/ossutil64
 chmod +x ossutil64
 
