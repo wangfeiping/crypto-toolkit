@@ -1,6 +1,8 @@
 #/bin/bash
 
 #
+# apt install -y curl
+#
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_geth | bash
 #
 # install geth to ubuntu 20.04
