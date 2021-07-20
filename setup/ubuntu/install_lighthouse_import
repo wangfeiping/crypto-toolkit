@@ -41,4 +41,7 @@ fi
 lighthouse --network prater account validator import --directory $HOME --datadir /var/lib/lighthouse
 
 echo "cat /var/lib/lighthouse/validators/validator_definitions.yml"
+echo
+echo "lighthouse --network prater account validator list --datadir /var/lib/lighthouse"
+echo
 
