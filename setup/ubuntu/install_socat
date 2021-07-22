@@ -1,0 +1,14 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_socat | bash
+#
+# install deposit to ubuntu 20.04
+#
+
+sudo apt install -y socat
+
+echo
+echo "socat -d 192.168.0.104:9091,reuseaddr,fork TCP4:127.0.0.1:9090"
+echo
+echo "socat -d 192.168.0.104:3001,reuseaddr,fork TCP4:127.0.0.1:3000"
