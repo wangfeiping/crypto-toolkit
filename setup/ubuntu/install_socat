@@ -6,6 +6,13 @@
 # install deposit to ubuntu 20.04
 #
 
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install socat which requires root privileges"
+    exit 1
+fi
+
 sudo apt install -y socat
 
 echo
