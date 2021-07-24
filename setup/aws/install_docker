@@ -15,3 +15,9 @@ then
     echo "You install Harbor which requires root privileges"
     exit 1
 fi
+
+sudo amazon-linux-extras install docker
+
+echo "systemctl start docker"
+echo "systemctl stop docker"
+echo "sudo journalctl -f -u docker"
