@@ -1,0 +1,21 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_socat | bash
+#
+# install socat to AWS Linux 2
+#
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install socat which requires root privileges"
+    exit 1
+fi
+
+sudo yum install -y socat
+
+echo
+echo "socat -d 192.168.0.104:9091,reuseaddr,fork TCP4:127.0.0.1:9090"
+echo
+echo "socat -d 192.168.0.104:3001,reuseaddr,fork TCP4:127.0.0.1:3000"
