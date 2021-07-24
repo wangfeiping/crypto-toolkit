@@ -1,0 +1,86 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_vc | bash
+#
+# install lighthouse to AWS Linux 2
+#
+# Network：mainnet
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+
+VERSION=v1.4.0
+
+cd ~
+
+if [ ! -f "/usr/local/bin/lighthouse" ]
+then
+    wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
+    wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc
+    
+    curl https://keybase.io/sigp/pgp_keys.asc | gpg --import
+    gpg --verify \
+      lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc \
+      lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
+      
+    tar zxvf lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
+    mv lighthouse /usr/local/bin/
+    lighthouse --version
+    
+    rm -f lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
+    rm -f lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc
+fi
+
+# Create lighthousevalidator user
+egrep "^lighthousevalidator" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  sudo useradd --no-create-home --shell /bin/false lighthousevalidator
+fi
+
+# Create /lighthouse/validators directory
+sudo mkdir -p /var/lib/lighthouse/validators
+
+# Change ownership of /var/lib/lighthouse back to root
+sudo chown root:root /var/lib/lighthouse
+
+# Change ownership of /lighthouse/beacon
+sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators
+
+# Create lighthousevalidator.service
+cat > /usr/lib/systemd/system/lighthousevalidator.service <<EOF
+[Unit]
+Description=Lighthouse Validator
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=lighthousevalidator
+Group=lighthousevalidator
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/lighthouse validator_client --datadir /var/lib/lighthouse --metrics --network mainnet
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start lighthousevalidator.service
+echo "sudo systemctl start lighthousevalidator"
+
+# Stop lighthousevalidator.service
+echo "sudo systemctl stop lighthousevalidator"
+
+# Check lighthousevalidator.service output
+echo "sudo journalctl -f -u lighthousevalidator.service"
