@@ -1,8 +1,15 @@
 #/bin/bash
 
+# apt install -y curl
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_rust | bash
+#
 #
 # install rust to ubuntu 20.04
 #
+
+set -x
+set -e
 
 role=`id -u`
 if test $role -ne 0
@@ -11,4 +18,7 @@ then
     exit 1
 fi
 
-apt install -y rustc
+curl https://sh.rustup.rs -sSf | sh
+
+rustc --version
+
