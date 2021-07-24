@@ -8,6 +8,8 @@
 # install lighthouse to AWS Linux 2
 #
 #
+# Ports 9000/TCP and 9000/UDP to allow Lighthouse for P2P connections with peers for actions on the beacon node
+#
 
 
 role=`id -u`
