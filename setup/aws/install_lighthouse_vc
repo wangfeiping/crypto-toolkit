@@ -3,6 +3,8 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_vc | bash
 #
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_vc -O install_lighthouse_vc
+#
 # install lighthouse to AWS Linux 2
 #
 # Network：mainnet
