@@ -3,7 +3,7 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_socat | bash
 #
-# install deposit to ubuntu 20.04
+# install socat to ubuntu 20.04
 #
 
 role=`id -u`
