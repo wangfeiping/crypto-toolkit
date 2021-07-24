@@ -3,6 +3,8 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_lighthouse_bn | bash
 #
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_lighthouse_bn
+#
 # install lighthouse to AWS Linux 2
 #
 #
