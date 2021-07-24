@@ -1,0 +1,14 @@
+#/bin/bash
+
+#
+# install rust to ubuntu 20.04
+#
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+apt install -y rustc
