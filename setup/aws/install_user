@@ -9,11 +9,11 @@
 #
 # Network：mainnet
 #
-# Security Rules
+# Security Config
 # 
-# 1. PasswordAuthentication
-# 2. DenyUsers
-# 3. "!" in the /etc/shadow, The exclamation mark (!) Indicates that the account cannot be logged in
+# 1. PasswordAuthentication NO by sshd
+# 2. DenyUsers eth-user by sshd
+# 3. Lock user by passwd
 
 
 role=`id -u`
@@ -41,6 +41,8 @@ then
   systemctl restart sshd
 fi
 
-echo "SSH Config"
-echo "cat /etc/ssh/sshd_config | grep '^PasswordAuthentication'"
-echo "cat /etc/ssh/sshd_config | grep '^DenyUsers'"
+echo "Security Config"
+echo
+cat /etc/ssh/sshd_config | grep '^PasswordAuthentication'"
+cat /etc/ssh/sshd_config | grep '^DenyUsers'"
+passwd -S eth-user
