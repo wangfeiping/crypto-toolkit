@@ -9,6 +9,11 @@
 #
 # Network：mainnet
 #
+# Security Rules
+# 
+# 1. PasswordAuthentication
+# 2. DenyUsers
+# 3. "!" in the /etc/shadow, The exclamation mark (!) Indicates that the account cannot be logged in
 
 
 role=`id -u`
@@ -37,3 +42,4 @@ fi
 
 echo "SSH Config"
 echo "cat /etc/ssh/sshd_config | grep '^PasswordAuthentication'"
+echo "cat /etc/ssh/sshd_config | grep '^DenyUsers'"
