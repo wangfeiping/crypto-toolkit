@@ -29,6 +29,7 @@ egrep "^eth-user" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
   sudo useradd -m -s /bin/bash eth-user
+  passwd -l eth-user
 fi
 
 # Disable ssh login
