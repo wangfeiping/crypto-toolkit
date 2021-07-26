@@ -34,3 +34,6 @@ then
   
   systemctl restart sshd
 fi
+
+echo "SSH Config"
+echo "cat /etc/ssh/sshd_config | grep '^PasswordAuthentication'"
