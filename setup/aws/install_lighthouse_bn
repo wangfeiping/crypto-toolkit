@@ -27,20 +27,8 @@ cd ~
 
 if [ ! -f "/usr/local/bin/lighthouse" ]
 then
-    wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
-    wget https://github.com/sigp/lighthouse/releases/download/${VERSION}/lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc
-    
-    curl https://keybase.io/sigp/pgp_keys.asc | gpg --import
-    gpg --verify \
-      lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc \
-      lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
-      
-    tar zxvf lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
-    mv lighthouse /usr/local/bin/
-    lighthouse --version
-    
-    rm -f lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz
-    rm -f lighthouse-${VERSION}-x86_64-unknown-linux-gnu-portable.tar.gz.asc
+    echo "please install lighthouse"
+    exit
 fi
 
 # Create  lighthousebeacon user
