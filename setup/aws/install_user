@@ -19,7 +19,7 @@
 role=`id -u`
 if test $role -ne 0
 then
-    echo "You install Docker which requires root privileges"
+    echo "You install User which requires root privileges"
     exit 1
 fi
 
