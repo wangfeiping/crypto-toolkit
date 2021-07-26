@@ -44,6 +44,11 @@ fi
 
 lighthouse --network mainnet account validator import --directory $HOME --datadir /var/lib/lighthouse
 
+
+echo "Import"
+echo
+echo "sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators"
+echo
 echo "cat /var/lib/lighthouse/validators/validator_definitions.yml"
 echo
 echo "lighthouse --network mainnet account validator list --datadir /var/lib/lighthouse"
