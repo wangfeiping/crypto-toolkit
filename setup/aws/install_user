@@ -43,6 +43,6 @@ fi
 
 echo "Security Config"
 echo
-cat /etc/ssh/sshd_config | grep '^PasswordAuthentication'"
-cat /etc/ssh/sshd_config | grep '^DenyUsers'"
+cat /etc/ssh/sshd_config | grep "^PasswordAuthentication"
+cat /etc/ssh/sshd_config | grep "^DenyUsers"
 passwd -S eth-user
