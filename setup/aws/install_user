@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_base | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_user | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_base -O install_base
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_user -O install_user
 #
 # install lighthouse to AWS Linux 2
 #
