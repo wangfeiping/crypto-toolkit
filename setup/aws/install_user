@@ -11,8 +11,8 @@
 #
 # Security Config
 # 
-# 1. PasswordAuthentication NO by sshd
-# 2. DenyUsers eth-user by sshd
+# 1. DenyUsers eth-user by sshd
+# 2. PasswordAuthentication NO by sshd
 # 3. Lock user by passwd
 
 
@@ -43,6 +43,6 @@ fi
 
 echo "Security Config"
 echo
-cat /etc/ssh/sshd_config | grep "^PasswordAuthentication"
 cat /etc/ssh/sshd_config | grep "^DenyUsers"
+cat /etc/ssh/sshd_config | grep "^PasswordAuthentication"
 passwd -S eth-user
