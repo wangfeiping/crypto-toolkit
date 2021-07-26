@@ -19,8 +19,6 @@ then
 fi
 
 
-VERSION=v1.4.0
-
 cd ~
 
 if [ ! -f "/usr/local/bin/lighthouse" ]
