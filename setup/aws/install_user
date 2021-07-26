@@ -26,6 +26,7 @@ then
   sudo useradd -m -s /bin/bash eth-user
 fi
 
+# Disable ssh login
 egrep "^eth-user" /etc/ssh/sshd_config >& /dev/null
 if [ $? -ne 0 ]
 then
