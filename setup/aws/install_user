@@ -23,7 +23,7 @@ fi
 egrep "^eth-user" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  sudo useradd eth-user
+  sudo useradd -m -s /bin/bash eth-user
 fi
 
 egrep "^eth-user" /etc/ssh/sshd_config >& /dev/null
