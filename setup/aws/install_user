@@ -41,8 +41,9 @@ then
   systemctl restart sshd
 fi
 
-echo "Security Config"
+echo "Security Config Check"
 echo
 cat /etc/ssh/sshd_config | grep "^DenyUsers"
 cat /etc/ssh/sshd_config | grep "^PasswordAuthentication"
 passwd -S eth-user
+cat /home/eth-user/.ssh/authorized_keys
