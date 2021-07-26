@@ -1,0 +1,35 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_base | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_base -O install_base
+#
+# install lighthouse to AWS Linux 2
+#
+# Network：mainnet
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+
+# Create user
+egrep "^eth-user" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  sudo useradd eth-user
+fi
+
+egrep "^eth-user" /etc/ssh/sshd_config >& /dev/null
+if [ $? -ne 0 ]
+then
+  echo "DenyUsers eth-user" >>  /etc/ssh/sshd_config
+  
+  systemctl restart sshd
+fi
