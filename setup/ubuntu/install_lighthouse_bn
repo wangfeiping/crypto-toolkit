@@ -67,7 +67,7 @@ User=lighthousebeacon
 Group=lighthousebeacon
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/lighthouse beacon_node --datadir /var/lib/lighthouse --metrics --network prater --staking --eth1-endpoints http://127.0.0.1:8545
+ExecStart=/usr/local/bin/lighthouse beacon_node --datadir /var/lib/lighthouse --metrics --network prater --staking --slots-per-restore-point 8192 --eth1-endpoints http://127.0.0.1:8545
 
 [Install]
 WantedBy=multi-user.target
