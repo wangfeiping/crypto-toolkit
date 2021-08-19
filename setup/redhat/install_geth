@@ -20,16 +20,6 @@ fi
 # Update the system
 yum update && yum upgrade 
 
-# Update Distro and autoremove
-sudo apt dist-upgrade && sudo apt autoremove -y
-
-# Download Go Ethereum using Personal Package Archives (PPA)
-sudo apt install -y software-properties-common
-sudo add-apt-repository -y ppa:ethereum/ethereum
-
-# Update packages
-sudo apt update
-
 # Install Geth
 sudo apt install geth
 
