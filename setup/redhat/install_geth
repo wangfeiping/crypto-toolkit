@@ -18,7 +18,7 @@ then
 fi
 
 # Update the system
-yum update && yum upgrade 
+yum update -y && yum upgrade -y
 
 # Install Geth
 cd ~
