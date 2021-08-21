@@ -1,0 +1,29 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_import | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_import -O install_prysm_import
+#
+# Prysm
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+lighthouse --network mainnet account validator import --directory $HOME --datadir /var/lib/lighthouse
+
+
+echo "Import"
+echo
+echo "sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators"
+echo
+echo "cat /var/lib/lighthouse/validators/validator_definitions.yml"
+echo
+echo "lighthouse --network mainnet account validator list --datadir /var/lib/lighthouse"
+echo
