@@ -1,0 +1,74 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_vc | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_vc -O install_lighthouse_vc
+#
+# Lighthouse
+#
+# Network：mainnet
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+
+cd ~
+
+if [ ! -f "/usr/local/bin/lighthouse" ]
+then
+    echo "please install lighthouse"
+    exit
+fi
+
+# Create lighthousevalidator user
+egrep "^lighthousevalidator" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  sudo useradd --no-create-home --shell /bin/false lighthousevalidator
+fi
+
+# Create /lighthouse/validators directory
+sudo mkdir -p /var/lib/lighthouse/validators
+
+# Change ownership of /var/lib/lighthouse back to root
+sudo chown root:root /var/lib/lighthouse
+
+# Change ownership of /lighthouse/beacon
+sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators
+
+# Create lighthousevalidator.service
+cat > /usr/lib/systemd/system/lighthousevalidator.service <<EOF
+[Unit]
+Description=Lighthouse Validator
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=lighthousevalidator
+Group=lighthousevalidator
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/lighthouse validator_client --datadir /var/lib/lighthouse --metrics --network mainnet
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start lighthousevalidator.service
+echo "sudo systemctl start lighthousevalidator"
+
+# Stop lighthousevalidator.service
+echo "sudo systemctl stop lighthousevalidator"
+
+# Check lighthousevalidator.service output
+echo "sudo journalctl -f -u lighthousevalidator.service"
