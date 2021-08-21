@@ -7,6 +7,8 @@
 #
 # node_exporter
 #
+# 1. download
+# 2. systemd
 
 
 role=`id -u`
