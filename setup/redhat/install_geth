@@ -49,7 +49,7 @@ Group=goeth
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=geth --mainnet --http --datadir /var/lib/goethereum --syncmode fast --cache 4096
+ExecStart=geth --mainnet --http --datadir /var/lib/goethereum --syncmode fast --cache 4096 --metrics
 
 [Install]
 WantedBy=default.target
