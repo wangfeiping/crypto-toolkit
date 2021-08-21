@@ -1,0 +1,81 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_bn | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_bn -O install_lighthouse_bn
+#
+# Prysm
+#
+# Network：mainnet
+#
+# Ports 9000/TCP and 9000/UDP
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+
+cd ~
+
+if [ ! -f "/usr/local/bin/lighthouse" ]
+then
+    echo "please install lighthouse"
+    exit
+fi
+
+# Create  lighthousebeacon user
+egrep "^lighthousebeacon" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  sudo useradd --no-create-home --shell /bin/false lighthousebeacon
+fi
+
+# Create /lighthouse/beacon directory
+sudo mkdir -p /var/lib/lighthouse/beacon
+
+# Change ownership of /lighthouse/beacon
+sudo chown -R lighthousebeacon:lighthousebeacon /var/lib/lighthouse/beacon
+
+# Create lighthousebeacon.service
+cat > /usr/lib/systemd/system/lighthousebeacon.service <<EOF
+[Unit]
+Description=Lighthouse Beacon Node
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=prysmbeacon
+Group=prysmbeacon
+Restart=always
+RestartSec=5
+ExecStart=/apps/eth2/release/beacon-chain \
+        --http-web3provider=https://mainnet.infura.io/v3/25e6e06446124ec988cb61606c7209f0 \
+        --mainnet \
+        --datadir /apps/eth2/.eth \
+        --accept-terms-of-use \
+        --p2p-max-peers 75 \
+        --eth1-header-req-limit 1000 \
+        --monitoring-host 0.0.0.0 \
+        --monitoring-port 18080 \
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start prysmbeacon.service
+echo "sudo systemctl start prysmbeacon"
+
+# Stop prysmbeacon.service
+echo "sudo systemctl stop prysmbeacon"
+
+# Check prysmbeacon.service output
+echo "sudo journalctl -f -u prysmbeacon.service"
