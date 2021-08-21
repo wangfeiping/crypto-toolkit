@@ -1,0 +1,71 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_bn | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_bn -O install_lighthouse_bn
+#
+# Network：mainnet
+#
+# Ports 9000/TCP and 9000/UDP
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+
+cd ~
+
+if [ ! -f "/usr/local/bin/lighthouse" ]
+then
+    echo "please install lighthouse"
+    exit
+fi
+
+# Create  lighthousebeacon user
+egrep "^lighthousebeacon" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  sudo useradd --no-create-home --shell /bin/false lighthousebeacon
+fi
+
+# Create /lighthouse/beacon directory
+sudo mkdir -p /var/lib/lighthouse/beacon
+
+# Change ownership of /lighthouse/beacon
+sudo chown -R lighthousebeacon:lighthousebeacon /var/lib/lighthouse/beacon
+
+# Create lighthousebeacon.service
+cat > /usr/lib/systemd/system/lighthousebeacon.service <<EOF
+[Unit]
+Description=Lighthouse Beacon Node
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=lighthousebeacon
+Group=lighthousebeacon
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/lighthouse beacon_node --datadir /var/lib/lighthouse --http --metrics --slots-per-restore-point 8192 --network mainnet --eth1-endpoints http://127.0.0.1:8545
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start lighthousebeacon.service
+echo "sudo systemctl start lighthousebeacon"
+
+# Stop lighthousebeacon.service
+echo "sudo systemctl stop lighthousebeacon"
+
+# Check lighthousebeacon.service output
+echo "sudo journalctl -f -u lighthousebeacon.service"
