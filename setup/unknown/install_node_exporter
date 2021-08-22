@@ -28,6 +28,7 @@ then
       
     tar zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
     mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
+    chown eth-user:eth-user /usr/local/bin/node_exporter
     
     rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
     rm -rf node_exporter-${VERSION}.linux-amd64/
@@ -55,6 +56,8 @@ EOF
 
 systemctl daemon-reload
 
+echo ""
+
 # Start node_exporter.service
 echo "systemctl start node_exporter"
 
@@ -63,5 +66,7 @@ echo "systemctl stop node_exporter"
 
 # Check node_exporter.service output
 echo "journalctl -f -u node_exporter.service"
+
+echo ""
 
 node_exporter --version
