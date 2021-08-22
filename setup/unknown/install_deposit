@@ -3,6 +3,8 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_deposit | bash
 #
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_deposit -O install_deposit
+#
 # Deposit
 #
 
