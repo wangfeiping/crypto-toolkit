@@ -1,0 +1,71 @@
+#/bin/bash
+
+#
+# apt install -y curl
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_geth | bash
+#
+# Geth 
+#
+#
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install geth which requires root privileges"
+    exit 1
+fi
+
+# Update the system
+yum update -y && yum upgrade -y
+
+# Install Geth
+cd ~
+wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.7-12f0ff40.tar.gz
+tar zxvf geth-linux-amd64-1.10.7-12f0ff40.tar.gz
+cp geth-linux-amd64-1.10.7-12f0ff40/geth /usr/local/bin/
+geth version
+
+# Create goeth user
+sudo useradd --no-create-home --shell /bin/false goeth
+
+# Create /goethereum directory
+sudo mkdir -p /var/lib/goethereum
+
+# Assign goeth permission to modify /goethereum
+sudo chown -R goeth:goeth /var/lib/goethereum
+
+# Create geth.service
+cat > /etc/systemd/system/geth.service <<EOF
+[Unit]
+Description=Ethereum go client
+After=network.target
+Wants=network.target
+
+[Service]
+User=goeth
+Group=goeth
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/geth --datadir /var/lib/goethereum --syncmode fast --cache 4096 --http --mainnet
+
+[Install]
+WantedBy=default.target
+EOF
+
+# Reload the daemon
+sudo systemctl daemon-reload
+
+# Start geth.service
+echo "systemctl start geth"
+
+# Stop geth.service
+echo "systemctl stop geth"
+
+# Check geth.service output
+echo "journalctl -f -u geth.service"
+
+# Attach to console
+echo "geth attach --datadir /var/lib/goethereum"
