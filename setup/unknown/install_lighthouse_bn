@@ -5,6 +5,8 @@
 #
 # wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_bn -O install_lighthouse_bn
 #
+# Lighthouse Beacon
+#
 # Network：mainnet
 #
 # Ports 9000/TCP and 9000/UDP
