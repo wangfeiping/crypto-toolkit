@@ -28,7 +28,7 @@ then
       
     tar zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
     mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
-    chown eth-user:eth-user /usr/local/bin/node_exporter
+    chown root:root /usr/local/bin/node_exporter
     
     rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
     rm -rf node_exporter-${VERSION}.linux-amd64/
@@ -48,7 +48,7 @@ Group=eth-user
 Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/node_exporter \
-  --web.listen-address="127.0.0.1:9100"
+  --web.listen-address=127.0.0.1:9100
 
 [Install]
 WantedBy=multi-user.target
