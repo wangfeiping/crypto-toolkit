@@ -18,7 +18,6 @@ then
     exit 1
 fi
 
-
 VERSION=1.2.2
 
 cd ~
@@ -35,6 +34,35 @@ then
     rm -rf node_exporter-${VERSION}.linux-amd64/
 fi
 
-ll /usr/local/bin/node_exporter
+# Create node_exporter.service
+cat > /usr/lib/systemd/system/node_exporter.service <<EOF
+[Unit]
+Description=Prometheus node_exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=eth-user
+Group=eth-user
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/node_exporter \
+  --web.listen-address="127.0.0.1:9100"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+
+# Start node_exporter.service
+echo "systemctl start node_exporter"
+
+# Stop node_exporter.service
+echo "systemctl stop node_exporter"
+
+# Check node_exporter.service output
+echo "journalctl -f -u node_exporter.service"
 
 node_exporter --version
