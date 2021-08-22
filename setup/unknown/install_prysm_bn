@@ -70,7 +70,7 @@ Group=prysmbeacon
 Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/beacon-chain \
-        --http-web3provider=https://mainnet.infura.io/v3/25e6e06446124ec988cb61606c7209f0 \
+        --http-web3provider=https://mainnet.infura.io/v3/8389671a05ff439a899fb7a9a00ddf21 \
         --mainnet \
         --datadir /var/lib/prysm/beacon \
         --accept-terms-of-use \
