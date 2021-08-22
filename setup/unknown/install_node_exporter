@@ -28,10 +28,11 @@ then
     wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz
       
     tar zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
-    mv node_exporter /usr/local/bin/
+    mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
     node_exporter --version
     
     rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
+    rm -rf node_exporter-${VERSION}.linux-amd64/
 fi
 
 ll /usr/local/bin/node_exporter
