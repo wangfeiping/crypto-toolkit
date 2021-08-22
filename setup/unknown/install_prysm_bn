@@ -37,7 +37,6 @@ then
     
     mv ./beacon-chain-${VERSION}-linux-amd64 /usr/local/bin/beacon-chain
     chmod +x /usr/local/bin/beacon-chain
-    beacon-chain --version
     
     #rm -f beacon-chain-${VERSION}-linux-amd64
     rm -f beacon-chain-${VERSION}-linux-amd64.sha256
