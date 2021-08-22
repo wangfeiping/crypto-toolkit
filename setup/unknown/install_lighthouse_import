@@ -16,5 +16,5 @@ echo "chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/valid
 echo
 echo "cat /var/lib/lighthouse/validators/validator_definitions.yml"
 echo
-echo "lighthouse --network mainnet account validator list --datadir /var/lib/lighthouse"
+echo "lighthouse account validator list --network mainnet --datadir /var/lib/lighthouse"
 echo
