@@ -56,7 +56,10 @@ Group=lighthousevalidator
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/lighthouse validator_client --datadir /var/lib/lighthouse --metrics --network mainnet
+ExecStart=/usr/local/bin/lighthouse validator_client \
+  --network mainnet \
+  --datadir /var/lib/lighthouse \
+  --metrics
 
 [Install]
 WantedBy=multi-user.target
@@ -65,10 +68,10 @@ EOF
 sudo systemctl daemon-reload
 
 # Start lighthousevalidator.service
-echo "sudo systemctl start lighthousevalidator"
+echo "systemctl start lighthousevalidator"
 
 # Stop lighthousevalidator.service
-echo "sudo systemctl stop lighthousevalidator"
+echo "systemctl stop lighthousevalidator"
 
 # Check lighthousevalidator.service output
-echo "sudo journalctl -f -u lighthousevalidator.service"
+echo "journalctl -f -u lighthousevalidator.service"
