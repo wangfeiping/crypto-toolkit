@@ -5,22 +5,12 @@
 #
 # wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_import -O install_lighthouse_import
 #
-# Lighthouse
+# Lighthouse Import
+#
+# Network: mainnet
 #
 
-
-role=`id -u`
-if test $role -ne 0
-then
-    echo "You install Docker which requires root privileges"
-    exit 1
-fi
-
-
-lighthouse --network mainnet account validator import --directory $HOME --datadir /var/lib/lighthouse
-
-
-echo "Import"
+echo "lighthouse account validator import --directory $HOME --datadir /var/lib/lighthouse --network mainnet"
 echo
 echo "sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators"
 echo
