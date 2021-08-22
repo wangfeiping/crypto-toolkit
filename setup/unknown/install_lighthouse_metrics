@@ -9,6 +9,8 @@
 #
 #
 
+set -e
+
 role=`id -u`
 if test $role -ne 0
 then
@@ -16,13 +18,10 @@ then
     exit 1
 fi
 
-yum install -y git
-
 cd ~
 git clone https://github.com/sigp/lighthouse-metrics.git
 cd lighthouse-metrics/
 
 echo "docker-compose up -d"
 echo ""
-echo "use socat to access"
-echo ""
+
