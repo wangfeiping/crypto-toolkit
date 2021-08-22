@@ -40,8 +40,8 @@ then
     beacon-chain --version
     
     #rm -f beacon-chain-${VERSION}-linux-amd64
-    #rm -f beacon-chain-${VERSION}-linux-amd64.sha256
-    #rm -f beacon-chain-${VERSION}-linux-amd64.sig
+    rm -f beacon-chain-${VERSION}-linux-amd64.sha256
+    rm -f beacon-chain-${VERSION}-linux-amd64.sig
 fi
 
 # Create  prysmbeacon user
