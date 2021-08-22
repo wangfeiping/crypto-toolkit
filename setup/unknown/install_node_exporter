@@ -28,7 +28,6 @@ then
       
     tar zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
     mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
-    chown root:root /usr/local/bin/node_exporter
     
     rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
     rm -rf node_exporter-${VERSION}.linux-amd64/
