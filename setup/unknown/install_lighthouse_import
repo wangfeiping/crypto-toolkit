@@ -10,7 +10,7 @@
 # Network: mainnet
 #
 
-echo "lighthouse account validator import --directory $HOME --datadir /var/lib/lighthouse --network mainnet"
+echo "lighthouse account validator import --datadir /var/lib/lighthouse --network mainnet --directory $HOME"
 echo
 echo "sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators"
 echo
