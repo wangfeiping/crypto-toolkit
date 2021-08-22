@@ -1,14 +1,13 @@
 #/bin/bash
 
 #
-# apt install -y curl
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_geth | bash
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_geth | bash
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_geth -O install_geth
 #
 # Geth 
 #
 #
-
 
 role=`id -u`
 if test $role -ne 0
@@ -16,9 +15,6 @@ then
     echo "You install geth which requires root privileges"
     exit 1
 fi
-
-# Update the system
-yum update -y && yum upgrade -y
 
 # Install Geth
 cd ~
@@ -28,13 +24,13 @@ cp geth-linux-amd64-1.10.7-12f0ff40/geth /usr/local/bin/
 geth version
 
 # Create goeth user
-sudo useradd --no-create-home --shell /bin/false goeth
+useradd --no-create-home --shell /bin/false goeth
 
 # Create /goethereum directory
-sudo mkdir -p /var/lib/goethereum
+mkdir -p /var/lib/goethereum
 
 # Assign goeth permission to modify /goethereum
-sudo chown -R goeth:goeth /var/lib/goethereum
+chown -R goeth:goeth /var/lib/goethereum
 
 # Create geth.service
 cat > /etc/systemd/system/geth.service <<EOF
@@ -56,7 +52,7 @@ WantedBy=default.target
 EOF
 
 # Reload the daemon
-sudo systemctl daemon-reload
+systemctl daemon-reload
 
 # Start geth.service
 echo "systemctl start geth"
