@@ -1,0 +1,28 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_metrics | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_metrics -O install_lighthouse_metrics
+#
+# Lighthouse Metrics
+#
+#
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+yum install -y git
+
+cd ~
+git clone https://github.com/sigp/lighthouse-metrics.git
+cd lighthouse-metrics/
+
+echo "docker-compose up -d"
+echo ""
+echo "use socat to access"
+echo ""
