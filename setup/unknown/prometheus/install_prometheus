@@ -18,18 +18,21 @@ then
     exit 1
 fi
 
+mkdir -p /apps/prometheus
+
 VERSION=2.29.1
 
 cd ~
 
-if [ ! -f "/usr/local/bin/prometheus" ]
+if [ ! -f "/apps/prometheus/prometheus" ]
 then
     wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
       
     tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz
-    #mv prometheus /usr/local/bin/
+    mv prometheus-${VERSION}.linux-amd64/ /apps/prometheus
     
-    #rm -f prometheus-${VERSION}.linux-amd64.tar.gz
+    chown appuser:appuser /apps/ -R
+    rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
 
 # Create prometheus.service
@@ -45,8 +48,8 @@ User=eth-user
 Group=eth-user
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/prometheus \
-  --config.file="/etc/prometheus/prometheus.yml" \
+ExecStart=/apps/prometheus/prometheus \
+  --config.file="/apps/prometheus/prometheus.yml" \
   --storage.tsdb.retention.time=39d
 
 [Install]
