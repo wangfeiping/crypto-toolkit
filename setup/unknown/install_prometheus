@@ -1,0 +1,70 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus -O install_prometheus
+#
+# prometheus
+#
+# 1. download
+# 2. systemd
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+VERSION=2.29.1
+
+cd ~
+
+if [ ! -f "/usr/local/bin/prometheus" ]
+then
+    wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
+      
+    tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz
+    #mv prometheus /usr/local/bin/
+    
+    #rm -f prometheus-${VERSION}.linux-amd64.tar.gz
+fi
+
+# Create prometheus.service
+cat > /usr/lib/systemd/system/prometheus.service <<EOF
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=eth-user
+Group=eth-user
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/prometheus \
+  --web.listen-address=127.0.0.1:9100
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+
+echo ""
+
+# Start prometheus.service
+echo "systemctl start prometheus"
+
+# Stop prometheus.service
+echo "systemctl stop prometheus"
+
+# Check prometheus.service output
+echo "journalctl -f -u prometheus.service"
+
+echo ""
+
+prometheus --version
