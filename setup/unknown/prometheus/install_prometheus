@@ -31,9 +31,12 @@ then
     tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz
     mv prometheus-${VERSION}.linux-amd64/ /apps/prometheus
     
-    chown appuser:appuser /apps/ -R
     rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
+
+mkdir -p /apps/prometheus/data
+chown appuser:appuser /apps/ -R
+chmod 0644 /apps/prometheus/data -R
 
 # Create  appuser user
 egrep "^appuser" /etc/passwd >& /dev/null
@@ -57,7 +60,8 @@ Restart=always
 RestartSec=5
 ExecStart=/apps/prometheus/prometheus \
   --config.file="/apps/prometheus/prometheus.yml" \
-  --storage.tsdb.retention.time=39d
+  --storage.tsdb.retention.time=39d \
+  --storage.tsdb.path=/apps/prometheus/data/
 
 [Install]
 WantedBy=multi-user.target
