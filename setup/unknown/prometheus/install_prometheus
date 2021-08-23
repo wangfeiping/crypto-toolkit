@@ -18,7 +18,7 @@ then
     exit 1
 fi
 
-mkdir -p /apps/prometheus
+mkdir -p /apps/
 
 VERSION=2.29.1
 
