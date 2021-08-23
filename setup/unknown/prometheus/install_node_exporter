@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_node_exporter | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_node_exporter | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_node_exporter -O install_node_exporter
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_node_exporter -O install_node_exporter
 #
 # node_exporter
 #
