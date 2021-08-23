@@ -46,7 +46,8 @@ Group=eth-user
 Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/prometheus \
-  --web.listen-address=127.0.0.1:9100
+  --config.file="/etc/prometheus/prometheus.yml" \
+  --storage.tsdb.retention.time=39d
 
 [Install]
 WantedBy=multi-user.target
