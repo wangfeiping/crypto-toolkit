@@ -36,7 +36,7 @@ fi
 
 mkdir -p /apps/prometheus/data
 chown appuser:appuser /apps/ -R
-chmod 0644 /apps/prometheus/data -R
+chmod 700 /apps/prometheus/data -R
 
 # Create  appuser user
 egrep "^appuser" /etc/passwd >& /dev/null
