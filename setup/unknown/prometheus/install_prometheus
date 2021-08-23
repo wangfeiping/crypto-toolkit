@@ -35,6 +35,13 @@ then
     rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
 
+# Create  appuser user
+egrep "^appuser" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+  useradd --no-create-home --shell /bin/false appuser
+fi
+
 # Create prometheus.service
 cat > /usr/lib/systemd/system/prometheus.service <<EOF
 [Unit]
@@ -44,8 +51,8 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=eth-user
-Group=eth-user
+User=appuser
+Group=appuser
 Restart=always
 RestartSec=5
 ExecStart=/apps/prometheus/prometheus \
