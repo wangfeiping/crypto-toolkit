@@ -81,12 +81,12 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable node_exporter
+systemctl enable prometheus
 
 echo
-echo "systemctl start node_exporter"
-echo "systemctl stop node_exporter"
-echo "journalctl -f -u node_exporter.service"
+echo "systemctl start prometheus"
+echo "systemctl stop prometheus"
+echo "journalctl -f -u prometheus"
 
 echo
 prometheus --version
