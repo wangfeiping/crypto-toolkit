@@ -7,8 +7,6 @@
 #
 # Lighthouse Import
 #
-# Network: mainnet
-#
 
 echo "lighthouse account validator import --datadir /var/lib/lighthouse --network mainnet --directory $HOME"
 echo
