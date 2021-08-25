@@ -46,11 +46,7 @@ fi
 
 # Create user
 
-egrep "^prometheus" /etc/passwd >& /dev/null
-if [ $? -ne 0 ]
-then
-  useradd --system --no-create-home --shell /sbin/nologin prometheus
-fi
+useradd --system --no-create-home --shell /sbin/nologin prometheus
 
 mkdir -p /apps/prometheus/data
 chown prometheus:prometheus /apps/prometheus -R
