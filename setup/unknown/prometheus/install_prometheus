@@ -20,7 +20,7 @@ set -e
 set -x
 
 APP="Prometheus"
-VERSION=2.29.1
+VERSION="2.29.1"
 ROOT="/opt"
 PREFIX="$ROOT/prometheus-${VERSION}.linux-amd64"
 BIN="$PREFIX/prometheus"
