@@ -11,7 +11,7 @@
 # Grafana
 #
 # wget https://dl.grafana.com/oss/release/grafana-8.1.2-1.x86_64.rpm
-# yum install grafana-8.1.2-1.x86_64.rpm
+# yum install grafana-8.1.2-1.x86_64.rpm -y
 # systemctl start grafana-server
 # systemctl enable grafana-server
 #
