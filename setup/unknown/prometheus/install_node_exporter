@@ -10,6 +10,8 @@
 # 1. download
 # 2. systemd
 
+set -x
+set -e
 
 role=`id -u`
 if test $role -ne 0
@@ -59,7 +61,7 @@ EOF
 systemctl daemon-reload
 systemctl enable node_exporter
 
-echo ""
+echo
 
 # Start node_exporter.service
 echo "systemctl start node_exporter"
@@ -70,6 +72,8 @@ echo "systemctl stop node_exporter"
 # Check node_exporter.service output
 echo "journalctl -f -u node_exporter.service"
 
-echo ""
-
+echo
 node_exporter --version
+
+echo
+echo "Everything is fine"
