@@ -92,4 +92,4 @@ echo ""
 prometheus --version
 
 echo
-echo "install ok"
+echo "Everything is fine"
