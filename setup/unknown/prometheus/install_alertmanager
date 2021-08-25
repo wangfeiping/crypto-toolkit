@@ -1,0 +1,79 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_alertmanager | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_alertmanager -O install_alertmanager
+#
+# alertmanager
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Download package
+
+VERSION=1.2.2
+
+if [ ! -f "/usr/local/bin/alertmanager" ]
+then
+    cd ~
+    wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz
+      
+    tar --no-same-owner -zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
+    mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
+    
+    rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
+    rm -rf node_exporter-${VERSION}.linux-amd64/
+fi
+
+
+# Create user
+
+useradd --system --no-create-home --shell /sbin/nologin alertmanager
+
+
+# Create systemd service
+
+cat > /usr/lib/systemd/system/alertmanager.service <<EOF
+[Unit]
+Description=Prometheus alertmanager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=alertmanager
+Group=alertmanager
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/alertmanager \
+  --web.listen-address=127.0.0.1:9100
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+
+echo
+echo "systemctl start alertmanager"
+echo "systemctl stop alertmanager"
+echo "journalctl -f -u alertmanager"
+
+echo
+alertmanager --version
+
+echo
+echo "Everything is fine"
