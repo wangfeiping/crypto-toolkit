@@ -10,6 +10,8 @@
 # Network：mainnet
 #
 
+set -x
+set -e
 
 role=`id -u`
 if test $role -ne 0
@@ -31,7 +33,7 @@ fi
 egrep "^lighthousevalidator" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  sudo useradd --no-create-home --shell /bin/false lighthousevalidator
+  useradd --system --no-create-home --shell /sbin/nologin prysmvalidator
 fi
 
 # Create /lighthouse/validators directory
@@ -51,8 +53,8 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-User=lighthousevalidator
-Group=lighthousevalidator
+User=prysmvalidator
+Group=prysmvalidator
 Type=simple
 Restart=always
 RestartSec=5
@@ -72,3 +74,6 @@ echo "sudo systemctl stop lighthousevalidator"
 
 # Check lighthousevalidator.service output
 echo "sudo journalctl -f -u lighthousevalidator.service"
+
+echo
+echo "Everything is fine"
