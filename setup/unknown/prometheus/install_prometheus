@@ -37,10 +37,10 @@ if [ ! -f "/apps/prometheus/prometheus" ]
 then
     cd ~
     wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
-      
-    tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz
-    mv prometheus-${VERSION}.linux-amd64/ /apps/prometheus
-    
+
+    mkdir -p /apps/prometheus
+    tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C /apps/prometheus
+
     rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
 
