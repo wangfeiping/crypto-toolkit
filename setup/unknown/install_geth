@@ -8,8 +8,12 @@
 # Geth 
 #
 #
+
 set -e
 set -x
+
+
+# Condition check
 
 role=`id -u`
 if test $role -ne 0
@@ -18,23 +22,32 @@ then
     exit 1
 fi
 
-# Install Geth
+
+# Download package
+
 cd ~
 wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.8-26675454.tar.gz
 tar zxvf geth-linux-amd64-1.10.8-26675454.tar.gz
 cp geth-linux-amd64-1.10.8-26675454/geth /usr/local/bin/
 geth version
 
-# Create goeth user
+
+# Create user
+
 useradd --system --no-create-home --shell /sbin/nologin goeth
 
-# Create /goethereum directory
+
+# Create directory
+
 mkdir -p /var/lib/goethereum
+
 
 # Assign goeth permission to modify /goethereum
 chown -R goeth:goeth /var/lib/goethereum
 
-# Create geth.service
+
+# Create systemd service
+
 cat > /etc/systemd/system/geth.service <<EOF
 [Unit]
 Description=Ethereum go client
@@ -56,16 +69,13 @@ EOF
 # Reload the daemon
 systemctl daemon-reload
 
-# Start geth.service
+echo
 echo "systemctl start geth"
-
-# Stop geth.service
-echo "systemctl stop geth"
-
-# Check geth.service output
+echo "systemctl enable geth"
 echo "journalctl -f -u geth.service"
 
 # Attach to console
+echo
 echo "geth attach --datadir /var/lib/goethereum"
 
 echo
