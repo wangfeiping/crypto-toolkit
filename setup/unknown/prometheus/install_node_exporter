@@ -20,12 +20,12 @@ then
     exit 1
 fi
 
-VERSION=1.2.2
 
-cd ~
+VERSION=1.2.2
 
 if [ ! -f "/usr/local/bin/node_exporter" ]
 then
+    cd ~
     wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz
       
     tar --no-same-owner -zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
