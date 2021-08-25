@@ -32,16 +32,19 @@ fi
 # Download package
 
 VERSION=2.29.1
+BIN="/opt/prometheus-${VERSION}.linux-amd64/prometheus"
 
-if [ ! -f "/opt/prometheus-${VERSION}.linux-amd64/prometheus" ]
+if [ -f "$BIN" ]
 then
-    cd ~
-    wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
-
-    tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C /opt
-
-    rm -f prometheus-${VERSION}.linux-amd64.tar.gz
+    echo "$BIN already exists"
+    exit 1
 fi
+
+cd ~
+wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
+tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C /opt
+rm -f prometheus-${VERSION}.linux-amd64.tar.gz
+
 
 # Create user
 
@@ -52,6 +55,14 @@ chown prometheus:prometheus /opt/prometheus-${VERSION}.linux-amd64 -R
 
 
 # Create systemd service
+
+SERVICE = "/usr/lib/systemd/system/prometheus.service"
+
+if [ -f "$SERVICE" ]
+then
+    echo "$SERVICE already exists"
+    exit 1
+fi
 
 cat > /usr/lib/systemd/system/prometheus.service <<EOF
 [Unit]
@@ -83,7 +94,7 @@ echo "systemctl stop prometheus"
 echo "journalctl -f -u prometheus"
 
 echo
-/opt/prometheus-${VERSION}.linux-amd64/prometheus --version
+$BIN --version
 
 echo
 echo "Everything is fine"
