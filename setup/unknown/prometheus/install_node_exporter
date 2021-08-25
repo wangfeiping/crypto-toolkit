@@ -7,7 +7,6 @@
 #
 # node_exporter
 #
-#
 
 set -e
 set -x
