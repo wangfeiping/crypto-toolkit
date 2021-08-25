@@ -27,7 +27,7 @@ BIN="$PREFIX/prometheus"
 USER="prometheus"
 GROUP="prometheus"
 SERVICE="prometheus"
-SYSTEMD_FILE = "/usr/lib/systemd/system/$SERVICE.service"
+SYSTEMD = "/usr/lib/systemd/system/$SERVICE.service"
 
 
 # Condition check
@@ -69,13 +69,13 @@ chown $USER:$GROUP $PREFIX -R
 
 # Create systemd service
 
-if [ -f "$SYSTEMD_FILE" ]
+if [ -f "$SYSTEMD" ]
 then
-    echo "$SYSTEMD_FILE already exists"
+    echo "$SYSTEMD already exists"
     exit 1
 fi
 
-cat > $SYSTEMD_FILE <<EOF
+cat > $SYSTEMD <<EOF
 [Unit]
 Description=$APP
 Wants=network-online.target
