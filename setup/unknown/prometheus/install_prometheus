@@ -66,9 +66,9 @@ Group=prometheus
 Restart=always
 RestartSec=5
 ExecStart=/opt/prometheus-${VERSION}.linux-amd64/prometheus \
-  --config.file="/apps/prometheus-${VERSION}.linux-amd64/prometheus.yml" \
+  --config.file="/opt/prometheus-${VERSION}.linux-amd64/prometheus.yml" \
   --storage.tsdb.retention.time=39d \
-  --storage.tsdb.path=/apps/prometheus/data/
+  --storage.tsdb.path=/opt/prometheus-${VERSION}.linux-amd64/data
 
 [Install]
 WantedBy=multi-user.target
