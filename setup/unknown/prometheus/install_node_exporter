@@ -7,9 +7,18 @@
 #
 # node_exporter
 #
+#
 
 set -e
 set -x
+
+APP="node_exporter"
+VERSION="1.2.2"
+BIN="/usr/local/bin/node_exporter"
+USER="node-exporter"
+GROUP="node-exporter"
+SERVICE="node_exporter"
+SYSTEMD="/usr/lib/systemd/system/$SERVICE.service"
 
 
 # Condition check
@@ -22,59 +31,73 @@ then
 fi
 
 
-# Download package
-
-VERSION=1.2.2
-
-if [ ! -f "/usr/local/bin/node_exporter" ]
-then
-    cd ~
-    wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz
-      
-    tar --no-same-owner -zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
-    mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
-    
-    rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
-    rm -rf node_exporter-${VERSION}.linux-amd64/
-fi
-
-
 # Create user
 
-useradd --system --no-create-home --shell /sbin/nologin node-exporter
+if id "$USER" >/dev/null 2>&1; then
+    echo "User $USER exists"
+    exit 1
+fi
+
+useradd --system --no-create-home --shell /sbin/nologin $USER
+
+
+# Download package
+
+if [ -f "$BIN" ]
+then
+    echo "$BIN already exists"
+    exit 1
+fi
+
+cd ~
+wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz
+      
+tar --no-same-owner -zxvf node_exporter-${VERSION}.linux-amd64.tar.gz
+mv node_exporter-${VERSION}.linux-amd64/node_exporter /usr/local/bin/
+    
+rm -f node_exporter-${VERSION}.linux-amd64.tar.gz
+rm -rf node_exporter-${VERSION}.linux-amd64/
 
 
 # Create systemd service
 
-cat > /usr/lib/systemd/system/node_exporter.service <<EOF
+if [ -f "$SYSTEMD" ]
+then
+    echo "$SYSTEMD already exists"
+    exit 1
+fi
+
+cat > $SYSTEMD <<EOF
 [Unit]
-Description=Prometheus node_exporter
+Description=$APP
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=simple
-User=node-exporter
-Group=node-exporter
+User=$USER
+Group=$GROUP
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/node_exporter \
-  --web.listen-address=127.0.0.1:9100
+ExecStart=$BIN \
+  --config.file="$PREFIX/prometheus.yml" \
+  --storage.tsdb.retention.time=39d \
+  --storage.tsdb.path=$PREFIX/data
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable node_exporter
+systemctl enable $SERVICE
 
 echo
-echo "systemctl start node_exporter"
-echo "systemctl stop node_exporter"
-echo "journalctl -f -u node_exporter"
+echo "systemctl start $SERVICE"
+echo "systemctl stop $SERVICE"
+echo "journalctl -f -u $SERVICE"
 
 echo
-node_exporter --version
+$BIN --version
 
 echo
 echo "Everything is fine"
