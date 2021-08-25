@@ -10,13 +10,17 @@
 # 1. download
 # 2. systemd
 #
-### wget https://dl.grafana.com/oss/release/grafana-8.1.2-1.x86_64.rpm
-### sudo yum install grafana-8.1.2-1.x86_64.rpm
-### systemctl status grafana-server
+#
+# Grafana
+#
+# wget https://dl.grafana.com/oss/release/grafana-8.1.2-1.x86_64.rpm
+# yum install grafana-8.1.2-1.x86_64.rpm
+# systemctl start grafana-server
+# systemctl enable grafana-server
 #
 
-set -x
 set -e
+set -x
 
 role=`id -u`
 if test $role -ne 0
@@ -25,7 +29,6 @@ then
     exit 1
 fi
 
-mkdir -p /apps/
 
 VERSION=2.29.1
 
@@ -49,8 +52,8 @@ then
 fi
 
 mkdir -p /apps/prometheus/data
-chown prometheus:prometheus /apps/ -R
-chmod 700 /apps/prometheus/data -R
+chown prometheus:prometheus /apps/prometheus -R
+chmod 700 /apps/prometheus -R
 
 # Create prometheus.service
 cat > /usr/lib/systemd/system/prometheus.service <<EOF
@@ -76,7 +79,7 @@ EOF
 
 systemctl daemon-reload
 
-echo ""
+echo
 
 # Start prometheus.service
 echo "systemctl start prometheus"
@@ -87,7 +90,7 @@ echo "systemctl stop prometheus"
 # Check prometheus.service output
 echo "journalctl -f -u prometheus.service"
 
-echo ""
+echo
 
 prometheus --version
 
