@@ -8,8 +8,8 @@
 # Lighthouse
 #
 
-set -x
 set -e
+set -x
 
 
 # Condition check
