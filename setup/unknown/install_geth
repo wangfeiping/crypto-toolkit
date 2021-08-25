@@ -8,6 +8,8 @@
 # Geth 
 #
 #
+set -e
+set -x
 
 role=`id -u`
 if test $role -ne 0
@@ -65,3 +67,6 @@ echo "journalctl -f -u geth.service"
 
 # Attach to console
 echo "geth attach --datadir /var/lib/goethereum"
+
+echo
+echo "Everything is fine"
