@@ -71,7 +71,7 @@ systemctl enable node_exporter
 echo
 echo "systemctl start node_exporter"
 echo "systemctl stop node_exporter"
-echo "journalctl -f -u node_exporter.service"
+echo "journalctl -f -u node_exporter"
 
 echo
 node_exporter --version
