@@ -80,7 +80,8 @@ systemctl daemon-reload
 echo
 echo "systemctl enable lighthousevalidator"
 echo "systemctl start lighthousevalidator"
-echo "journalctl -f -u lighthousevalidator.service"
+echo "systemctl stop lighthousevalidator"
+echo "journalctl -f -u lighthousevalidator"
 
 echo
 echo "Everything is fine"
