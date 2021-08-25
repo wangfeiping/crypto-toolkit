@@ -7,11 +7,12 @@
 #
 # node_exporter
 #
-# 1. download
-# 2. systemd
 
 set -e
 set -x
+
+
+# Condition check
 
 role=`id -u`
 if test $role -ne 0
@@ -20,6 +21,8 @@ then
     exit 1
 fi
 
+
+# Download package
 
 VERSION=1.2.2
 
@@ -35,10 +38,14 @@ then
     rm -rf node_exporter-${VERSION}.linux-amd64/
 fi
 
-# Create node-exporter user
+
+# Create user
+
 useradd --system --no-create-home --shell /sbin/nologin node-exporter
 
-# Create node_exporter.service
+
+# Create systemd service
+
 cat > /usr/lib/systemd/system/node_exporter.service <<EOF
 [Unit]
 Description=Prometheus node_exporter
@@ -62,14 +69,8 @@ systemctl daemon-reload
 systemctl enable node_exporter
 
 echo
-
-# Start node_exporter.service
 echo "systemctl start node_exporter"
-
-# Stop node_exporter.service
 echo "systemctl stop node_exporter"
-
-# Check node_exporter.service output
 echo "journalctl -f -u node_exporter.service"
 
 echo
