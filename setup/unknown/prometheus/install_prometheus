@@ -41,16 +41,16 @@ then
     rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
 
-mkdir -p /apps/prometheus/data
-chown prometheus:prometheus /apps/ -R
-chmod 700 /apps/prometheus/data -R
-
 # Create prometheus user
 egrep "^prometheus" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
   useradd --system --no-create-home --shell /sbin/nologin prometheus
 fi
+
+mkdir -p /apps/prometheus/data
+chown prometheus:prometheus /apps/ -R
+chmod 700 /apps/prometheus/data -R
 
 # Create prometheus.service
 cat > /usr/lib/systemd/system/prometheus.service <<EOF
