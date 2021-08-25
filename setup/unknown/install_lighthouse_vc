@@ -7,9 +7,12 @@
 #
 # Lighthouse Validator
 #
-# Network：mainnet
-#
 
+set -e
+set -x
+
+
+# Condition check
 
 role=`id -u`
 if test $role -ne 0
@@ -18,32 +21,38 @@ then
     exit 1
 fi
 
-
-cd ~
-
 if [ ! -f "/usr/local/bin/lighthouse" ]
 then
     echo "please install lighthouse"
     exit
 fi
 
-# Create lighthousevalidator user
+
+# Create user
+
 egrep "^lighthousevalidator" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
   useradd --system --no-create-home --shell /sbin/nologin lighthousevalidator
 fi
 
-# Create /lighthouse/validators directory
+# Create directory
+
 sudo mkdir -p /var/lib/lighthouse/validators
 
+
 # Change ownership of /var/lib/lighthouse back to root
+
 sudo chown root:root /var/lib/lighthouse
 
-# Change ownership of /lighthouse/beacon
+
+# Change ownership
+
 sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators
 
-# Create lighthousevalidator.service
+
+# Create systemd service
+
 cat > /usr/lib/systemd/system/lighthousevalidator.service <<EOF
 [Unit]
 Description=Lighthouse Validator
@@ -68,11 +77,10 @@ EOF
 
 systemctl daemon-reload
 
-# Start lighthousevalidator.service
+echo
+echo "systemctl enable lighthousevalidator"
 echo "systemctl start lighthousevalidator"
-
-# Stop lighthousevalidator.service
-echo "systemctl stop lighthousevalidator"
-
-# Check lighthousevalidator.service output
 echo "journalctl -f -u lighthousevalidator.service"
+
+echo
+echo "Everything is fine"
