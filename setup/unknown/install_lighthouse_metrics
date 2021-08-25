@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_metrics | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_metrics | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_lighthouse_metrics -O install_lighthouse_metrics
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_metrics -O install_lighthouse_metrics
 #
 # Lighthouse Metrics
 #
