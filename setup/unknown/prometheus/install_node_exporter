@@ -33,6 +33,9 @@ then
     rm -rf node_exporter-${VERSION}.linux-amd64/
 fi
 
+# Create node-exporter user
+useradd --system --no-create-home --shell /sbin/nologin node-exporter
+
 # Create node_exporter.service
 cat > /usr/lib/systemd/system/node_exporter.service <<EOF
 [Unit]
@@ -42,8 +45,8 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=eth-user
-Group=eth-user
+User=node-exporter
+Group=node-exporter
 Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/node_exporter \
