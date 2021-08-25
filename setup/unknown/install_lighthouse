@@ -11,6 +11,8 @@
 # 2. Verify
 #
 
+set -x
+set -e
 
 role=`id -u`
 if test $role -ne 0
@@ -43,3 +45,6 @@ then
 fi
 
 lighthouse --version
+
+echo
+echo "install ok"
