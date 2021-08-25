@@ -7,9 +7,13 @@
 #
 # Lighthouse Metrics
 #
-#
+
 
 set -e
+set -x
+
+
+# Condition check
 
 role=`id -u`
 if test $role -ne 0
@@ -18,10 +22,13 @@ then
     exit 1
 fi
 
+
+# Download package
+
 cd ~
 git clone https://github.com/sigp/lighthouse-metrics.git
-cd lighthouse-metrics/
 
-echo "docker-compose up -d"
-echo ""
+echo
+echo "docker-compose -f ~/lighthouse-metricsdocker-compose.yaml up -d"
+
 
