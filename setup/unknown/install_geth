@@ -48,7 +48,7 @@ chown -R goeth:goeth /var/lib/goethereum
 
 # Create systemd service
 
-cat > /etc/systemd/system/geth.service <<EOF
+cat > /usr/lib/systemd/system/geth.service <<EOF
 [Unit]
 Description=Ethereum go client
 After=network.target
