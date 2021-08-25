@@ -39,14 +39,14 @@ then
 fi
 
 mkdir -p /apps/prometheus/data
-chown appuser:appuser /apps/ -R
+chown prometheus:prometheus /apps/ -R
 chmod 700 /apps/prometheus/data -R
 
-# Create  appuser user
-egrep "^appuser" /etc/passwd >& /dev/null
+# Create prometheus user
+egrep "^prometheus" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  useradd --no-create-home --shell /bin/false appuser
+  useradd --system --no-create-home --shell /sbin/nologin prometheus
 fi
 
 # Create prometheus.service
@@ -58,8 +58,8 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=appuser
-Group=appuser
+User=prometheus
+Group=prometheus
 Restart=always
 RestartSec=5
 ExecStart=/apps/prometheus/prometheus \
