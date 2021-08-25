@@ -27,7 +27,7 @@ BIN="$PREFIX/prometheus"
 USER="prometheus"
 GROUP="prometheus"
 SERVICE="prometheus"
-SYSTEMD = "/usr/lib/systemd/system/$SERVICE.service"
+SYSTEMD="/usr/lib/systemd/system/$SERVICE.service"
 
 
 # Condition check
