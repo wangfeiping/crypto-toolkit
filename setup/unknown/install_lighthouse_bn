@@ -12,6 +12,11 @@
 # Ports 9000/TCP and 9000/UDP
 #
 
+set -e
+set -x
+
+
+# Condition check
 
 role=`id -u`
 if test $role -ne 0
@@ -20,29 +25,32 @@ then
     exit 1
 fi
 
-
-cd ~
-
 if [ ! -f "/usr/local/bin/lighthouse" ]
 then
     echo "please install lighthouse"
     exit
 fi
 
-# Create  lighthousebeacon user
+
+# Create user
+
 egrep "^lighthousebeacon" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  useradd --system --no-create-home --shell /sbin/nologin lighthousebeacon
+    useradd --system --no-create-home --shell /sbin/nologin lighthousebeacon
 fi
 
-# Create /lighthouse/beacon directory
+# Create directory
+
 mkdir -p /var/lib/lighthouse/beacon
 
-# Change ownership of /lighthouse/beacon
+# Change ownership
+
 chown -R lighthousebeacon:lighthousebeacon /var/lib/lighthouse/beacon
 
-# Create lighthousebeacon.service
+
+# Create systemd service
+
 cat > /usr/lib/systemd/system/lighthousebeacon.service <<EOF
 [Unit]
 Description=Lighthouse Beacon Node
@@ -69,11 +77,10 @@ EOF
 
 systemctl daemon-reload
 
-# Start lighthousebeacon.service
+echo
 echo "systemctl start lighthousebeacon"
-
-# Stop lighthousebeacon.service
 echo "systemctl stop lighthousebeacon"
-
-# Check lighthousebeacon.service output
 echo "journalctl -f -u lighthousebeacon.service"
+
+echo
+echo "Everything is fine"
