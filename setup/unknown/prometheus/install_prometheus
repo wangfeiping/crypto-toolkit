@@ -19,6 +19,17 @@
 set -e
 set -x
 
+APP="Prometheus"
+VERSION=2.29.1
+ROOT="/opt"
+PREFIX="$ROOT/prometheus-${VERSION}.linux-amd64"
+BIN="$PREFIX/prometheus"
+USER="prometheus"
+GROUP="prometheus"
+SERVICE="prometheus"
+SYSTEMD_FILE = "/usr/lib/systemd/system/$SERVICE.service"
+
+
 # Condition check
 
 role=`id -u`
@@ -29,10 +40,17 @@ then
 fi
 
 
-# Download package
+# Create user
 
-VERSION=2.29.1
-BIN="/opt/prometheus-${VERSION}.linux-amd64/prometheus"
+if id "$USER" >/dev/null 2>&1; then
+    echo "User $USER exists"
+    exit 1
+fi
+
+useradd --system --no-create-home --shell /sbin/nologin $USER
+
+
+# Download package
 
 if [ -f "$BIN" ]
 then
@@ -42,56 +60,49 @@ fi
 
 cd ~
 wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
-tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C /opt
+tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C $ROOT
 rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 
-
-# Create user
-
-useradd --system --no-create-home --shell /sbin/nologin prometheus
-
-mkdir -p /opt/prometheus-${VERSION}.linux-amd64/data
-chown prometheus:prometheus /opt/prometheus-${VERSION}.linux-amd64 -R
+mkdir -p $PREFIX/data
+chown $USER:$GROUP $PREFIX -R
 
 
 # Create systemd service
 
-SERVICE = "/usr/lib/systemd/system/prometheus.service"
-
-if [ -f "$SERVICE" ]
+if [ -f "$SYSTEMD_FILE" ]
 then
-    echo "$SERVICE already exists"
+    echo "$SYSTEMD_FILE already exists"
     exit 1
 fi
 
-cat > /usr/lib/systemd/system/prometheus.service <<EOF
+cat > $SYSTEMD_FILE <<EOF
 [Unit]
-Description=Prometheus
+Description=$APP
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=simple
-User=prometheus
-Group=prometheus
+User=$USER
+Group=$GROUP
 Restart=always
 RestartSec=5
-ExecStart=/opt/prometheus-${VERSION}.linux-amd64/prometheus \
-  --config.file="/opt/prometheus-${VERSION}.linux-amd64/prometheus.yml" \
+ExecStart=$BIN \
+  --config.file="$PREFIX/prometheus.yml" \
   --storage.tsdb.retention.time=39d \
-  --storage.tsdb.path=/opt/prometheus-${VERSION}.linux-amd64/data
+  --storage.tsdb.path=$PREFIX/data
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable prometheus
+systemctl enable $SERVICE
 
 echo
-echo "systemctl start prometheus"
-echo "systemctl stop prometheus"
-echo "journalctl -f -u prometheus"
+echo "systemctl start $SERVICE"
+echo "systemctl stop $SERVICE"
+echo "journalctl -f -u $SERVICE"
 
 echo
 $BIN --version
