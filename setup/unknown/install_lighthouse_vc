@@ -31,7 +31,7 @@ fi
 egrep "^lighthousevalidator" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  sudo useradd --no-create-home --shell /bin/false lighthousevalidator
+  useradd --system --no-create-home --shell /sbin/nologin lighthousevalidator
 fi
 
 # Create /lighthouse/validators directory
