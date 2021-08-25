@@ -7,11 +7,10 @@
 #
 # Deposit
 #
-# 
-# Beacon explorer
-#
-# https://prater.beaconcha.in/validator/0xb5c443f21bbf4b70dd98c4a24dafb75a12ca6e8557c223e92db9915372bb9f14d4f58e196abae02df3a0b9e981819485#deposits
-#
+
+
+set -e
+set -x
 
 
 cd ~
