@@ -38,8 +38,7 @@ then
     cd ~
     wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
 
-    mkdir -p /apps/prometheus
-    tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C /apps/prometheus
+    tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz -C /opt
 
     rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
@@ -48,9 +47,8 @@ fi
 
 useradd --system --no-create-home --shell /sbin/nologin prometheus
 
-mkdir -p /apps/prometheus/data
-chown prometheus:prometheus /apps/prometheus -R
-chmod 700 /apps/prometheus -R
+mkdir -p /opt/prometheus-${VERSION}.linux-amd64/data
+chown prometheus:prometheus /opt/prometheus-${VERSION}.linux-amd64 -R
 
 
 # Create systemd service
@@ -67,8 +65,8 @@ User=prometheus
 Group=prometheus
 Restart=always
 RestartSec=5
-ExecStart=/apps/prometheus/prometheus \
-  --config.file="/apps/prometheus/prometheus.yml" \
+ExecStart=/opt/prometheus-${VERSION}.linux-amd64/prometheus \
+  --config.file="/apps/prometheus-${VERSION}.linux-amd64/prometheus.yml" \
   --storage.tsdb.retention.time=39d \
   --storage.tsdb.path=/apps/prometheus/data/
 
@@ -85,7 +83,7 @@ echo "systemctl stop prometheus"
 echo "journalctl -f -u prometheus"
 
 echo
-prometheus --version
+/opt/prometheus-${VERSION}.linux-amd64/prometheus --version
 
 echo
 echo "Everything is fine"
