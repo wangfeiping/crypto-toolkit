@@ -9,7 +9,7 @@
 #
 # Network: mainnet
 #
-# Ports 9000/TCP and 9000/UDP
+# Ports TCP/13000 and UDP/12000
 #
 
 
@@ -47,7 +47,7 @@ fi
 egrep "^prysmbeacon" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  sudo useradd --no-create-home --shell /bin/false prysmbeacon
+  useradd --system --no-create-home --shell /sbin/nologin prysmbeacon
 fi
 
 # Create /prysm/beacon directory
