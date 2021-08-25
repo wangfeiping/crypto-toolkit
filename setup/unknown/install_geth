@@ -18,9 +18,9 @@ fi
 
 # Install Geth
 cd ~
-wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.7-12f0ff40.tar.gz
-tar zxvf geth-linux-amd64-1.10.7-12f0ff40.tar.gz
-cp geth-linux-amd64-1.10.7-12f0ff40/geth /usr/local/bin/
+wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.8-26675454.tar.gz
+tar zxvf geth-linux-amd64-1.10.8-26675454.tar.gz
+cp geth-linux-amd64-1.10.8-26675454/geth /usr/local/bin/
 geth version
 
 # Create goeth user
