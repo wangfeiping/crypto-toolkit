@@ -66,13 +66,14 @@ ExecStart=/usr/local/bin/geth --datadir /var/lib/goethereum --syncmode fast --ca
 WantedBy=default.target
 EOF
 
-# Reload the daemon
 systemctl daemon-reload
+systemctl enable geth
 
 echo
 echo "systemctl start geth"
-echo "systemctl enable geth"
-echo "journalctl -f -u geth.service"
+echo "systemctl stop geth"
+echo "journalctl -f -u geth"
+
 
 # Attach to console
 echo
