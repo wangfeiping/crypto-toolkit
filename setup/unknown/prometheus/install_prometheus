@@ -33,7 +33,7 @@ fi
 
 VERSION=2.29.1
 
-if [ ! -f "/apps/prometheus/prometheus" ]
+if [ ! -f "/opt/prometheus-${VERSION}.linux-amd64/prometheus" ]
 then
     cd ~
     wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
