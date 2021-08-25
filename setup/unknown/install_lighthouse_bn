@@ -78,9 +78,9 @@ EOF
 systemctl daemon-reload
 
 echo
-echo "systemctl start lighthousebeacon"
-echo "systemctl stop lighthousebeacon"
-echo "journalctl -f -u lighthousebeacon.service"
+echo "systemctl enable lighthousevalidator"
+echo "systemctl start lighthousevalidator"
+echo "journalctl -f -u lighthousevalidator.service"
 
 echo
 echo "Everything is fine"
