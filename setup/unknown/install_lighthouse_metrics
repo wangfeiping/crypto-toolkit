@@ -31,4 +31,5 @@ git clone https://github.com/sigp/lighthouse-metrics.git
 echo
 echo "docker-compose -f ~/lighthouse-metricsdocker-compose.yaml up -d"
 
-
+echo
+echo "Everything is fine"
