@@ -10,8 +10,8 @@
 # 1. download
 # 2. systemd
 
-set -x
 set -e
+set -x
 
 role=`id -u`
 if test $role -ne 0
