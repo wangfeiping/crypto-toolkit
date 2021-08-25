@@ -33,7 +33,7 @@ fi
 egrep "^lighthousebeacon" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
-  useradd --no-create-home --shell /bin/false lighthousebeacon
+  useradd --system --no-create-home --shell /sbin/nologin lighthousebeacon
 fi
 
 # Create /lighthouse/beacon directory
