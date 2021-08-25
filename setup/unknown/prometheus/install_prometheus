@@ -7,9 +7,6 @@
 #
 # Prometheus
 #
-# 1. download
-# 2. systemd
-#
 #
 # Grafana
 #
@@ -22,6 +19,8 @@
 set -e
 set -x
 
+# Condition check
+
 role=`id -u`
 if test $role -ne 0
 then
@@ -30,12 +29,13 @@ then
 fi
 
 
-VERSION=2.29.1
+# Download package
 
-cd ~
+VERSION=2.29.1
 
 if [ ! -f "/apps/prometheus/prometheus" ]
 then
+    cd ~
     wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz
       
     tar --no-same-owner -zxvf prometheus-${VERSION}.linux-amd64.tar.gz
@@ -44,7 +44,8 @@ then
     rm -f prometheus-${VERSION}.linux-amd64.tar.gz
 fi
 
-# Create prometheus user
+# Create user
+
 egrep "^prometheus" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
@@ -55,7 +56,9 @@ mkdir -p /apps/prometheus/data
 chown prometheus:prometheus /apps/prometheus -R
 chmod 700 /apps/prometheus -R
 
-# Create prometheus.service
+
+# Create systemd service
+
 cat > /usr/lib/systemd/system/prometheus.service <<EOF
 [Unit]
 Description=Prometheus
@@ -80,18 +83,11 @@ EOF
 systemctl daemon-reload
 
 echo
-
-# Start prometheus.service
 echo "systemctl start prometheus"
-
-# Stop prometheus.service
 echo "systemctl stop prometheus"
-
-# Check prometheus.service output
 echo "journalctl -f -u prometheus.service"
 
 echo
-
 prometheus --version
 
 echo
