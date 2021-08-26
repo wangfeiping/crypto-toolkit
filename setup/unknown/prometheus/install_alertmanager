@@ -28,7 +28,7 @@ mkdir -p /apps/prometheus/config
 
 VERSION=0.22.2
 
-if [ ! -f "/apps/prometheus/alertmanager" ]
+if [ ! -f "/apps/prometheus/bin/alertmanager" ]
 then
     cd ~
     wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz
