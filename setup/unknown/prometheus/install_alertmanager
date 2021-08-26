@@ -9,7 +9,10 @@
 #
 
 set -e
-set -x
+# printing every command as it is executed may help you to visualize the control flow of the script
+# if it is not functioning as expected. set +x disables it.
+# 去掉因为egrep 执行账户检测时会造成不明原因的中断
+#set -x
 
 
 # Condition check
@@ -83,7 +86,7 @@ echo "systemctl stop alertmanager"
 echo "journalctl -f -u alertmanager"
 
 echo
-alertmanager --version
+/apps/prometheus/bin/alertmanager --version
 
 echo
 echo "Everything is fine"
