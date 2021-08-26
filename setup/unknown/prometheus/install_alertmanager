@@ -11,8 +11,7 @@
 set -e
 # printing every command as it is executed may help you to visualize the control flow of the script
 # if it is not functioning as expected. set +x disables it.
-# 去掉因为egrep 执行账户检测时会造成不明原因的中断
-#set -x
+set -x
 
 
 # Condition check
@@ -47,11 +46,12 @@ fi
 
 # Create user
 
-egrep "^prometheus" /etc/passwd >& /dev/null
-if [ $? -ne 0 ]
-then
-    useradd --system --no-create-home --shell /sbin/nologin prometheus
-fi
+# 账户检测无法正常执行，统一在 install_prometheus 中创建账户
+#egrep "^prometheus" /etc/passwd >& /dev/null
+#if [ $? -ne 0 ]
+#then
+#    useradd --system --no-create-home --shell /sbin/nologin prometheus
+#fi
 
 chown prometheus:prometheus /apps/prometheus -R
 chmod 700 /apps/prometheus -R
