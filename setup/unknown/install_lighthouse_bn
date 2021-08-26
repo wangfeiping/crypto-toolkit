@@ -34,11 +34,13 @@ fi
 
 # Create user
 
-egrep "^lighthousebeacon" /etc/passwd >& /dev/null
-if [ $? -ne 0 ]
-then
-    useradd --system --no-create-home --shell /sbin/nologin lighthousebeacon
+if id "lighthousebeacon" >/dev/null 2>&1; then
+    echo "User lighthousebeacon exists"
+    exit 1
 fi
+
+useradd --system --no-create-home --shell /sbin/nologin lighthousebeacon
+
 
 # Create directory
 
