@@ -30,6 +30,7 @@ mkdir -p /apps/prometheus/config
 mkdir -p /apps/prometheus/data-alertmanager/
 
 VERSION=0.22.2
+USER="prometheus"
 
 if [ ! -f "/apps/prometheus/bin/alertmanager" ]
 then
@@ -47,12 +48,12 @@ fi
 
 # Create user
 
-# 账户检测无法正常执行，统一在 install_prometheus 中创建账户
-#egrep "^prometheus" /etc/passwd >& /dev/null
-#if [ $? -ne 0 ]
-#then
-#    useradd --system --no-create-home --shell /sbin/nologin prometheus
-#fi
+if id "$USER" >/dev/null 2>&1
+then
+    echo "User $USER exists"
+else
+    useradd --system --no-create-home --shell /sbin/nologin prometheus
+fi
 
 chown prometheus:prometheus /apps/prometheus -R
 chmod 700 /apps/prometheus -R
