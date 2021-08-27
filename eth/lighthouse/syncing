@@ -12,3 +12,6 @@
 
 curl -X GET "http://localhost:5052/lighthouse/syncing" \
 -H  "accept: application/json" | jq
+
+curl -X GET "http://localhost:5052/lighthouse/eth1/syncing" \
+-H  "accept: application/json" | jq
