@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/connected | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/connected -O connected
+#
+# lighthouse beacon API
+# 
+# connected
+#
+
+curl -X GET "http://localhost:5052/lighthouse/connected" \
+-H  "accept: application/json" | jq
