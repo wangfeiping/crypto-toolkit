@@ -1,8 +1,17 @@
 #/bin/bash
 
 #
-# install docker to ubuntu 20.04
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_docker | bash
 #
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_docker -O install_docker
+#
+# docker
+#
+#
+
+set -e
+set -x
+
 
 role=`id -u`
 if test $role -ne 0
@@ -13,7 +22,7 @@ fi
 
 apt-get remove docker docker-engine docker.io containerd runc
 
-apt-get update
+apt-get update -y
 
 apt-get install -y \
     apt-transport-https \
@@ -31,4 +40,7 @@ echo \
 apt-get update
 apt-get install -y docker-ce docker-ce-cli containerd.io
 
-docker run hello-world
+docker run --rm hello-world
+
+echo
+echo "docker is fine"
