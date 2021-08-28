@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus -O install_prometheus
+#
+# Prometheus
+#
+#
+
 set -e
 set -x
 
