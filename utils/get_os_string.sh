@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus | bash
+# https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string.sh | bash
 #
 #
 # Operating System (pass-test): 
