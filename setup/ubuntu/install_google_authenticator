@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_google_authenticator | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_google_authenticator -O install_google_authenticator
+#
+# google-authenticator
+#
+#
+
+set -e
+set -x
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Install google-authenticator
+
+apt install libpam-google-authenticator
+
+google-authenticator -h
+
+echo
+echo "google-authenticator is fine"
