@@ -34,4 +34,4 @@ yum install -y openresty
 /usr/local/openresty/nginx/sbin/nginx -t
 
 echo
-echo "Everything is fine"
+echo "OpenResty is fine"
