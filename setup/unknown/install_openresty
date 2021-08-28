@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_openresty | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_openresty -O install_openresty
+#
+# OpenResty
+#
+
+
+set -e
+set -x
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+
+if [ "$OS" = "redhat" ]; then
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_openresty | bash
+fi
+
+if [ "$OS" = "centos" ]; then
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/centos/install_openresty | bash
+fi
+
+if [ "$OS" = "amazon" ]; then
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/amazon/install_openresty | bash
+fi
+
+if [ "$OS" = "ubuntu" ]; then
+    curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_openresty | bash
+fi
+
+echo
+echo "jq is fine"
