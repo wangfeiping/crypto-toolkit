@@ -41,4 +41,4 @@ if hostnamectl | grep "CentOS" >/dev/null 2>&1; then
     exit
 fi
 
-echo "linux"
+echo "unknown"
