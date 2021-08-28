@@ -29,4 +29,9 @@ if hostnamectl | grep "Red Hat" >/dev/null 2>&1; then
     exit
 fi
 
+if hostnamectl | grep "CentOS" >/dev/null 2>&1; then
+    echo "centos"
+    exit
+fi
+
 echo "linux"
