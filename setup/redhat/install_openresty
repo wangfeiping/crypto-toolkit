@@ -1,42 +1,37 @@
 #!/bin/bash
 
-VERSION="1.11.2.2"
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_openresty | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/redhat/install_openresty -O install_openresty
+#
+# OpenResty
+#
+#
 
-URL="http://oerp142a4.bkt.clouddn.com/openresty-${VERSION}.tar.gz"
+set -e
+set -x
+
+# Condition check
 
 role=`id -u`
 if test $role -ne 0
 then
-    echo "You install OpenResty which requires root privileges"
+    echo "You install package which requires root privileges"
     exit 1
 fi
 
-echo "start install OpenResty ..."
 
-command -v wget || yum -y install wget || exit 1
-command -v git || yum -y install git || exit 1
-yum -y install epel-release || exit 1
-yum -y groupinstall development tools || exit 1
-yum -y install libpqxx-devel || exit 1
-yum -y install libpqxx || exit 1
-yum -y install libxml2-devel libxslt-devel || exit 1
-yum -y install geoip-devel || exit 1
-yum -y install pcre-devel || exit 1
-yum -y install gd.x86_64 || exit 1
-yum -y install gd-devel.x86_64 || exit 1
-yum -y install libxslt-devel.x86_64 || exit 1
-yum -y install openssl-devel.x86_64 || exit 1
+# Download package
 
-cd `dirname $0`
-TMPFILE=$(mktemp /tmp/tmp.XXXXXXXXXX) || exit 1
-wget -t 3 -O $TMPFILE $URL
+wget https://openresty.org/package/rhel/openresty.repo
+sudo mv openresty.repo /etc/yum.repos.d/
 
-tar zxf $TMPFILE -C /tmp/
+yum update -y
+yum check-update
+yum install -y openresty
 
-rm -f  $TMPFILE
+/usr/local/openresty/nginx/sbin/nginx -t
 
-cd /tmp/openresty-${VERSION}/
-./configure --prefix=/opt/openresty --with-http_realip_module --with-stream
-gmake && gmake install
-
-rm -fr /tmp/openresty-${VERSION}/
+echo
+echo "OpenResty is fine"
