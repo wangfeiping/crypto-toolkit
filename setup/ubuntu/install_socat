@@ -16,7 +16,8 @@ then
     exit 1
 fi
 
-sudo apt install -y socat
+apt update -y
+apt install -y socat
 
 echo
 echo "socat -d 192.168.0.104:9091,reuseaddr,fork TCP4:127.0.0.1:9090"
