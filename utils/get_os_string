@@ -1,12 +1,16 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string.sh 2>/dev/null | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string -O get_os_string
+#
+#
+# get_os_string
 #
 #
 # Operating System (pass-test): 
 #
-# 
 # 1. Ubuntu 20.04.2 LTS
 # 2. Red Hat Enterprise Linux 8.4 (Ootpa)
 # 3. Amazon Linux 2
