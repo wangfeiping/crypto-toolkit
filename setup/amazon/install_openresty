@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/amazon/install_openresty | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus -O install_prometheus
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/amazon/install_openresty -O install_openresty
 #
-# Prometheus
+# OpenResty
 #
 #
 
@@ -30,59 +30,6 @@ mv openresty.repo /etc/yum.repos.d/
 yum update -y
 yum check-update
 yum install -y openresty
-
-
-# Configure nginx
-
-cat > /usr/local/openresty/nginx/conf/nginx.conf <<EOF
-
-worker_processes  1;
-
-events {
-    worker_connections 1024;
-}
-
-stream {
-    upstream ssh {
-        server 127.0.0.1:22;
-    }
-
-    upstream web {
-        server www.baidu.com:443;
-    }
-
-    map \$ssl_preread_protocol \$upstream {
-        default ssh;
-        "TLSv1.2" web;
-    }
-
-    # SSH and SSL on the same port
-    server {
-        listen 443;
-
-        proxy_pass \$upstream;
-        ssl_preread on;
-    }
-}
-
-http {
-    server {
-        listen 0.0.0.0:19100;
-
-        location /node_exporter_4729c30112/ {
-            proxy_pass http://localhost:9100/;
-        }
-
-        location / {
-            content_by_lua_block {
-                ngx.sleep(5)
-                ngx.print("Hello, World!")
-            }
-        }
-    }
-}
-
-EOF
 
 /usr/local/openresty/nginx/sbin/nginx -t
 
