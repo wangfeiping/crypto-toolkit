@@ -1,19 +1,38 @@
-#/bin/bash
+#!/bin/bash
 
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_openresty | bash
 #
-# install ossutil64 to ubuntu 20.04
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_openresty -O install_openresty
+#
+# OpenResty
+#
 #
 
+set -e
+set -x
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
 
 
-sudo systemctl disable nginx
-sudo systemctl stop nginx
+# Download package
 
 sudo apt-get -y install --no-install-recommends wget gnupg ca-certificates
 wget -O - https://openresty.org/package/pubkey.gpg | sudo apt-key add -
 echo "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main" \
     | sudo tee /etc/apt/sources.list.d/openresty.list
-sudo apt-get update
-sudo apt-get -y install openresty
+
+apt-get update
+apt-get -y install openresty
+
+/usr/local/openresty/nginx/sbin/nginx -t
+
+echo
+echo "OpenResty is fine"
