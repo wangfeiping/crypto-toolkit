@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/centos/install_openresty | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/centos/install_openresty -O install_openresty
+#
+# OpenResty
+#
+#
+
+set -e
+set -x
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Download package
+
+wget https://openresty.org/package/centos/openresty.repo
+sudo mv openresty.repo /etc/yum.repos.d/
+
+yum update -y
+yum check-update
+yum install -y openresty
+
+/usr/local/openresty/nginx/sbin/nginx -t
+
+echo
+echo "OpenResty is fine"
