@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_jq | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_jq -O install_jq
+#
+# Jq
+#
+
+
+set -e
+set -x
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+
+if [ "$OS" = "redhat" ]; then
+    yum install -y jq
+fi
+
+if [ "$OS" = "centos" ]; then
+    yum install -y jq
+fi
+
+if [ "$OS" = "amazon" ]; then
+    yum install -y jq
+fi
+
+if [ "$OS" = "ubuntu" ]; then
+    apt install -y jq
+fi
+
+echo
+echo "jq is fine"
