@@ -1,9 +1,0 @@
-
-
-yum -y install glibc-devel
-
-git clone https://github.com/scotte/nicstat.git
-cd nicstat
-cp Makefile.Linux Makefile
-sed -i s/m32/m64 Makefile
-make && make install
