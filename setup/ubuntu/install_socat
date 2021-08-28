@@ -3,8 +3,11 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_socat | bash
 #
-# install socat to ubuntu 20.04
+# socat
 #
+
+set -e
+set -x
 
 role=`id -u`
 if test $role -ne 0
@@ -19,3 +22,6 @@ echo
 echo "socat -d 192.168.0.104:9091,reuseaddr,fork TCP4:127.0.0.1:9090"
 echo
 echo "socat -d 192.168.0.104:3001,reuseaddr,fork TCP4:127.0.0.1:3000"
+
+echo
+echo "socat is fine"
