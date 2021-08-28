@@ -36,7 +36,7 @@ make
 sudo make install
 cp /usr/local/lib/security/pam_google_authenticator.so /usr/lib64/security/
 cd -
-rm -f google-authenticator-libpam
+rm -fr google-authenticator-libpam
 
 
 google-authenticator -h
