@@ -1,6 +1,9 @@
 #!/bin/bash
 
 #
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_prometheus | bash
+#
+#
 # Operating System (pass-test): 
 #
 # 
@@ -8,6 +11,7 @@
 # 2. Red Hat Enterprise Linux 8.4 (Ootpa)
 # 3. Amazon Linux 2
 #
+
 
 if hostnamectl | grep "Amazon" >/dev/null 2>&1; then
     echo "amazon"
