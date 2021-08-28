@@ -20,7 +20,6 @@ then
     exit 1
 fi
 
-apt-get remove docker docker-engine docker.io containerd runc
 
 apt-get update -y
 
