@@ -48,4 +48,4 @@ fi
 lighthouse --version
 
 echo
-echo "Everything is fine"
+echo "Lighthouse is fine"
