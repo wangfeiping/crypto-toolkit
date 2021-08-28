@@ -10,6 +10,7 @@
 # 1. Ubuntu 20.04.2 LTS
 # 2. Red Hat Enterprise Linux 8.4 (Ootpa)
 # 3. Amazon Linux 2
+# 4. CentOS Linux 8
 #
 
 
