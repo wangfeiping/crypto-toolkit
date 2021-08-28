@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string.sh | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string.sh 2>/dev/null | bash
 #
 #
 # Operating System (pass-test): 
