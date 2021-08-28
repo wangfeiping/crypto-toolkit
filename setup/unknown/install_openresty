@@ -39,4 +39,4 @@ if [ "$OS" = "ubuntu" ]; then
 fi
 
 echo
-echo "jq is fine"
+echo "OpenResty is fine"
