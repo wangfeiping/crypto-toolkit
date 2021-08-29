@@ -3,9 +3,9 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_prysm_vc | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_prysm_vc -O install_lighthouse_vc
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_prysm_vc -O install_prysm_vc
 #
-# Prysm
+# Prysm Validator
 #
 # Network：mainnet
 #
@@ -23,32 +23,32 @@ fi
 
 cd ~
 
-if [ ! -f "/usr/local/bin/lighthouse" ]
+if [ ! -f "/usr/local/bin/validator" ]
 then
-    echo "please install lighthouse"
+    echo "please install validator"
     exit
 fi
 
-# Create lighthousevalidator user
-egrep "^lighthousevalidator" /etc/passwd >& /dev/null
+# Create prysmvalidator user
+egrep "^prysmvalidator" /etc/passwd >& /dev/null
 if [ $? -ne 0 ]
 then
   useradd --system --no-create-home --shell /sbin/nologin prysmvalidator
 fi
 
-# Create /lighthouse/validators directory
-sudo mkdir -p /var/lib/lighthouse/validators
+# Create /prysm/validators directory
+sudo mkdir -p /var/lib/prysm/validators
 
-# Change ownership of /var/lib/lighthouse back to root
-sudo chown root:root /var/lib/lighthouse
+# Change ownership of /var/lib/prysm back to root
+sudo chown root:root /var/lib/prysm
 
-# Change ownership of /lighthouse/beacon
-sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators
+# Change ownership of /prysm/validators
+sudo chown -R prysmvalidator:prysmvalidator /var/lib/prysm/validators
 
-# Create lighthousevalidator.service
-cat > /usr/lib/systemd/system/lighthousevalidator.service <<EOF
+# Create prysmvalidator.service
+cat > /usr/lib/systemd/system/prysmvalidator.service <<EOF
 [Unit]
-Description=Lighthouse Validator
+Description=Prysm Validator
 Wants=network-online.target
 After=network-online.target
 
@@ -58,7 +58,14 @@ Group=prysmvalidator
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/lighthouse validator_client --datadir /var/lib/lighthouse --metrics --network mainnet
+ExecStart=/usr/local/bin/validator \
+        --mainnet \
+        --wallet-dir=/var/lib/prysm/.eth2validators/prysm-wallet-v2 \
+        --datadir=/var/lib/prysm/validators \
+        --wallet-password-file=/home/eth-user/.ssh/wp.txt \
+        --monitoring-host=0.0.0.0 \
+        --monitoring-port=15064 \
+        --pprofport=16065
 
 [Install]
 WantedBy=multi-user.target
@@ -66,14 +73,14 @@ EOF
 
 sudo systemctl daemon-reload
 
-# Start lighthousevalidator.service
-echo "sudo systemctl start lighthousevalidator"
+# Start prysmvalidator.service
+echo "sudo systemctl start prysmvalidator"
 
-# Stop lighthousevalidator.service
-echo "sudo systemctl stop lighthousevalidator"
+# Stop prysmvalidator.service
+echo "sudo systemctl stop prysmvalidator"
 
-# Check lighthousevalidator.service output
-echo "sudo journalctl -f -u lighthousevalidator.service"
+# Check prysmvalidator.service output
+echo "sudo journalctl -f -u prysmvalidator.service"
 
 echo
 echo "Everything is fine"
