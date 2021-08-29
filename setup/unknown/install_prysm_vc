@@ -100,4 +100,7 @@ echo "sudo systemctl stop prysmvalidator"
 echo "sudo journalctl -f -u prysmvalidator.service"
 
 echo
+/usr/local/bin/validator --version
+
+echo
 echo "Everything is fine"
