@@ -21,6 +21,8 @@ then
 fi
 
 VERSION=v1.4.3
+USER=prysmvalidator
+GROUP=prysmvalidator
 
 cd ~
 
@@ -44,10 +46,11 @@ then
 fi
 
 # Create prysmvalidator user
-egrep "^prysmvalidator" /etc/passwd >& /dev/null
-if [ $? -ne 0 ]
+if id "$USER" >/dev/null 2>&1
 then
-  useradd --system --no-create-home --shell /sbin/nologin prysmvalidator
+    echo "User $USER exists"
+else
+    useradd --system --no-create-home --shell /sbin/nologin $USER
 fi
 
 # Create /prysm/validators directory
@@ -57,7 +60,7 @@ sudo mkdir -p /var/lib/prysm/validators
 sudo chown root:root /var/lib/prysm
 
 # Change ownership of /prysm/validators
-sudo chown -R prysmvalidator:prysmvalidator /var/lib/prysm/validators
+sudo chown -R $USER:$GROUP /var/lib/prysm/validators
 
 # Create prysmvalidator.service
 cat > /usr/lib/systemd/system/prysmvalidator.service <<EOF
