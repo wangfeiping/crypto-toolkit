@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_prysm_vc | bash
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_vc | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/aws/install_prysm_vc -O install_prysm_vc
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_vc -O install_prysm_vc
 #
 # Prysm Validator
 #
