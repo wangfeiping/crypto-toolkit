@@ -1,7 +1,13 @@
-#/usr/bin/env python
+#/usr/bin/env python3
 
 #
 # Python 3.6+ support
+#
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/infura_health | python3
+#
+# wget curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/infura_health -O infura_health
 #
 
 #
