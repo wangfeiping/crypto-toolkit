@@ -7,7 +7,7 @@
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_vs_infura | python3
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura -O localnode_vs_infura
+# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_vs_infura -O localnode_vs_infura
 #
 # localnode vs infura
 #
