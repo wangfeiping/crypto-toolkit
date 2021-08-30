@@ -1,6 +1,10 @@
 #/usr/bin/env python
 
 #
+# Python 3.6+ support
+#
+
+#
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura | python
 #
 # wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura -O localnode_vs_infura
