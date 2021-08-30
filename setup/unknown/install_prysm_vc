@@ -55,12 +55,14 @@ fi
 
 # Create /prysm/validators directory
 sudo mkdir -p /var/lib/prysm/validators
+sudo mkdir -p /var/lib/prysm/.eth2validators
 
 # Change ownership of /var/lib/prysm back to root
 sudo chown root:root /var/lib/prysm
 
 # Change ownership of /prysm/validators
 sudo chown -R $USER:$GROUP /var/lib/prysm/validators
+sudo chown -R $USER:$GROUP /var/lib/prysm/.eth2validators
 
 # Create prysmvalidator.service
 cat > /usr/lib/systemd/system/prysmvalidator.service <<EOF
