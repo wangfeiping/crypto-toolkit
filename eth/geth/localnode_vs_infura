@@ -1,6 +1,13 @@
 #/usr/bin/env python
 
 #
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura | python
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura -O localnode_vs_infura
+#
+# localnode vs infura
+#
+#
 # requires your to be set the environment variable before running
 #
 # Infura Project ID:
