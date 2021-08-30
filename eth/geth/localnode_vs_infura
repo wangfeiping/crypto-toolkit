@@ -5,7 +5,7 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura | python3
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_vs_infura | python3
 #
 # wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/localnode_vs_infura -O localnode_vs_infura
 #
@@ -22,6 +22,8 @@
 #
 #     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
+
+import os
 
 from web3 import Web3
 
