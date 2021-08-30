@@ -18,6 +18,20 @@ then
     exit 1
 fi
 
+OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+
+if [ "$OS" = "redhat" ]; then
+    yum install python3-devel -y
+fi
+
+if [ "$OS" = "aws" ]; then
+    yum install python3-devel -y
+fi
+
+if [ "$OS" = "centos" ]; then
+    yum install python3-devel -y
+fi
+
 
 which pip3 || curl https://bootstrap.pypa.io/get-pip.py | python3
 
