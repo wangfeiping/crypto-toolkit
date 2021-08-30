@@ -48,11 +48,12 @@ if infura_w3.eth.chain_id != localnode_w3.eth.chain_id:
   print("w3.eth.chain_id conflict")
   os.exit(4)
   
-if infura_w3.eth.protocol_version != localnode_w3.eth.protocol_version:
-  print("w3.eth.protocol_version conflict")
+if infura_w3.net.version != localnode_w3.net.version:
+  print("w3.net.version conflict")
   os.exit(4)
   
 print("Local Node: ", localnode_w3.clientVersion)
 print("infura: ", infura_w3.clientVersion)
 
+print("")
 print("Everything is fine")
