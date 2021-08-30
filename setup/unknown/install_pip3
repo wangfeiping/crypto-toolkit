@@ -22,18 +22,22 @@ OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_str
 
 if [ "$OS" = "redhat" ]; then
     yum install python3-devel -y
+    which pip3 || curl https://bootstrap.pypa.io/get-pip.py | python3
 fi
 
 if [ "$OS" = "aws" ]; then
     yum install python3-devel -y
+    which pip3 || curl https://bootstrap.pypa.io/get-pip.py | python3
 fi
 
 if [ "$OS" = "centos" ]; then
     yum install python3-devel -y
+    which pip3 || curl https://bootstrap.pypa.io/get-pip.py | python3
 fi
 
-
-which pip3 || curl https://bootstrap.pypa.io/get-pip.py | python3
+if [ "$OS" = "ubuntu" ]; then
+    apt install python3-pip -y
+fi
 
 echo
 echo "pip3 is fine"
