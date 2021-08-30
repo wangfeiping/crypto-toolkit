@@ -20,4 +20,6 @@ from web3.auto.infura import w3
 
 if not w3.isConnected():
   # send msg to dingding
-  print("[eth] [local node] geth is not available")
+  print("[eth] [infura] geth is not available")
+else:
+  print("[eth] [infura] geth is available")
