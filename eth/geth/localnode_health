@@ -1,8 +1,16 @@
 #/usr/bin/env python3
 
+
 #
 # Python 3.6+ support
 #
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_health | python3
+#
+# wget curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_health -O localnode_health
+#
+
 
 #
 # requires your to be set the environment variable before running
