@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_pip | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_pip -O install_pip
+#
+# pip
+#
+
+set -e
+set -x
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+which pip || curl https://bootstrap.pypa.io/get-pip.py | python
+
+echo
+echo "pip is fine"
