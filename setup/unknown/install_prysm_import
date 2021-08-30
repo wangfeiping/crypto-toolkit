@@ -16,14 +16,15 @@ then
     exit 1
 fi
 
-lighthouse --network mainnet account validator import --directory $HOME --datadir /var/lib/lighthouse
-
+/usr/local/bin/validator accounts import \
+    --mainnet \
+    --keys-dir=/home/eth-user/validator_keys \
+    --wallet-dir=/var/lib/prysm/.eth2validators/prysm-wallet-v2
 
 echo "Import"
 echo
-echo "sudo chown -R lighthousevalidator:lighthousevalidator /var/lib/lighthouse/validators"
+echo "sudo chown -R prysmvalidator:prysmvalidator /var/lib/prysm/validators"
+echo "sudo chown -R prysmvalidator:prysmvalidator /var/lib/prysm/.eth2validators"
 echo
-echo "cat /var/lib/lighthouse/validators/validator_definitions.yml"
-echo
-echo "lighthouse --network mainnet account validator list --datadir /var/lib/lighthouse"
+echo "/usr/local/bin/validator accounts list --mainnet --wallet-dir=/var/lib/prysm/.eth2validators/prysm-wallet-v2"
 echo
