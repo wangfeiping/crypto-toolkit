@@ -19,7 +19,7 @@ then
 fi
 
 
-which pip || curl https://bootstrap.pypa.io/get-pip.py | python3
+which pip3 || curl https://bootstrap.pypa.io/get-pip.py | python3
 
 echo
 echo "pip3 is fine"
