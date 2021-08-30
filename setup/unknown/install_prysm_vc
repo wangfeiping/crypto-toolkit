@@ -78,6 +78,7 @@ Type=simple
 Restart=always
 RestartSec=5
 ExecStart=/usr/local/bin/validator \
+        --accept-terms-of-use \
         --mainnet \
         --wallet-dir=/var/lib/prysm/.eth2validators/prysm-wallet-v2 \
         --datadir=/var/lib/prysm/validators \
