@@ -78,7 +78,7 @@ ExecStart=/usr/local/bin/beacon-chain \
         --p2p-max-peers 75 \
         --eth1-header-req-limit 1000 \
         --monitoring-host 127.0.0.1 \
-        --monitoring-port 18080 \
+        --monitoring-port 5054
 
 [Install]
 WantedBy=multi-user.target
