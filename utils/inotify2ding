@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#
+# requires your to be set the environment variable before running
+#
+# Ding Bot Access Token:
+#
+#     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#
+
+MachineID=`hostnamectl | grep "Machine ID" | awk -F ': ' '{print $2;}'`
+ExternalIP=`curl http://ifconfig.io`
+UserName=`whoami`
+TimeStamp=`date +%Y-%m-%dT%H:%M:%S`
+
+EventName="modify,attrib,close_write,moved_to,moved_from,move,move_self,create,delete,delete_self"
+Dirs="/etc/ssh /home"
+
+inotifywait -e $EventName \
+    --format '%w%f %:e' \
+    -rm $Dirs |
+while read Events; do
+  Selected=`echo $Events | grep -v ".swp" | grep -v "swx" | grep -v "~" | grep -v "4913" | grep -v "ATTRIB"`
+  if [ -n "$Selected" ]; then
+    echo $Selected
+
+    body="{\
+    \"msgtype\": \"text\",\
+    \"text\": {\
+    \"content\":\"[eth] SSH Login succeeded, \
+MachineID: ${MachineID}, \
+ExternalIP: ${ExternalIP}, \
+UserName: ${UserName}, \
+Events: ${Events}, \
+TimeStamp: ${TimeStamp}\
+\"\
+}\
+}"
+#echo $body
+    curl "https://oapi.dingtalk.com/robot/send?access_token=$DING_BOT_ACCESS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d "$body" > /dev/null
+  fi
+done
