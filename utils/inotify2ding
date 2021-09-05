@@ -48,6 +48,8 @@ TimeStamp: ${TimeStamp}\
 #echo $Body
     curl "https://oapi.dingtalk.com/robot/send?access_token=$DING_BOT_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -d "$Body" > /dev/null
+    -d "$Body"
+    
+    echo
   fi
 done
