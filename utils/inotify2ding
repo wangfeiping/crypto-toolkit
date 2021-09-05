@@ -1,6 +1,15 @@
 #!/bin/bash
 
 #
+# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/inotify2ding 2>/dev/null | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/utils/inotify2ding -O inotify2ding
+#
+#
+# inotify2ding
+#
+
+#
 # requires your to be set the environment variable before running
 #
 # Ding Bot Access Token:
@@ -24,7 +33,7 @@ while read Events; do
   if [ -n "$Selected" ]; then
     echo $Selected
 
-    body="{\
+    Body="{\
     \"msgtype\": \"text\",\
     \"text\": {\
     \"content\":\"[eth] SSH Login succeeded, \
@@ -36,9 +45,9 @@ TimeStamp: ${TimeStamp}\
 \"\
 }\
 }"
-#echo $body
+#echo $Body
     curl "https://oapi.dingtalk.com/robot/send?access_token=$DING_BOT_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -d "$body" > /dev/null
+    -d "$Body" > /dev/null
   fi
 done
