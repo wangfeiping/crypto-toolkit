@@ -38,6 +38,9 @@ if [ "$OS" = "amazon" ]; then
 fi
 
 if [ "$OS" = "ubuntu" ]; then
+    apt update -y
+    apt upgrade -y
+
     apt install -y tmux
     wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
 fi
