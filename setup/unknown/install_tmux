@@ -23,16 +23,25 @@ fi
 OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
 
 if [ "$OS" = "redhat" ]; then
+    yum update -y
+    yum upgrade -y
+    
     yum install -y tmux
     wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
 fi
 
 if [ "$OS" = "centos" ]; then
+    yum update -y
+    yum upgrade -y
+
     yum install -y tmux
     wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
 fi
 
 if [ "$OS" = "amazon" ]; then
+    yum update -y
+    yum upgrade -y
+
     yum install -y tmux
     wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
 fi
