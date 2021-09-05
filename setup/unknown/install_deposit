@@ -16,6 +16,10 @@ set -x
 cd ~
 wget https://github.com/ethereum/eth2.0-deposit-cli/releases/download/v1.2.0/eth2deposit-cli-256ea21-linux-amd64.tar.gz
 
+echo "SHA256 Checksum: "
+echo "825035b6d6c06c0c85a38f78e8bf3e9df93dfd16bf7b72753b6888ae8c4cb30a  ./eth2deposit-cli-256ea21-linux-amd64.tar.gz"
+sha256sum ./eth2deposit-cli-256ea21-linux-amd64.tar.gz
+
 tar zxvf eth2deposit-cli-256ea21-linux-amd64.tar.gz
 mv eth2deposit-cli-256ea21-linux-amd64/deposit .
 
