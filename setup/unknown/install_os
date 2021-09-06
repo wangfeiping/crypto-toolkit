@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_os | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_os -O install_os
+#
+# os 
+# 
+
+
+set -e
+set -x
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+
+if [ "$OS" = "redhat" ]; then
+    yum update -y
+    yum upgrade -y
+fi
+
+if [ "$OS" = "centos" ]; then
+    yum update -y
+    yum upgrade -y
+fi
+
+if [ "$OS" = "amazon" ]; then
+    yum update -y
+    yum upgrade -y
+fi
+
+if [ "$OS" = "ubuntu" ]; then
+    apt update -y
+    apt upgrade -y
+fi
+
+echo
+echo "os is fine"
