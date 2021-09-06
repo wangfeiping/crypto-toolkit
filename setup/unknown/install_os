@@ -33,6 +33,9 @@ if [ "$OS" = "centos" ]; then
 fi
 
 if [ "$OS" = "amazon" ]; then
+    amazon-linux-extras install epel -y
+    yum-config-manager --enable epel
+    
     yum update -y
     yum upgrade -y
 fi
