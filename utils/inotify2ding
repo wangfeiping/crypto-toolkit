@@ -51,5 +51,8 @@ TimeStamp: ${TimeStamp}\
     -d "$Body"
     
     echo
+    
+    // DingDing invocation frequency limit
+    sleep 5
   fi
 done
