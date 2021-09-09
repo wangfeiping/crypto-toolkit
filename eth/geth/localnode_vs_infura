@@ -5,11 +5,11 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_vs_infura | python3
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localNode_vs_infura | python3
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_vs_infura -O localnode_vs_infura
+# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localNode_vs_infura -O localNode_vs_infura
 #
-# localnode vs infura
+# localNode vs infura
 #
 #
 # requires your to be set the environment variable before running
@@ -18,43 +18,114 @@
 #
 #     export WEB3_INFURA_PROJECT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
-# Ding Bot Access Token:
-#
-#     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
 
 import os
 import sys
 
-from web3 import Web3
+import requests
+import json
 
+headers = {'Content-Type': 'application/json'}
 infura_project_id = os.getenv("WEB3_INFURA_PROJECT_ID")
 
-infura_w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/' + infura_project_id))
-localnode_w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+# infura_url = 'https://mainnet.infura.io/v3/' + infura_project_id
+infura_url = 'https://goerli.infura.io/v3/' + infura_project_id
+localNode_url = 'http://127.0.0.1:8545'
 
-if not infura_w3.isConnected():
-  print("[eth] [infura] geth is not available")
-  sys.exit(1)
-  
-if not localnode_w3.isConnected():
-  print("[eth] [local node] geth is not available")
-  sys.exit(2)
-  
-if infura_w3.eth.block_number != localnode_w3.eth.block_number:
-  print("w3.eth.block_number conflict")
-  sys.exit(3)
-  
-if infura_w3.eth.chain_id != localnode_w3.eth.chain_id:
-  print("w3.eth.chain_id conflict")
-  sys.exit(4)
-  
-if infura_w3.net.version != localnode_w3.net.version:
-  print("w3.net.version conflict")
-  sys.exit(4)
-  
-print("Local Node: ", localnode_w3.clientVersion)
-print("infura: ", infura_w3.clientVersion)
-
+print(infura_url)
+print(localNode_url)
 print("")
-print("Everything is fine")
+
+#
+# eth_chainId
+#
+payload = {"jsonrpc":"2.0","method":"eth_chainId","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"] != b.json()["result"]:
+    print("eth_chainId".ljust(24, " "), "conflict")
+else:
+    print("eth_chainId".ljust(24, " "), "ok")
+
+
+#
+# net_version
+#
+payload = {"jsonrpc":"2.0","method":"net_version","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"] != b.json()["result"]:
+    print("net_version".ljust(24, " "), "conflict")
+else:
+    print("net_version".ljust(24, " "), "ok")
+
+
+#
+# eth_blockNumber
+#
+payload = {"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"] != b.json()["result"]:
+    print("eth_blockNumber".ljust(24, " "), "conflict")
+else:
+    print("eth_blockNumber".ljust(24, " "), "ok")
+
+
+#
+# web3_clientVersion
+#
+payload = {"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"].split("-")[0] != b.json()["result"].split("-")[0]:
+    print("web3_clientVersion".ljust(24, " "), "conflict")
+else:
+    print("web3_clientVersion".ljust(24, " "), "ok")
+
+
+payload = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params": ["latest", False],"id":1}
+r = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+blockNumber = r.json()["result"]["number"]
+# print("blockNumber:", blockNumber)
+blockNumberFixed = str(hex(int(blockNumber, 16) - 5))
+# print("blockNumberFixed:", blockNumberFixed)
+
+
+#
+# eth_getBlockByNumber
+#
+payload = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params": [blockNumberFixed, False],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.json()["result"]["hash"])
+# print(b.json()["result"]["hash"])
+hash = b.json()["result"]["hash"]
+# print(hash)
+if a.json()["result"]["hash"] != b.json()["result"]["hash"]:
+    print("eth_getBlockByNumber".ljust(24, " "), "conflict")
+else:
+    print("eth_getBlockByNumber".ljust(24, " "), "ok")
+
+
+#
+# eth_getLogs
+#
+payload = {"jsonrpc":"2.0","method":"eth_getLogs","params": [{"blockHash": hash}],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+ahash = a.json()["result"][0]["transactionHash"]
+bhash = b.json()["result"][0]["transactionHash"]
+if ahash != bhash:
+    print("eth_getLogs".ljust(24, " "), "conflict")
+else:
+    print("eth_getLogs".ljust(24, " "), "ok")
