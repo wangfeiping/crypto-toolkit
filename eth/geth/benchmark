@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+
+#
+# Python 3.6+ support
+#
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/benchmark | python3
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/benchmark -O benchmark
+#
+# get press
+#
+#
+
+import sys
+import os
+import time
+
+import requests
+import json
+
+headers = {'Content-Type': 'application/json'}
+url = 'http://127.0.0.1:8545'
+
+count = 20000
+pool = [i for i in range(count)]
+start = time.time()
+for i in pool:
+    #
+    # eth_chainId
+    #
+    # TPS: 789
+    #
+    payload = '{"jsonrpc":"2.0","method":"eth_chainId","params": [],"id":1}'
+    r = requests.post(url, payload, headers=headers)
+    # print(r)
+
+
+    #
+    # net_version
+    #
+    # TPS: 781
+    #
+    payload = '{"jsonrpc":"2.0","method":"net_version","params": [],"id":1}'
+    r = requests.post(url, payload, headers=headers)
+    # print(r)
+
+    #
+    # web3_clientVersion
+    #
+    # TPS: 782
+    #
+    payload = '{"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}'
+    r = requests.post(url, payload, headers=headers)
+    # print(r)
+
+    #
+    # eth_blockNumber
+    #
+    # TPS: 787
+    #
+    payload = '{"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}'
+    r = requests.post(url, data=json.dumps(payload), headers=headers)
+    # print(r)
+
+
+    #
+    # eth_getBlockByNumber
+    #
+    # TPS: 598
+    #
+    payload = '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params": ["latest", false],"id":1}'
+    r = requests.post(url, payload, headers=headers)
+    # print(r.json())
+    hash = r.json()["result"]["hash"]
+
+
+    #
+    # eth_getLogs
+    #
+    # TPS: 287
+    #
+    payload = '{"jsonrpc":"2.0","method":"eth_getLogs","params": [{"blockHash": hash}],"id":1}'
+    requests.post(url, payload, headers=headers)
+    # print(r)
+
+end = time.time()
+print("TPS:", count/(end - start))
