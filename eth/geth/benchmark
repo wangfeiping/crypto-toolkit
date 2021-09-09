@@ -9,7 +9,7 @@
 #
 # wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/benchmark -O benchmark
 #
-# get press
+# geth benchmark
 #
 #
 
