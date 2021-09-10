@@ -42,13 +42,12 @@ fi
 
 # Create user
 
-if id "$USER" >/dev/null 2>&1; then
+if id "$USER" >/dev/null 2>&1
+then
     echo "User $USER exists"
-    exit 1
+else
+    useradd --system --no-create-home --shell /sbin/nologin $USER
 fi
-
-useradd --system --no-create-home --shell /sbin/nologin $USER
-
 
 # Download package
 
