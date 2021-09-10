@@ -25,27 +25,25 @@ fi
 
 # Download package
 
-mkdir -p /apps/prometheus/bin
-mkdir -p /apps/prometheus/config
-mkdir -p /apps/prometheus/data-alertmanager/
-
 VERSION=0.22.2
+ROOT="/opt"
+PREFIX="$ROOT/alertmanager-${VERSION}.linux-amd64"
+BIN="$PREFIX/alertmanager"
 USER="prometheus"
 GROUP="prometheus"
 
-if [ ! -f "/apps/prometheus/bin/alertmanager" ]
+mkdir -p $PREFIX/data/
+
+if [ -f "$BIN" ]
 then
-    cd ~
-    wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz
-      
-    tar --no-same-owner -zxvf alertmanager-${VERSION}.linux-amd64.tar.gz
-    mv ./alertmanager-${VERSION}.linux-amd64/alertmanager /apps/prometheus/bin/
-    mv ./alertmanager-${VERSION}.linux-amd64/alertmanager.yml /apps/prometheus/config/
-    mv ./alertmanager-${VERSION}.linux-amd64/amtool /apps/prometheus/bin/
-    
-    rm -f ./alertmanager-${VERSION}.linux-amd64.tar.gz
-    rm -rf ./alertmanager-${VERSION}.linux-amd64/
+    echo "$BIN already exists"
+    exit 1
 fi
+
+cd ~
+wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz
+tar --no-same-owner -zxvf alertmanager-${VERSION}.linux-amd64.tar.gz -C $ROOT
+rm -f ./alertmanager-${VERSION}.linux-amd64.tar.gz
 
 # Create user
 
@@ -56,8 +54,8 @@ else
     useradd --system --no-create-home --shell /sbin/nologin $USER
 fi
 
-chown $USER:$GROUP /apps/prometheus -R
-chmod 700 /apps/prometheus -R
+chown $USER:$GROUP $PREFIX -R
+chmod 700 $PREFIX -R
 
 # Create systemd service
 
@@ -73,9 +71,9 @@ User=prometheus
 Group=prometheus
 Restart=always
 RestartSec=5
-ExecStart=/apps/prometheus/bin/alertmanager \
-  --config.file="/apps/prometheus/config/alertmanager.yml" \
-  --storage.path="/apps/prometheus/data-alertmanager/" \
+ExecStart=$BIN \
+  --config.file="$PREFIX/alertmanager.yml" \
+  --storage.path="$PREFIX/data/" \
   --log.level=debug
 
 [Install]
@@ -90,7 +88,7 @@ echo "systemctl stop alertmanager"
 echo "journalctl -f -u alertmanager"
 
 echo
-/apps/prometheus/bin/alertmanager --version
+$BIN --version
 
 echo
 echo "Everything is fine"
