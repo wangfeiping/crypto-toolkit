@@ -18,9 +18,8 @@
 #
 
 MachineID=`hostnamectl | grep "Machine ID" | awk -F ': ' '{print $2;}'`
-ExternalIP=`curl http://ifconfig.io`
-UserName=`whoami`
-TimeStamp=`date +%Y-%m-%dT%H:%M:%S`
+UUID=`cat /proc/sys/kernel/random/uuid`
+TimeStamp=`date -R`
 
 EventName="modify,attrib,close_write,moved_to,moved_from,move,move_self,create,delete,delete_self"
 Dirs="/etc/ssh /home"
@@ -31,28 +30,23 @@ inotifywait -e $EventName \
 while read Events; do
   Selected=`echo $Events | grep -v ".swp" | grep -v "swx" | grep -v "~" | grep -v "4913" | grep -v "ATTRIB"`
   if [ -n "$Selected" ]; then
-    echo $Selected
+    echo $TimeStamp "|" $UUID "|" $Selected
 
     Body="{\
     \"msgtype\": \"text\",\
     \"text\": {\
-    \"content\":\"[eth] SSH Login succeeded, \
+    \"content\":\"[eth] inotifywait event, \
 MachineID: ${MachineID}, \
-ExternalIP: ${ExternalIP}, \
-UserName: ${UserName}, \
-Events: ${Events}, \
+UUID: ${UUID}, \
 TimeStamp: ${TimeStamp}\
 \"\
 }\
 }"
-#echo $Body
+    # echo $Body
     curl "https://oapi.dingtalk.com/robot/send?access_token=$DING_BOT_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
     -d "$Body"
-    
+
     echo
-    
-    // DingDing invocation frequency limit
-    sleep 5
   fi
 done
