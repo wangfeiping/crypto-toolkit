@@ -1,0 +1,42 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/update_lighthouse | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/update_lighthouse -O update_lighthouse
+#
+# Lighthouse
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Update
+
+if [ -f "/usr/local/bin/lighthouse" ]
+then
+    echo
+    echo "Before Update"
+    echo
+    /usr/local/bin/lighthouse --version
+    echo
+
+    rm -f /usr/local/bin/lighthouse
+fi
+
+curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse | bash
+
+
+echo
+echo "Lighthouse is Update OK"
