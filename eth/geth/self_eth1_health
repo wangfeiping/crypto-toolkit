@@ -6,9 +6,9 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_health | python3
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/self_eth1_health | python3
 #
-# wget curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/localnode_health -O localnode_health
+# wget curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/self_eth1_health -O self_eth1_health
 #
 
 
