@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+
+#
+# Python 3.6+ support
+#
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/own_vs_infura | python3
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/own_vs_infura -O own_vs_infura
+#
+# own vs infura
+#
+#
+# requires your to be set the environment variable before running
+#
+# Infura Project ID:
+#
+#     export WEB3_INFURA_PROJECT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#
+#
+
+import os
+import sys
+
+import requests
+import json
+
+headers = {'Content-Type': 'application/json'}
+infura_project_id = os.getenv("WEB3_INFURA_PROJECT_ID")
+
+# infura_url = 'https://mainnet.infura.io/v3/' + infura_project_id
+infura_url = 'https://goerli.infura.io/v3/' + infura_project_id
+localNode_url = 'http://127.0.0.1:8545'
+
+print(infura_url)
+print(localNode_url)
+print("")
+
+#
+# eth_chainId
+#
+payload = {"jsonrpc":"2.0","method":"eth_chainId","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"] != b.json()["result"]:
+    print("eth_chainId".ljust(24, " "), "conflict")
+else:
+    print("eth_chainId".ljust(24, " "), "ok")
+
+
+#
+# net_version
+#
+payload = {"jsonrpc":"2.0","method":"net_version","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"] != b.json()["result"]:
+    print("net_version".ljust(24, " "), "conflict")
+else:
+    print("net_version".ljust(24, " "), "ok")
+
+
+#
+# eth_blockNumber
+#
+payload = {"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"] != b.json()["result"]:
+    print("eth_blockNumber".ljust(24, " "), "conflict")
+else:
+    print("eth_blockNumber".ljust(24, " "), "ok")
+
+
+#
+# web3_clientVersion
+#
+payload = {"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.text)
+# print(b.text)
+if a.json()["result"].split("-")[0] != b.json()["result"].split("-")[0]:
+    print("web3_clientVersion".ljust(24, " "), "conflict")
+else:
+    print("web3_clientVersion".ljust(24, " "), "ok")
+
+
+payload = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params": ["latest", False],"id":1}
+r = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+blockNumber = r.json()["result"]["number"]
+# print("blockNumber:", blockNumber)
+blockNumberFixed = str(hex(int(blockNumber, 16) - 5))
+# print("blockNumberFixed:", blockNumberFixed)
+
+
+#
+# eth_getBlockByNumber
+#
+payload = {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params": [blockNumberFixed, False],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+# print(a.json()["result"]["hash"])
+# print(b.json()["result"]["hash"])
+hash = b.json()["result"]["hash"]
+# print(hash)
+if a.json()["result"]["hash"] != b.json()["result"]["hash"]:
+    print("eth_getBlockByNumber".ljust(24, " "), "conflict")
+else:
+    print("eth_getBlockByNumber".ljust(24, " "), "ok")
+
+
+#
+# eth_getLogs
+#
+payload = {"jsonrpc":"2.0","method":"eth_getLogs","params": [{"blockHash": hash}],"id":1}
+a = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+b = requests.post(localNode_url, data=json.dumps(payload), headers=headers)
+ahash = a.json()["result"][0]["transactionHash"]
+bhash = b.json()["result"][0]["transactionHash"]
+if ahash != bhash:
+    print("eth_getLogs".ljust(24, " "), "conflict")
+else:
+    print("eth_getLogs".ljust(24, " "), "ok")
