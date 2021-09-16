@@ -14,7 +14,7 @@
 #
 # requires your to be set the environment variable before running
 #
-# Infura Project ID:
+# Infura ENDPOINTS:
 #
 #     export INFURA_ETH2_ENDPOINT=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
