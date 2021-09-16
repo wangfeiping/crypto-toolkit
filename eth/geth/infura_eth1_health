@@ -22,10 +22,9 @@
 #     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
 
-from web3.auto.infura import w3
 
-if not w3.isConnected():
-  # send msg to dingding
-  print("[eth] [infura] geth is not available")
-else:
-  print("[eth] [infura] geth is available")
+import requests
+
+payload = {"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}
+r = requests.post(infura_url, data=json.dumps(payload), headers=headers)
+print(r.json())
