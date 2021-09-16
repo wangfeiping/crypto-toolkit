@@ -17,7 +17,7 @@
 #     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
 
-MachineID=`hostnamectl | grep "Machine ID" | awk -F ': ' '{print $2;}'`
+Hostname=`hostnamectl | grep "Static hostname:" | awk -F ': ' '{print $2;}'`
 UUID=`cat /proc/sys/kernel/random/uuid`
 TimeStamp=`date -R`
 
@@ -36,7 +36,7 @@ while read Events; do
     \"msgtype\": \"text\",\
     \"text\": {\
     \"content\":\"[Alert] inotifywait event, \
-MachineID: ${MachineID}, \
+Hostname: ${Hostname}, \
 UUID: ${UUID}, \
 TimeStamp: ${TimeStamp}\
 \"\
