@@ -30,16 +30,42 @@ infura_eth2_endpoint = os.getenv("INFURA_ETH2_ENDPOINT")
 
 own_eth2_endpoint = 'http://127.0.0.1:5052'
 
+path = "/eth/v1/node/version"
+print("infura:")
 print(infura_eth2_endpoint)
-print(   own_eth2_endpoint)
+r = requests.get(infura_eth2_endpoint + path, timeout=3)
+print(r.json()["data"]["version"])
 print("")
+print("own:")
+print(own_eth2_endpoint)
+r = requests.get(own_eth2_endpoint + path, timeout=3)
+print(r.json()["data"]["version"])
+print("")
+
+#
+# /eth/v1/config/spec
+#
+path = "/eth/v1/config/spec"
+a = requests.get(infura_eth2_endpoint + path, timeout=3)
+b = requests.get(   own_eth2_endpoint + path, timeout=3)
+# print(a.json())
+# print(b.json())
+a = a.json()["data"]["DEPOSIT_CONTRACT_ADDRESS"]
+b = b.json()["data"]["DEPOSIT_CONTRACT_ADDRESS"]
+# print(a)
+# print(b)
+if a.lower() != b.lower():
+    print(path.ljust(48, " "), "conflict")
+else:
+    print(path.ljust(48, " "), "ok")
+
 
 #
 # /eth/v1/beacon/genesis
 #
 path = "/eth/v1/beacon/genesis"
-a = requests.get(infura_eth2_endpoint + path)
-b = requests.get(   own_eth2_endpoint + path)
+a = requests.get(infura_eth2_endpoint + path, timeout=3)
+b = requests.get(   own_eth2_endpoint + path, timeout=3)
 # print(a.json())
 # print(b.json())
 a = a.json()["data"]["genesis_validators_root"]
@@ -56,7 +82,7 @@ else:
 # slot number
 #
 path = "/eth/v1/beacon/headers"
-r = requests.get(infura_eth2_endpoint + path)
+r = requests.get(infura_eth2_endpoint + path, timeout=3)
 # print(r.json())
 r = r.json()["data"][0]["header"]["message"]["slot"]
 slot_number = int(r) - 48 * 2 * 2 # delay 4 epoch
@@ -66,13 +92,31 @@ slot_number = int(r) - 48 * 2 * 2 # delay 4 epoch
 #
 # /eth/v1/beacon/headers
 #
-path = "/eth/v1/beacon/headers?slot=%s" % (slot_number,)
-a = requests.get(infura_eth2_endpoint + path)
-b = requests.get(   own_eth2_endpoint + path)
+path = "/eth/v1/beacon/headers/%s" % (slot_number,)
+a = requests.get(infura_eth2_endpoint + path, timeout=3)
+b = requests.get(   own_eth2_endpoint + path, timeout=3)
 # print(a.json())
 # print(b.json())
-a = a.json()["data"][0]["header"]["message"]["state_root"]
-b = b.json()["data"][0]["header"]["message"]["state_root"]
+a = a.json()["data"]["header"]["message"]["state_root"]
+b = b.json()["data"]["header"]["message"]["state_root"]
+# print(a)
+# print(b)
+if a != b:
+    print(path.ljust(48, " "), "conflict")
+else:
+    print(path.ljust(48, " "), "ok")
+
+
+#
+# /eth/v1/beacon/blocks/{block_id}/root
+#
+path = "/eth/v1/beacon/blocks/%s/root" % (slot_number,)
+a = requests.get(infura_eth2_endpoint + path, timeout=3)
+b = requests.get(   own_eth2_endpoint + path, timeout=3)
+# print(a.json())
+# print(b.json())
+a = a.json()["data"]["root"]
+b = b.json()["data"]["root"]
 # print(a)
 # print(b)
 if a != b:
