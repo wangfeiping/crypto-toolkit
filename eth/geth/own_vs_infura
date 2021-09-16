@@ -16,7 +16,7 @@
 #
 # Infura Project ID:
 #
-#     export WEB3_INFURA_PROJECT_ID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#     export INFURA_ETH1_ENDPOINT=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
 #
 
@@ -27,14 +27,11 @@ import requests
 import json
 
 headers = {'Content-Type': 'application/json'}
-infura_project_id = os.getenv("WEB3_INFURA_PROJECT_ID")
+infura_eth1_endpoint = os.getenv("WEB3_INFURA_PROJECT_ID")
+own_eth1_endpoint = 'http://127.0.0.1:8545'
 
-# infura_url = 'https://mainnet.infura.io/v3/' + infura_project_id
-infura_url = 'https://goerli.infura.io/v3/' + infura_project_id
-localNode_url = 'http://127.0.0.1:8545'
-
-print(infura_url)
-print(localNode_url)
+print(infura_eth1_endpoint)
+print(own_eth1_endpoint)
 print("")
 
 #
