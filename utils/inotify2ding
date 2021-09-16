@@ -35,7 +35,7 @@ while read Events; do
     Body="{\
     \"msgtype\": \"text\",\
     \"text\": {\
-    \"content\":\"[eth] inotifywait event, \
+    \"content\":\"[Alert] inotifywait event, \
 MachineID: ${MachineID}, \
 UUID: ${UUID}, \
 TimeStamp: ${TimeStamp}\
