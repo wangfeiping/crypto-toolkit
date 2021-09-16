@@ -14,8 +14,12 @@ set -e
 set -x
 
 
+echo "Lighthouse Beacon"
 curl -X GET "http://localhost:5052/eth/v1/node/version" \
--H  "accept: application/json" | jq .
+-H  "accept: application/json" 2>/dev/null | jq .
 
-curl -X GET "http://localhost:5062/eth/v1/node/version" \
--H  "accept: application/json" | jq .
+echo "Lighthouse Validator"
+token=`cat /var/lib/lighthouse/validators/api-token.txt`
+curl -X GET "http://localhost:5062/lighthouse/version" \
+-H  "accept: application/json" \
+-H  "Authorization: Basic $token" 2>/dev/null | jq .
