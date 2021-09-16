@@ -20,12 +20,14 @@
 #     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
 
-from web3 import Web3
 
-w3 = Web3(Web3.HTTPProvider('http://localhost:8545'))
+import os
+import requests
 
-if not w3.isConnected():
-  # send msg to dingding
-  print("[eth] [local node] geth is not available")
-else:
-  print("[eth] [local node] geth is available")
+url = 'http://localhost:8545'
+headers = {'Content-Type': 'application/json'}
+
+
+payload = '{"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}'
+r = requests.post(url, data=payload, headers=headers)
+print(r.json())
