@@ -22,10 +22,12 @@
 #     export DING_BOT_ACCESS_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #
 
-
+import os
 import requests
 
+infura_project_id = os.getenv("WEB3_INFURA_PROJECT_ID")
 infura_url = 'https://mainnet.infura.io/v3/' + infura_project_id
+
 payload = {"jsonrpc":"2.0","method":"web3_clientVersion","params": [],"id":1}
 r = requests.post(infura_url, data=json.dumps(payload), headers=headers)
 print(r.json())
