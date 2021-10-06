@@ -20,7 +20,7 @@ then
     exit 1
 fi
 
-VERSION=v1.4.3
+VERSION=v2.0.0
 USER=prysmvalidator
 GROUP=prysmvalidator
 
