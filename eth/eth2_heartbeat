@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+
+#
+# Python 3.x required
+#
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/eth2_heartbeat | python3
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/eth2_heartbeat -O eth2_heartbeat
+#
+#
+# Env:
+#
+#    export ETH2_BEACON_ENDPOINT=https://X:Y@eth2-beacon-mainnet.infura.io
+#
+# Example:
+#
+#    watch -d -n 0.1 ./eth2_heartbeat
+#
+
+
+import datetime
+import math
+import os
+import pathlib
+import pickle
+import sys
+import time
+
+
+import requests
+
+
+SECONDS_PER_SLOT = 12;
+SLOTS_PER_EPOCH = 32;
+GWEI_PER_ETH = 1000000000;
+ETH2_BEACON_ENDPOINT = "http://127.0.0.1:5052"
+DATA_FILE = "/tmp/genesis_time.eth2"
+
+
+def date_format(time) -> str:
+    return datetime.datetime.fromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
+
+
+def main() -> int:
+    path = pathlib.Path(DATA_FILE)
+    if not path.exists():
+        global ETH2_BEACON_ENDPOINT
+        ETH2_BEACON_ENDPOINT = os.getenv("ETH2_BEACON_ENDPOINT") or ETH2_BEACON_ENDPOINT
+        r = requests.get(ETH2_BEACON_ENDPOINT + "/eth/v1/beacon/genesis")
+        body = r.json()
+        genesis_time = body["data"]["genesis_time"]
+        f = open(DATA_FILE, 'wb')
+        pickle.dump(genesis_time, f)
+        f.close()
+
+    f = open(DATA_FILE, 'rb')
+    genesis_time = pickle.load(f)
+    f.close()
+
+    now = time.time()
+    epoch = math.floor((now - float(genesis_time)) / (SECONDS_PER_SLOT * SLOTS_PER_EPOCH))
+    slot = math.floor((now - float(genesis_time)) / SECONDS_PER_SLOT )
+    jiffies_1 = math.floor((now - float(genesis_time)) % SECONDS_PER_SLOT )
+    jiffies_2 = math.floor((now - float(genesis_time)) % (SECONDS_PER_SLOT * SLOTS_PER_EPOCH) / SECONDS_PER_SLOT)
+    print("GenesisTime: ".ljust(18), date_format(int(genesis_time)))
+    print("Now: ".ljust(18), date_format(int(now)))
+    print()
+    print("Jiffies(12/sec): ".ljust(18), jiffies_1)
+    print("Jiffies(32/slot): ".ljust(18), jiffies_2)
+    print()
+    print("Epoch: ".ljust(18), epoch)
+    print("Slot: ".ljust(18), slot)
+
+    return 0
+
+if __name__ == '__main__':
+    sys.exit(main())
