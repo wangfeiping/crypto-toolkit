@@ -1,7 +1,7 @@
 ## eth2_heartbeat
 
 ```
-Every 0.1s: ./eth2_heartbeat                                                                                            zz-NUC8i5BEH: Fri Oct  8 00:52:23 2021
+Every 0.1s: ./eth2_heartbeat
 
 GenesisTime:       2020-12-01 20:00:23
 Now:               2021-10-08 00:52:23
