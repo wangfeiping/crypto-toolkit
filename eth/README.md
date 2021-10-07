@@ -3,12 +3,15 @@
 ```
 Every 0.1s: ./eth2_heartbeat
 
-GenesisTime:       2020-12-01 20:00:23
-Now:               2021-10-08 00:52:23
+ETH2_BEACON_ENDPOINT:    http://127.0.0.1:5052
+Cache_Create_Timestamp:  2021-10-08 01:03:18 (/tmp/genesis_time.eth2)
 
-Jiffies(12/sec):   0
-Jiffies(32/slot):  20
+Genesis_Time:            2021-03-23 22:00:00
+Now:                     2021-10-08 01:05:47
 
-Epoch:             69795
-Slot:              2233460
+Jiffies(12/sec):         11
+Jiffies(32/slot):        0
+
+Epoch:                   44579
+Slot:                    1426528
 ```
