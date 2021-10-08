@@ -5,9 +5,9 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/infura_health | python3
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/geth/infura_health | python3
 #
-# wget curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/infura_health -O infura_health
+# wget curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/geth/infura_health -O infura_health
 #
 
 #
