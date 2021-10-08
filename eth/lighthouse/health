@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/health | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/lighthouse/health | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/health -O health
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/lighthouse/health -O health
 #
 # lighthouse beacon API
 # 
