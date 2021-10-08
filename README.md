@@ -1,9 +1,3 @@
-# image
+# Ethereum Utilities
 
-图片服务
-
-# setup
-
-安装服务
-
-
+Common utility scripts for install and troubleshoot ethereum
