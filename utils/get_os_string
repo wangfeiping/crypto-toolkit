@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/utils/get_os_string 2>/dev/null | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string -O get_os_string
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/utils/get_os_string -O get_os_string
 #
 #
 # Usage:
 #
-# os_string=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+# os_string=`curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/utils/get_os_string 2>/dev/null | bash`
 # echo $os_string
 #
 #
