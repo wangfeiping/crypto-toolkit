@@ -34,7 +34,7 @@ import requests
 
 SECONDS_PER_SLOT = 12;
 SLOTS_PER_EPOCH = 32;
-GWEI_PER_ETH = 1000000000;
+
 ETH2_BEACON_ENDPOINT = os.getenv("ETH2_BEACON_ENDPOINT") or "http://127.0.0.1:5052"
 CACHE_FILE = "/tmp/genesis_time.eth2"
 
