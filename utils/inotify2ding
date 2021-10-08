@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/utils/inotify2ding 2>/dev/null | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/utils/inotify2ding 2>/dev/null | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/utils/inotify2ding -O inotify2ding
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/utils/inotify2ding -O inotify2ding
 #
 #
 # inotify2ding
