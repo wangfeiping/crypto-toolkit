@@ -5,9 +5,9 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/own_vs_infura | python3
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/geth/own_vs_infura | python3
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/own_vs_infura -O own_vs_infura
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/geth/own_vs_infura -O own_vs_infura
 #
 # localNode vs infura
 #
