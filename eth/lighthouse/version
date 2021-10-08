@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/version | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/lighthouse/version | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/version -O version
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/lighthouse/version -O version
 #
 # lighthouse beacon API
 # 
