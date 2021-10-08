@@ -5,9 +5,9 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/benchmark | python3
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/geth/benchmark | python3
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/geth/benchmark -O benchmark
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/geth/benchmark -O benchmark
 #
 # geth benchmark
 #
