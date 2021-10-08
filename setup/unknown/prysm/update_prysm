@@ -1,0 +1,107 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prysm/update_prysm | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prysm/update_prysm -O update_prysm
+#
+# Prysm
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Update
+
+VERSION=v2.0.0
+USER_BN=prysmbeacon
+USER_VC=prysmvalidator
+
+cd ~
+
+# update prysm beacon-chain
+
+if [ -f "/usr/local/bin/beacon-chain" ]
+then
+    echo
+    echo "Before Update"
+    echo
+    /usr/local/bin/beacon-chain --version
+    echo
+
+    rm -f /usr/local/bin/beacon-chain
+fi
+
+wget https://github.com/prysmaticlabs/prysm/releases/download/${VERSION}/beacon-chain-${VERSION}-linux-amd64
+mv ./beacon-chain-${VERSION}-linux-amd64 /usr/local/bin/beacon-chain
+chmod +x /usr/local/bin/beacon-chain
+
+# Check&Create prysmbeacon user
+egrep "$USER_BN" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+    useradd --system --no-create-home --shell /sbin/nologin $USER_BN
+else
+    echo "User of beacon-chain: $USER_BN exists"
+fi
+
+## Check&Create /prysm/beacon directory
+#sudo mkdir -p /var/lib/prysm/beacon
+#sudo chown -R prysmbeacon:prysmbeacon /var/lib/prysm/beacon
+
+# update prysm validator
+
+if [ -f "/usr/local/bin/validator" ]
+then
+    echo
+    echo "Before Update"
+    echo
+    /usr/local/bin/validator --version
+    echo
+
+    rm -f /usr/local/bin/validator
+fi
+
+wget https://github.com/prysmaticlabs/prysm/releases/download/${VERSION}/validator-${VERSION}-linux-amd64
+mv ./validator-${VERSION}-linux-amd64 /usr/local/bin/validator
+chmod +x /usr/local/bin/validator
+
+# Check&Create prysmvalidator user
+egrep "$USER_VC" /etc/passwd >& /dev/null
+if [ $? -ne 0 ]
+then
+    useradd --system --no-create-home --shell /sbin/nologin $USER_VC
+else
+    echo "User of validator: $USER_VC exists"
+fi
+
+## Check&Create /prysm/validators directory
+#sudo mkdir -p /var/lib/prysm/validators
+#sudo mkdir -p /var/lib/prysm/.eth2validators
+
+## Change ownership of /var/lib/prysm back to root
+#sudo chown root:root /var/lib/prysm
+
+## Change ownership of /prysm/validators
+#sudo chown -R $USER_VC:$USER_VC /var/lib/prysm/validators
+#sudo chown -R $USER_VC:$USER_VC /var/lib/prysm/.eth2validators
+
+echo
+/usr/local/bin/beacon-chain --version
+
+echo
+/usr/local/bin/validator --version
+
+echo
+echo "Prysm is updated."
