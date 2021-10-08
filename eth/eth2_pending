@@ -5,9 +5,9 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/eth2_pending | python3
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/eth2_pending | python3
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/eth2_pending -O eth2_pending
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/eth2_pending -O eth2_pending
 #
 #
 # Env:
