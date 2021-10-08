@@ -5,9 +5,9 @@
 #
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/eth2_heartbeat | python3
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/eth2_heartbeat | python3
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/eth2_heartbeat -O eth2_heartbeat
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/eth2_heartbeat -O eth2_heartbeat
 #
 #
 # Env:
