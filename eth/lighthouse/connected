@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/connected | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/lighthouse/connected | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/eth/lighthouse/connected -O connected
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/eth/lighthouse/connected -O connected
 #
 # lighthouse beacon API
 # 
