@@ -48,12 +48,11 @@ mv ./beacon-chain-${VERSION}-linux-amd64 /usr/local/bin/beacon-chain
 chmod +x /usr/local/bin/beacon-chain
 
 # Check&Create prysmbeacon user
-egrep "$USER_BN" /etc/passwd >& /dev/null
-if [ $? -ne 0 ]
+if id "$USER_BN" >/dev/null 2>&1
 then
-    useradd --system --no-create-home --shell /sbin/nologin $USER_BN
-else
     echo "User of beacon-chain: $USER_BN exists"
+else
+    useradd --system --no-create-home --shell /sbin/nologin $USER_BN
 fi
 
 ## Check&Create /prysm/beacon directory
@@ -78,12 +77,11 @@ mv ./validator-${VERSION}-linux-amd64 /usr/local/bin/validator
 chmod +x /usr/local/bin/validator
 
 # Check&Create prysmvalidator user
-egrep "$USER_VC" /etc/passwd >& /dev/null
-if [ $? -ne 0 ]
+if id "$USER_VC" >/dev/null 2>&1
 then
-    useradd --system --no-create-home --shell /sbin/nologin $USER_VC
-else
     echo "User of validator: $USER_VC exists"
+else
+    useradd --system --no-create-home --shell /sbin/nologin $USER_VC
 fi
 
 ## Check&Create /prysm/validators directory
