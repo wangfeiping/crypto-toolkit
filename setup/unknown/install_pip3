@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_pip3 | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_pip3 | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_pip3 -O install_pip3
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_pip3 -O install_pip3
 #
 # pip
 #
