@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prysm/update_prysm | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/prysm/update_prysm | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prysm/update_prysm -O update_prysm
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/prysm/update_prysm -O update_prysm
 #
 # Prysm
 #
