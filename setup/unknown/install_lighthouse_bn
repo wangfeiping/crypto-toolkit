@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_bn | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_lighthouse_bn | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_bn -O install_lighthouse_bn
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_lighthouse_bn -O install_lighthouse_bn
 #
 # Lighthouse Beacon
 #
