@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_openresty | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_openresty | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_openresty -O install_openresty
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_openresty -O install_openresty
 #
 # OpenResty
 #
