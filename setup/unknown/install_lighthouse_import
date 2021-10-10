@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_import | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_lighthouse_import | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_lighthouse_import -O install_lighthouse_import
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_lighthouse_import -O install_lighthouse_import
 #
 # Lighthouse Import
 #
