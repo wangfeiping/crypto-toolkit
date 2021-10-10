@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_alertmanager | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/prometheus/install_alertmanager | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/prometheus/install_alertmanager -O install_alertmanager
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/prometheus/install_alertmanager -O install_alertmanager
 #
 # alertmanager
 #
