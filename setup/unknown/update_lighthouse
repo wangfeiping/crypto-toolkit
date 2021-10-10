@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/update_lighthouse | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/update_lighthouse | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/update_lighthouse -O update_lighthouse
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/update_lighthouse -O update_lighthouse
 #
 # Lighthouse
 #
