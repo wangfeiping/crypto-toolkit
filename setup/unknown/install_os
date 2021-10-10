@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_os | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_os | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_os -O install_os
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_os -O install_os
 #
 # os 
 # 
