@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_bn | bash
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_prysm_bn | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/unknown/install_prysm_bn -O install_prysm_bn
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_prysm_bn -O install_prysm_bn
 #
 # Prysm: beacon-chain
 #
