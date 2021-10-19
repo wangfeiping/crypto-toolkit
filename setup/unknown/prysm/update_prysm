@@ -24,7 +24,7 @@ fi
 
 # Update
 
-VERSION=v2.0.1
+VERSION=v2.0.2
 USER_BN=prysmbeacon
 USER_VC=prysmvalidator
 
