@@ -28,12 +28,12 @@ import requests
 
 
 ETH2_BEACON_ENDPOINT = os.getenv("ETH2_BEACON_ENDPOINT") or "http://127.0.0.1:5052"
+VALIDATORS = ["210880", "213736"]
 
 def main() -> int:
     r = requests.get(ETH2_BEACON_ENDPOINT + "/eth/v1/beacon/states/head/committees")
     body = r.json()
     committees = body["data"]
-    validators = ["210880", "213736"]
     min_slot = 2**32
     max_slot = 0
     result = []
@@ -42,7 +42,7 @@ def main() -> int:
             max_slot = int(committee["slot"])
         if int(committee["slot"]) <= min_slot:
             min_slot = int(committee["slot"])
-        for validator in validators:
+        for validator in VALIDATORS:
             if validator in committee["validators"]:
                 result.append({"validator": validator, "slot":committee["slot"], "committee_index": committee["index"]})
     print("epoch: %s, slot: %s-%s" % (int(int(min_slot) / 32), min_slot, max_slot))
@@ -50,7 +50,7 @@ def main() -> int:
     for i in result:
         print("validator: %s, committee_index: %s, slot: %s" % (i["validator"], i["committee_index"], i["slot"]))
     print()
-    print("safe restart time window(slot): %s - %s" % (int(result[-1]["slot"]) + 1, max_slot))
+    print("safe restart time window(slot): %s-%s" % (int(result[-1]["slot"]) + 1, max_slot))
 
     r = requests.get(ETH2_BEACON_ENDPOINT + "/eth/v1/beacon/blocks/head")
     body = r.json()
