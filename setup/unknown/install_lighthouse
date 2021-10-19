@@ -24,7 +24,7 @@ fi
 
 # Download package
 
-VERSION=v2.0.0
+VERSION=v2.0.1
 
 if [ ! -f "/usr/local/bin/lighthouse" ]
 then
