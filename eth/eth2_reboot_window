@@ -50,12 +50,14 @@ def main() -> int:
     for i in result:
         print("validator: %s, committee_index: %s, slot: %s" % (i["validator"], i["committee_index"], i["slot"]))
     print()
-    print("safe restart time window(slot): %s-%s" % (int(result[-1]["slot"]) + 1, max_slot))
+    print("safe restart time window(slot): %s-%s" % (int(result[-1]["slot"]), max_slot))
 
     r = requests.get(ETH2_BEACON_ENDPOINT + "/eth/v1/beacon/blocks/head")
     body = r.json()
     current_slot = int(body["data"]["message"]["slot"])
+    print("max time windows (safe: >10, unsafe: <6): ", (max_slot - int(result[-1]["slot"])), "(slots)")
     print("current slot: ", current_slot)
+    print("cutdown: ", int(result[-1]["slot"]) - current_slot, "(slots)")
 
     return 0
 
