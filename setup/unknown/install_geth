@@ -26,10 +26,10 @@ fi
 # Download package
 
 cd ~
-wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.8-26675454.tar.gz
-tar zxvf geth-linux-amd64-1.10.8-26675454.tar.gz
-cp geth-linux-amd64-1.10.8-26675454/geth /usr/local/bin/
-geth version
+wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+tar zxvf geth-linux-amd64-1.10.11-7231b3ef.tar.gz
+cp geth-linux-amd64-1.10.11-7231b3ef/geth /usr/local/bin/
+/usr/local/bin/geth version
 
 
 # Create user
