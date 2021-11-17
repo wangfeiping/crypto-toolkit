@@ -1,0 +1,70 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/e-money/update_emd | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/e-money/update_emd -O update_emd
+#
+# Prysm
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Update
+
+VERSION=v1.1.4
+USER_VC=emd
+
+cd ~
+
+# update e-money emd
+
+if [ -f "/usr/local/bin/emd" ]
+then
+    echo
+    echo "Before Update"
+    echo
+    /usr/local/bin/emd --version
+    echo
+
+    rm -f /usr/local/bin/emd
+fi
+
+wget https://github.com/e-money/em-ledger/releases/download/${VERSION}/emd-${VERSION}-linux-amd64
+mv ./emd-${VERSION}-linux-amd64 /usr/local/bin/emd
+chmod +x /usr/local/bin/emd
+
+# Check&Create emd user
+if id "$USER_VC" >/dev/null 2>&1
+then
+    echo "User of validator: $USER_VC exists"
+else
+    useradd --system --no-create-home --shell /sbin/nologin $USER_VC
+fi
+
+## Check&Create /emoney/data directory
+#sudo mkdir -p /var/lib/emoney/data
+
+## Change ownership of /var/lib/emoney back to root
+#sudo chown root:root /var/lib/emoney
+
+## Change ownership of /emoney/validators
+#sudo chown -R $USER_VC:$USER_VC /var/lib/emoney
+
+echo
+/usr/local/bin/emd --version
+
+echo
+echo "emd(e-money) is updated."
