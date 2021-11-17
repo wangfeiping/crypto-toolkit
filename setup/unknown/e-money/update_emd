@@ -36,7 +36,7 @@ then
     echo
     echo "Before Update"
     echo
-    /usr/local/bin/emd --version
+    /usr/local/bin/emd version
     echo
 
     rm -f /usr/local/bin/emd
@@ -64,7 +64,7 @@ fi
 #sudo chown -R $USER_VC:$USER_VC /var/lib/emoney
 
 echo
-/usr/local/bin/emd --version
+/usr/local/bin/emd version
 
 echo
 echo "emd(e-money) is updated."
