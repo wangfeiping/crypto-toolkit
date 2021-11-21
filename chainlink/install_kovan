@@ -1,0 +1,50 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_kovan | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_kovan -O install_kovan
+#
+# Chainlink kovan
+#
+#
+
+set -e
+set -x
+
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install Docker which requires root privileges"
+    exit 1
+fi
+
+mkdir ~/.chainlink-kovan
+
+echo "ROOT=/chainlink
+LOG_LEVEL=debug
+ETH_CHAIN_ID=42
+MIN_OUTGOING_CONFIRMATIONS=2
+LINK_CONTRACT_ADDRESS=0xa36085F69e2889c224210F603D836748e7dC0088
+CHAINLINK_TLS_PORT=0
+SECURE_COOKIES=false
+GAS_UPDATER_ENABLED=true
+ETH_URL=wss://kovan.infura.io/ws/v3/xxx
+DATABASE_URL=postgresql://chainlink:123456@172.26.238.39:5432/chainlink
+DATABASE_TIMEOUT=0
+ALLOW_ORIGINS=*" > ~/.chainlink-kovan/.env
+
+
+cd ~/.chainlink-kovan
+docker run --rm \
+  -p 6688:6688 \
+  -v ~/.chainlink-kovan:/chainlink \
+  -it \
+  --env-file=.env \
+  smartcontract/chainlink:1.0.0 local n
+
+
+#
+# Password: AAAbbb@123456
+#
