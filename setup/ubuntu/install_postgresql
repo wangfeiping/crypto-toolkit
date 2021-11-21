@@ -7,6 +7,9 @@
 #
 # Postgresql
 #
+# Username: chainlink
+# Database: chainlink
+# Passwrod: chainlink
 #
 
 set -e
