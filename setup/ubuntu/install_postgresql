@@ -23,6 +23,8 @@ fi
 
 # Install 
 
+sudo apt update -y
+sudo apt upgrade -y
 sudo apt-get install -y postgresql-client postgresql
 
 # Create user and db
