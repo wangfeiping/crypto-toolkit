@@ -1,0 +1,54 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_postgresql | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_postgresql -O install_postgresql
+#
+# Postgresql
+#
+#
+
+set -e
+set -x
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+# Install 
+
+sudo apt-get install -y postgresql-client postgresql
+
+# Create user and db
+
+cd /tmp
+sudo -u postgres sh <<EOF
+/usr/bin/createuser --superuser chainlink
+/usr/bin/createdb -O chainlink  chainlink
+EOF
+
+# Change password
+
+cd /tmp
+sudo -u postgres sh <<EOF
+/usr/bin/psql -U postgres -d postgres -c "alter user chainlink with password '123456';"
+EOF
+
+# Change config
+
+echo "listen_addresses = '*'" >> /etc/postgresql/12/main/postgresql.conf
+echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/12/main/pg_hba.conf
+systemctl restart postgresql
+
+# Test
+
+# echo "127.0.0.1:5432:chainlink:chainlink:123456" > ~/.pgpass
+# chmod 600 ~/.pgpass
+# /usr/bin/psql -U chainlink -d chainlink -h 127.0.0.1 -p 5432 -c "select * from current_user;"
+
