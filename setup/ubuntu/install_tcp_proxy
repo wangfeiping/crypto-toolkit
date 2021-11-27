@@ -1,0 +1,74 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_tcp_proxy | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_tcp_proxy -O install_tcp_proxy
+#
+# OpenResty
+#
+#
+
+set -e
+set -x
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Download package
+
+apt-get -y install --no-install-recommends wget gnupg ca-certificates
+
+wget -O - https://openresty.org/package/pubkey.gpg | sudo apt-key add -
+echo "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main" \
+    | sudo tee /etc/apt/sources.list.d/openresty.list
+
+apt -y update
+apt -y upgrade 
+apt -y install openresty
+
+cat > /usr/local/openresty/nginx/conf/nginx.conf << EOF
+worker_processes auto;
+
+error_log /var/log/nginx/error.log info;
+
+events {
+    worker_connections  1024;
+}
+
+stream {
+    upstream ssl {
+        server asia2.ethermine.org:5555 weight=5;
+    }
+
+    upstream tcp {
+        server asia2.ethermine.org:4444 weight=5;
+    }
+
+    server {
+        listen 2021 so_keepalive=on;
+        proxy_connect_timeout 3s;
+        proxy_timeout 3s;
+        proxy_pass ssl;
+    }
+
+    server {
+        listen 2020 so_keepalive=on;
+        proxy_connect_timeout 3s;
+        proxy_timeout 3s;
+        proxy_pass tcp;
+    }
+}
+EOF
+
+/usr/local/openresty/nginx/sbin/nginx -t
+
+echo
+echo "OpenResty TCP Proxy is fine"
