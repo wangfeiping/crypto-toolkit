@@ -60,7 +60,7 @@ fi
 #sudo mkdir -p /var/lib/juno/data
 
 ## Change ownership of /var/lib/juno back to root
-#sudo chown root:root /var/lib/jump
+#sudo chown root:root /var/lib/juno
 
 ## Change ownership of /juno/validators
 #sudo chown -R $USER_VC:$USER_VC /var/lib/juno
