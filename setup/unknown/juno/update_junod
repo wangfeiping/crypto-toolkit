@@ -42,7 +42,7 @@ then
     rm -f /usr/local/bin/junod
 fi
 
-wget https://download.io/files/juno-${VERSION}.tar.gz
+wget http://download.io/files/juno-${VERSION}.tar.gz
 tar -xzvf ./juno-${VERSION}.tar.gz
 mv ./juno-${VERSION}/junod /usr/local/bin/junod
 chmod +x /usr/local/bin/junod
