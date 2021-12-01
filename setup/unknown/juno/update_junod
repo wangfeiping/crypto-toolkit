@@ -1,0 +1,72 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/juno/update_junod | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/juno/update_junod -O update_junod
+#
+# Juno
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Update
+
+VERSION=v1.0.0
+USER_VC=junod
+
+cd ~
+
+# update juno junod
+
+if [ -f "/usr/local/bin/junod" ]
+then
+    echo
+    echo "Before Update"
+    echo
+    /usr/local/bin/junod version
+    echo
+
+    rm -f /usr/local/bin/junod
+fi
+
+wget https://download.io/files/juno-${VERSION}.tar.gz
+tar -xzvf ./juno-${VERSION}.tar.gz
+mv ./juno-${VERSION}/junod /usr/local/bin/junod
+chmod +x /usr/local/bin/junod
+rm -rf ./juno-${VERSION}/
+
+# Check&Create junod user
+if id "$USER_VC" >/dev/null 2>&1
+then
+    echo "User of validator: $USER_VC exists"
+else
+    useradd --system --no-create-home --shell /sbin/nologin $USER_VC
+fi
+
+## Check&Create /juno/data directory
+#sudo mkdir -p /var/lib/juno/data
+
+## Change ownership of /var/lib/juno back to root
+#sudo chown root:root /var/lib/jump
+
+## Change ownership of /juno/validators
+#sudo chown -R $USER_VC:$USER_VC /var/lib/juno
+
+echo
+/usr/local/bin/junod version
+
+echo
+echo "junod(Juno) is updated."
