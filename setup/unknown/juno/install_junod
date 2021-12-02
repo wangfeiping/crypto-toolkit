@@ -1,0 +1,59 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/juno/install_junod | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/juno/install_junod -O install_junod
+#
+# Juno
+#
+# Network：mainnet
+#
+
+set -x
+set -e
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+cd ~
+
+# Create prysmvalidator.service
+cat > /usr/lib/systemd/system/junod.service <<EOF
+[Unit]
+Description=Juno Validator
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=junod
+Group=junod
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/junod start --log_level info
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start junod.service
+echo "sudo systemctl start junod"
+
+# Stop junod.service
+echo "sudo systemctl stop junod"
+
+# Check junod.service output
+echo "sudo journalctl -f -u junod.service"
+
+echo
+/usr/local/bin/junod --version
+
+echo
+echo "Everything is fine"
