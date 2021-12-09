@@ -1,0 +1,60 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/comdex/install_comdex_service | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/comdex/install_comdex_service -O install_comdex_service
+#
+# Comdex
+#
+# Network：mainnet
+#
+
+set -x
+set -e
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+cd ~
+
+# Create comdex.service
+cat > /usr/lib/systemd/system/comdex.service <<EOF
+[Unit]
+Description=Comdex Validator
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=comdex
+Group=comdex
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/comdex start --log_level info
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+
+# Start comdex.service
+echo "sudo systemctl start comdex"
+
+# Stop comdex.service
+echo "sudo systemctl stop comdex"
+
+# Check comdex.service output
+echo "sudo journalctl -f -u comdex.service"
+
+echo
+# /usr/local/bin/comdex version --long
+/usr/local/bin/comdex version
+
+echo
+echo "Everything is fine"
