@@ -1,0 +1,72 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/comdex/update_comdex | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/comdex/update_comdex -O update_comdex
+#
+# Comdex
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install package which requires root privileges"
+    exit 1
+fi
+
+
+# Update
+
+VERSION=v0.0.4
+USER_VC=comdex
+
+cd ~
+
+# update comdex
+
+if [ -f "/usr/local/bin/comdex" ]
+then
+    echo
+    echo "Before Update"
+    echo
+    /usr/local/bin/junod version
+    echo
+
+    rm -f /usr/local/bin/comdex
+fi
+
+wget http://getfiles.io/files/comdex-${VERSION}.tar.gz
+tar -xzvf ./comdex-${VERSION}.tar.gz
+mv ./comdex-${VERSION}/comdex /usr/local/bin/comdex
+chmod +x /usr/local/bin/comdex
+rm -rf ./comdex-${VERSION}/
+
+# Check&Create comdex user
+if id "$USER_VC" >/dev/null 2>&1
+then
+    echo "User of validator: $USER_VC exists"
+else
+    useradd --create-home --system --shell /sbin/nologin $USER_VC
+fi
+
+## Check&Create /comdex/data directory
+#sudo mkdir -p /var/lib/comdex/data
+
+## Change ownership of /var/lib/comdex back to root
+#sudo chown root:root /var/lib/comdex
+
+## Change ownership of /juno/validators
+#sudo chown -R $USER_VC:$USER_VC /var/lib/comdex
+
+echo
+/usr/local/bin/comdex version
+
+echo
+echo "comdex(Comdex) is updated."
