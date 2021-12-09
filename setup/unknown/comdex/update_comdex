@@ -24,6 +24,7 @@ fi
 
 # Update
 
+GET_FILE_URL=getfiles.io
 VERSION=v0.0.4
 USER_VC=comdex
 
@@ -36,13 +37,13 @@ then
     echo
     echo "Before Update"
     echo
-    /usr/local/bin/junod version
+    /usr/local/bin/comdex version
     echo
 
     rm -f /usr/local/bin/comdex
 fi
 
-wget http://getfiles.io/files/comdex-${VERSION}.tar.gz
+wget http://${GET_FILE_URL}/files/comdex-${VERSION}.tar.gz
 tar -xzvf ./comdex-${VERSION}.tar.gz
 mv ./comdex-${VERSION}/comdex /usr/local/bin/comdex
 chmod +x /usr/local/bin/comdex
