@@ -37,8 +37,8 @@ ALLOW_ORIGINS=*" > ~/.chainlink-kovan/.env
 
 
 echo "username@chainlink.com" > ~/.chainlink-kovan/.api
-echo "password" >> ~/.chainlink-kovan/.api
-echo "AAAbbb123" > ~/.chainlink-kovan/.password
+echo "AAAbbb@123456" >> ~/.chainlink-kovan/.api
+echo "AAAbbb@123456" > ~/.chainlink-kovan/.password
 
 
 cd ~/.chainlink-kovan
@@ -47,7 +47,5 @@ docker run --rm \
   -v ~/.chainlink-kovan:/chainlink \
   -itd \
   --env-file=.env \
-  -p /chainlink/.password \
-  -a /chainlink/.api \
-  smartcontract/chainlink:1.0.0 local n
+  smartcontract/chainlink:1.0.0 local n -p /chainlink/.password -a /chainlink/.api
 
