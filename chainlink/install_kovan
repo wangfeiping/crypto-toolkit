@@ -47,5 +47,6 @@ docker run --rm \
   -v ~/.chainlink-kovan:/chainlink \
   -itd \
   --env-file=.env \
-  smartcontract/chainlink:1.0.0 local n -p /chainlink/.password -a /chainlink/.api
-
+  smartcontract/chainlink:1.0.0 local n \
+  -p /chainlink/.password \
+  -a /chainlink/.api
