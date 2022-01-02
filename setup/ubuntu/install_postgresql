@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_postgresql | bash
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_postgresql | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_postgresql -O install_postgresql
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_postgresql -O install_postgresql
 #
 # Postgresql
 #
