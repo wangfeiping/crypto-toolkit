@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+#
+#
+
+curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_docker | bash
+
+curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_postgresql | bash
+
+curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/init_postgresql | bash
+
+curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_kovan | bash
