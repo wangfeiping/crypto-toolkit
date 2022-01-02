@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 #
 # curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_kovan | bash
