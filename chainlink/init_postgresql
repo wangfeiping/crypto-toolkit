@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/init_postgresql | bash
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/init_postgresql | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/init_postgresql -O init_postgresql
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/init_postgresql -O init_postgresql
 #
 # Init Postgresql
 #
