@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/init_postgresql | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/init_postgresql -O init_postgresql
+#
+# Init Postgresql
+#
+# Username: chainlink
+# Database: chainlink
+# Passwrod: chainlink
+#
+#
+
+set -e
+set -x
+
+
+# Drop user and database
+
+cd /tmp
+sudo -u postgres sh <<EOF
+/usr/bin/psql -U postgres -d postgres -c "DROP DATABASE IF EXISTS chainlink;"
+/usr/bin/psql -U postgres -d postgres -c "DROP USER IF EXISTS chainlink;"
+EOF
+
+# Create user and db
+
+cd /tmp
+sudo -u postgres sh <<EOF
+/usr/bin/createuser --superuser chainlink
+/usr/bin/createdb -O chainlink  chainlink
+EOF
+
+# Change password
+
+cd /tmp
+sudo -u postgres sh <<EOF
+/usr/bin/psql -U postgres -d postgres -c "alter user chainlink with password '123456';"
+EOF
+
+# Test
+
+echo "127.0.0.1:5432:chainlink:chainlink:123456" > ~/.pgpass
+chmod 600 ~/.pgpass
+/usr/bin/psql -U chainlink -d chainlink -h 127.0.0.1 -p 5432 -c "select * from current_user;"
