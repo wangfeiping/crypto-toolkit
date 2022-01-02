@@ -40,7 +40,7 @@ echo "username@chainlink.com" > ~/.chainlink-kovan/.api
 echo "AAAbbb@123456" >> ~/.chainlink-kovan/.api
 echo "AAAbbb@123456" > ~/.chainlink-kovan/.password
 
-
+echo "
 cd ~/.chainlink-kovan
 docker run --rm \
   -p 6688:6688 \
@@ -50,3 +50,4 @@ docker run --rm \
   smartcontract/chainlink:1.0.0 local n \
   -p /chainlink/.password \
   -a /chainlink/.api
+"
