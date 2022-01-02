@@ -31,20 +31,21 @@ CHAINLINK_TLS_PORT=0
 SECURE_COOKIES=false
 GAS_UPDATER_ENABLED=true
 ETH_URL=wss://kovan.infura.io/ws/v3/xxx
-DATABASE_URL=postgresql://chainlink:123456@172.26.238.39:5432/chainlink
+DATABASE_URL=postgresql://chainlink:123456@172.17.210.69:5432/chainlink
 DATABASE_TIMEOUT=0
 ALLOW_ORIGINS=*" > ~/.chainlink-kovan/.env
+
+
+echo "username@chainlink.com" > ~/.chainlink-kovan/.api
+echo "password" >> ~/.chainlink-kovan/.api
+echo "wallet_password" > ~/.chainlink-kovan/.password
 
 
 cd ~/.chainlink-kovan
 docker run --rm \
   -p 6688:6688 \
   -v ~/.chainlink-kovan:/chainlink \
-  -it \
+  -itd \
   --env-file=.env \
   smartcontract/chainlink:1.0.0 local n
 
-
-#
-# Password: AAAbbb@123456
-#
