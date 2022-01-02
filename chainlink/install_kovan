@@ -7,6 +7,8 @@
 #
 # Chainlink kovan
 #
+# ENV: 
+#   ETH_URL="https://kovan.infura.io/v3/XXXXXXXXXX"
 #
 
 set -e
@@ -22,6 +24,8 @@ fi
 
 mkdir ~/.chainlink-kovan
 
+POSTGRESQL_HOST=`ip route | grep "^default" | cut -d" " -f9`
+
 echo "ROOT=/chainlink
 LOG_LEVEL=debug
 ETH_CHAIN_ID=42
@@ -30,8 +34,8 @@ LINK_CONTRACT_ADDRESS=0xa36085F69e2889c224210F603D836748e7dC0088
 CHAINLINK_TLS_PORT=0
 SECURE_COOKIES=false
 GAS_UPDATER_ENABLED=true
-ETH_URL=wss://kovan.infura.io/ws/v3/xxx
-DATABASE_URL=postgresql://chainlink:123456@172.17.210.69:5432/chainlink
+ETH_URL=${ETH_URL}
+DATABASE_URL=postgresql://chainlink:123456@${POSTGRESQL_HOST}:5432/chainlink
 DATABASE_TIMEOUT=0
 ALLOW_ORIGINS=*" > ~/.chainlink-kovan/.env
 
@@ -39,6 +43,7 @@ ALLOW_ORIGINS=*" > ~/.chainlink-kovan/.env
 echo "username@chainlink.com" > ~/.chainlink-kovan/.api
 echo "AAAbbb@123456" >> ~/.chainlink-kovan/.api
 echo "AAAbbb@123456" > ~/.chainlink-kovan/.password
+
 
 echo "
 cd ~/.chainlink-kovan
