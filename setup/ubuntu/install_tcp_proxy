@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_tcp_proxy | bash
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_tcp_proxy | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/static/master/setup/ubuntu/install_tcp_proxy -O install_tcp_proxy
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_tcp_proxy -O install_tcp_proxy
 #
 # OpenResty
 #
