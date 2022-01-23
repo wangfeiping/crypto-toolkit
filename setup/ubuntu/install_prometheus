@@ -33,5 +33,9 @@ mv consoles/ console_libraries/ /etc/prometheus/
 cd -
 rm -fr prometheus-$VERSION.linux-amd64
 
+prometheus --version
+
+
+
 echo
 echo "prometheus is fine"
