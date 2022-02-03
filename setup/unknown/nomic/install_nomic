@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_nomic | bash
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/install_nomic | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_nomic -O install_nomic
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/install_nomic -O install_nomic
 #
 # nomic 
 #
@@ -35,8 +35,6 @@ apt install build-essential libssl-dev pkg-config clang
 git clone https://github.com/nomic-io/nomic.git nomic && cd nomic
 
 cargo install --path .
-
-
 
 
 echo
