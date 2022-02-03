@@ -1,0 +1,43 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_nomic | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_nomic -O install_nomic
+#
+# nomic 
+#
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install geth which requires root privileges"
+    exit 1
+fi
+
+
+# Download package
+
+cd ~
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup default nightly
+
+apt remove gcc-9-base libgcc-9-dev
+apt install build-essential libssl-dev pkg-config clang
+
+git clone https://github.com/nomic-io/nomic.git nomic && cd nomic
+
+cargo install --path .
+
+
+
+
+echo
+echo "Everything is fine"
