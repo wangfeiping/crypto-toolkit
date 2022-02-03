@@ -29,11 +29,17 @@ cd ~
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup default nightly
 
-apt remove gcc-9-base libgcc-9-dev
-apt install build-essential libssl-dev pkg-config clang
+OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+
+if [ "$OS" = "ubuntu" ]; then
+    apt remove gcc-9-base libgcc-9-dev
+    
+    apt install -y git
+    apt install -y build-essential libssl-dev pkg-config clang
+fi
+
 
 git clone https://github.com/nomic-io/nomic.git nomic && cd nomic
-
 cargo install --path .
 
 
