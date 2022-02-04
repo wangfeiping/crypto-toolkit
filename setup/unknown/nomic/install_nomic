@@ -38,6 +38,11 @@ if [ "$OS" = "ubuntu" ]; then
     apt install -y build-essential libssl-dev pkg-config clang
 fi
 
+if [ "$OS" = "redhat" ]; then
+    dnf install -y git
+    dnf install clang openssl-devel && dnf group install "Development tools"
+fi
+
 
 git clone https://github.com/nomic-io/nomic.git nomic && cd nomic
 cargo install --path .
