@@ -1,0 +1,51 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/install_bitsong | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/install_bitsong -O install_bitsong
+#
+# bitsong 
+#
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install geth which requires root privileges"
+    exit 1
+fi
+
+
+if [ "$OS" = "ubuntu" ]; then
+    # On Ubuntu start by updating your system
+    sudo apt update --yes
+    sudo apt upgrade --yes
+
+    # Install pre-requisites
+    sudo apt install git build-essential ufw curl jq --yes
+
+    # Install Go
+    wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.17.6
+    source /root/.bashrc
+
+    # Install go-bitsong binary
+    cd $HOME
+    git clone https://github.com/bitsongofficial/go-bitsong
+    cd go-bitsong
+    git checkout v0.10.0
+    make install
+
+    # Verify that everything is OK
+    bitsongd version
+fi
+
+
+echo
+echo "Everything is fine"
