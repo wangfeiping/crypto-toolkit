@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/install_nomic | bash
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/nomic/install_nomic | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/install_nomic -O install_nomic
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/nomic/install_nomic -O install_nomic
 #
 # nomic 
 #
