@@ -35,7 +35,9 @@ if [ "$OS" = "ubuntu" ]; then
     apt remove gcc-9-base libgcc-9-dev
     
     apt install -y git
-    apt install -y build-essential libssl-dev pkg-config clang
+    apt install -y build-essential libssl-dev pkg-config 
+    apt install -y libc6=2.31-0ubuntu9.2
+    apt install -y clang
 fi
 
 if [ "$OS" = "redhat" ]; then
