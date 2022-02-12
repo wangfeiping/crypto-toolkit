@@ -1,0 +1,53 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/lum/install_lum | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/lum/install_lum -O install_lum
+#
+# lum 
+#
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install geth which requires root privileges"
+    exit 1
+fi
+
+
+if [ "$OS" = "ubuntu" ]; then
+    # On Ubuntu start by updating your system
+    sudo apt update --yes
+    sudo apt upgrade --yes
+
+    # Install pre-requisites
+    sudo apt install git build-essential ufw curl jq tmux --yes
+    wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
+
+    # Install Go
+    wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.17.6
+    source /root/.bashrc
+    go version
+
+    # Install lum binary
+    cd $HOME
+    git clone https://github.com/lum-network/chain.git
+    cd chain
+    git checkout v1.0.5
+    make install
+
+    # Verify that everything is OK
+    lumd version
+fi
+
+
+echo
+echo "Everything is fine"
