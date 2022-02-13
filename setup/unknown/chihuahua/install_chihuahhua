@@ -1,0 +1,66 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/chihuahua/install_chihuahua | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/unknown/chihuahua/install_chihuahua -O install_chihuahua
+#
+# chihuahua 
+#
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install geth which requires root privileges"
+    exit 1
+fi
+
+
+# Download package
+
+OS=`curl https://raw.githubusercontent.com/WALL-E/static/master/utils/get_os_string 2>/dev/null | bash`
+
+if [ "$OS" = "ubuntu" ]; then
+    # Basic Packages
+    sudo apt update --yes
+    sudo apt upgrade --yes
+
+
+    # Utils
+    apt install tmux --yes
+    wget -t 3 -O ~/.tmux.conf https://raw.githubusercontent.com/WALL-E/config/master/tmux/tmux.conf
+    apt install make build-essential gcc git jq chrony --yes
+
+
+    # Install Go
+    wget -q -O - https://git.io/vQhTU | bash -s -- --version 1.17.6
+    source /root/.bashrc
+    go version
+
+    # Install binary
+    cd $HOME
+    git clone https://github.com/ChihuahuaChain/chihuahua.git
+    cd chihuahua
+    git fetch --tags
+
+    # Before block 535000
+    git checkout v1.0.0
+    # After block 535000
+    git checkout v1.1.1
+
+    make install
+
+    # Verify that everything is OK
+    chihuahuad version
+fi
+
+
+echo
+echo "Everything is fine"
