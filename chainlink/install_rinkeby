@@ -6,7 +6,6 @@
 # wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_rinkeby -O install_kovan
 #
 # Chainlink rinkeby
-# Chainlink rinkeby
 #
 # ENV: 
 #    export ETH_URL="wss://rinkeby.infura.io/ws/v3/XXXXXXXXXX"
