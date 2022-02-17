@@ -23,7 +23,7 @@ then
     exit 1
 fi
 
-mkdir ~/.chainlink-kovan
+mkdir ~/.chainlink-rinkeby
 
 echo "ROOT=/chainlink
 LOG_LEVEL=debug
