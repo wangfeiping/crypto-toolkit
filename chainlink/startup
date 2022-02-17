@@ -11,4 +11,4 @@ curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu
 # unknown
 
 curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/init_postgresql | bash
-curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_kovan | bash
+curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_rinkeby | bash
