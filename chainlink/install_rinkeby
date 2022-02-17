@@ -6,25 +6,17 @@
 # wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_rinkeby -O install_kovan
 #
 # Chainlink rinkeby
+# Chainlink rinkeby
 #
 # ENV: 
-#   export ETH_URL="wss://rinkeby.infura.io/v3/XXXXXXXXXX"
-#   export POSTGRESQL_HOST="10.168.0.2"
+#    export ETH_URL="wss://rinkeby.infura.io/ws/v3/XXXXXXXXXX"
+#    export POSTGRESQL_HOST="10.168.0.2"
 #
 
 set -e
 set -x
-
-
-role=`id -u`
-if test $role -ne 0
-then
-    echo "You install Docker which requires root privileges"
-    exit 1
-fi
-
+rm -fr ~/.chainlink-rinkeby
 mkdir ~/.chainlink-rinkeby
-
 echo "ROOT=/chainlink
 LOG_LEVEL=debug
 ETH_CHAIN_ID=4
@@ -34,21 +26,17 @@ ALLOW_ORIGINS=*
 ETH_URL=${ETH_URL}
 DATABASE_URL=postgresql://chainlink:123456@${POSTGRESQL_HOST}:5432/chainlink
 DATABASE_TIMEOUT=0" > ~/.chainlink-rinkeby/.env
-
-
 echo "username@chainlink.com" > ~/.chainlink-rinkeby/.api
 echo "AAAbbb@123456" >> ~/.chainlink-rinkeby/.api
 echo "AAAbbb@123456" > ~/.chainlink-rinkeby/.password
-
-
 echo "
-cd ~/.chainlink-kovan
+cd ~/.chainlink-rinkeby
 docker run --rm \
   -p 6688:6688 \
   -v ~/.chainlink-rinkeby:/chainlink \
   -itd \
   --env-file=.env \
-  smartcontract/chainlink:1.0.0 local n \
+  smartcontract/chainlink:1.1.1 local n \
   -p /chainlink/.password \
   -a /chainlink/.api
 "
