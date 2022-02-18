@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#
+# QucikStart Chainlink
 #
 
 # PostgreSQL 
@@ -10,7 +10,7 @@ curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu
 curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/init_postgresql | bash
 
 
-# unknown
+# Chianlink Node
 
 curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/setup/ubuntu/install_docker | bash
 
