@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_rinkeby | bash
+# curl https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_chainlink_rinkeby | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_rinkeby -O install_kovan
+# wget https://raw.githubusercontent.com/WALL-E/crypto-toolkit/master/chainlink/install_chainlink_rinkeby -O install_chainlink_rinkeby
 #
 # Chainlink rinkeby
 #
