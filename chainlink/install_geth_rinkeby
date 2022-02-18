@@ -1,0 +1,88 @@
+#/bin/bash
+
+#
+# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_geth_rinkeby  | bash
+#
+# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/install_geth_rinkeby  -O install_geth_rinkeby 
+#
+# Geth rinkeby
+#
+#
+
+set -e
+set -x
+
+
+# Condition check
+
+role=`id -u`
+if test $role -ne 0
+then
+    echo "You install geth which requires root privileges"
+    exit 1
+fi
+
+
+# Download package
+
+cd ~
+wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.16-20356e57.tar.gz
+tar zxvf geth-linux-amd64-1.10.16-20356e57.tar.gz
+cp geth-linux-amd64-1.10.16-20356e57/geth /usr/local/bin/
+/usr/local/bin/geth version
+
+
+# Create user
+
+useradd --system --no-create-home --shell /sbin/nologin goeth
+
+
+# Create directory
+
+mkdir -p /var/lib/goethereum
+
+
+# Assign goeth permission to modify /goethereum
+chown -R goeth:goeth /var/lib/goethereum
+
+
+# Create systemd service
+
+cat > /usr/lib/systemd/system/geth.service <<EOF
+[Unit]
+Description=Ethereum go client
+After=network.target
+Wants=network.target
+
+[Service]
+User=goeth
+Group=goeth
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/geth --networkid=4 \
+  --datadir=/var/lib/goethereum \
+  --cache=512 \
+  --http \
+  --ethstats='yournode:Respect my authoritah!@stats.rinkeby.io' \
+  --bootnodes=enode://a24ac7c5484ef4ed0c5eb2d36620ba4e4aa13b8c84684e1b4aab0cebea2ae45cb4d375b77eab56516d34bfbd3c1a833fc51296ff084b770b94fb9028c4d25ccf@52.169.42.101:30303
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl daemon-reload
+systemctl enable geth
+
+echo
+echo "systemctl start geth"
+echo "systemctl stop geth"
+echo "journalctl -f -u geth"
+
+
+# Attach to console
+echo
+echo "geth attach --datadir /var/lib/goethereum"
+
+echo
+echo "Everything is fine"
