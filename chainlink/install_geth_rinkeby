@@ -7,6 +7,12 @@
 #
 # Geth rinkeby
 #
+# Required:
+#
+#    CPU: 2Core
+#    MEM: 4G
+#    Disk: 50G
+#
 #
 
 set -e
