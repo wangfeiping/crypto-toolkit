@@ -8,7 +8,6 @@
 # Chainlink rinkeby
 #
 # ENV: 
-#    export ETH_URL="wss://rinkeby.infura.io/ws/v3/XXXXXXXXXX"
 #    export POSTGRESQL_HOST="10.168.0.2"
 #
 
@@ -26,7 +25,6 @@ ETH_CHAIN_ID=4
 CHAINLINK_TLS_PORT=0
 SECURE_COOKIES=false
 ALLOW_ORIGINS=*
-ETH_URL=${ETH_URL}
 DATABASE_URL=postgresql://chainlink:123456@${POSTGRESQL_HOST}:5432/chainlink
 DATABASE_TIMEOUT=0" > ~/.chainlink-rinkeby/.env
 
