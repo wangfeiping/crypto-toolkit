@@ -1,9 +1,9 @@
 #/bin/bash
 
 #
-# curl https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/prometheus/install_node_exporter | bash
+# curl https://raw.githubusercontent.com/wangfeiping/crypto-toolkit/master/setup/unknown/prometheus/install_node_exporter | bash
 #
-# wget https://raw.githubusercontent.com/WALL-E/eth-toolkit/master/setup/unknown/prometheus/install_node_exporter -O install_node_exporter
+# wget https://raw.githubusercontent.com/wangfeiping/crypto-toolkit/master/setup/unknown/prometheus/install_node_exporter -O install_node_exporter
 #
 # node_exporter
 #
@@ -12,7 +12,7 @@ set -e
 set -x
 
 APP="node_exporter"
-VERSION="1.2.2"
+VERSION="1.6.1"
 BIN="/usr/local/bin/node_exporter"
 USER="node-exporter"
 GROUP="node-exporter"
