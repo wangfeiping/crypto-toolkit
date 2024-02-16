@@ -77,7 +77,7 @@ Group=$GROUP
 Restart=always
 RestartSec=5
 ExecStart=$BIN \
-  --web.listen-address=127.0.0.1:9100
+  --web.listen-address=0.0.0.0:9100
 
 [Install]
 WantedBy=multi-user.target
