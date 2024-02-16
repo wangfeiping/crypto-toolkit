@@ -14,8 +14,8 @@ set -x
 APP="node_exporter"
 VERSION="1.6.1"
 BIN="/usr/local/bin/node_exporter"
-USER="node-exporter"
-GROUP="node-exporter"
+USER="root"
+GROUP="root"
 SERVICE="node_exporter"
 SYSTEMD="/usr/lib/systemd/system/$SERVICE.service"
 
