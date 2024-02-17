@@ -30,14 +30,14 @@ then
 fi
 
 
-# Create user
-
-if id "$USER" >/dev/null 2>&1; then
-    echo "User $USER exists"
-    exit 1
-fi
-
-useradd --system --no-create-home --shell /sbin/nologin $USER
+## Create user
+#
+#if id "$USER" >/dev/null 2>&1; then
+#    echo "User $USER exists"
+#    exit 1
+#fi
+#
+#useradd --system --no-create-home --shell /sbin/nologin $USER
 
 
 # Download package
